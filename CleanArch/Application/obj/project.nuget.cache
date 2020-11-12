@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "nuS8r4wONeRYEAupK2jc4iojge6go05jSU0LiANuF9Q1jJ5uHT0WU/1s6g6NIXlErY/jyTnZ8di/HIPZ3cu0Aw==",
+  "success": true,
+  "projectFilePath": "E:\\Đồ Án Công Nghệ Phần Mềm\\CleanArch\\Application\\Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

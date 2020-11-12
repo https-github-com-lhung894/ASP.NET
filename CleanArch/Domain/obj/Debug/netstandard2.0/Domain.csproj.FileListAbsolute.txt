@@ -1,0 +1,9 @@
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.dll
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.pdb
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
