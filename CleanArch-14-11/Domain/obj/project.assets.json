@@ -279,23 +279,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hung\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\lapgo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hung\\Desktop\\ASP.NET-main\\CleanArch\\Domain\\Domain.csproj",
+      "projectUniqueName": "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch-14-11\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "C:\\Users\\Hung\\Desktop\\ASP.NET-main\\CleanArch\\Domain\\Domain.csproj",
-      "packagesPath": "C:\\Users\\Hung\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hung\\Desktop\\ASP.NET-main\\CleanArch\\Domain\\obj\\",
+      "projectPath": "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch-14-11\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\lapgo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch-14-11\\Domain\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Hung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\lapgo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -303,8 +299,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.telerik.com/nuget": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {

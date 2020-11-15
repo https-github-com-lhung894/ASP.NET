@@ -3,10 +3,9 @@
     "secrets1": {
       "type": "secrets.user"
     },
-    "mssql1": {
-      "resourceId": null,
+    "mssql2": {
       "type": "mssql.local",
-      "connectionId": "QLNS",
+      "connectionId": "QLNS-Lap",
       "secretStore": "LocalSecretsFile"
     }
   }
