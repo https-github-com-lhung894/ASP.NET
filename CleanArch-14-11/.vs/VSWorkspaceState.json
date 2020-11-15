@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\WebApplication1",
+    "\\WebApplication1\\Views",
+    "\\WebApplication1\\Views\\Home",
+    "\\WebApplication1\\wwwroot",
+    "\\WebApplication1\\wwwroot\\asset",
+    "\\WebApplication1\\wwwroot\\asset\\css"
+  ],
+  "SelectedNode": "\\WebApplication1\\Views\\Home\\Index.cshtml",
+  "PreviewInSolutionExplorer": false
+}
