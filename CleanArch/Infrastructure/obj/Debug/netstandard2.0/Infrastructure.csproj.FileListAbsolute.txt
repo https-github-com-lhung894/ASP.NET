@@ -1,0 +1,24 @@
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.deps.json
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.dll
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.pdb
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Domain.dll
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Domain.pdb
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csprojAssemblyReference.cache
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfoInputs.cache
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfo.cs
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.dll
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.pdb
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CoreCompileInputs.cache
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.deps.json
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.dll
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.pdb
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Domain.dll
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Domain.pdb
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csprojAssemblyReference.cache
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfoInputs.cache
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfo.cs
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CoreCompileInputs.cache
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.dll
+E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.pdb
