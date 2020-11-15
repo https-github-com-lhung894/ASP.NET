@@ -1,0 +1,5 @@
+@charset "UTF-8";
+.wizard .content {
+    min-height: 50rem !important;
+    margin: 0;
+}
