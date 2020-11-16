@@ -413,18 +413,38 @@
 								<div class="card-title">
 									<h4>THÊM PHÒNG BAN</h4>
 								</div>
-								<form action="" method="post">
-									<div class="form-group"><label for="maphongban">Mã phòng ban</label>
-										<div class="input-group mb-3">
-                                            <input type="text" class="form-control">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-dark" type="button">Button</button>
-                                            </div>
-                                        </div>                                            														
-										<label for="tenphongban">Tên phòng ban</label>
-										<input type="text" placeholder="" class="form-control" name="tenphongban" required>
-										<label for="sodienthoai">Số điện thoại</label>
-										<input type="number" placeholder="" class="form-control" name="sodienthoai" required>										
+								<form action="#" method="post">
+
+							<div class="form-group">
+                                                        <label for="mapb">Mã phòng ban <span class="text-danger">*</span></label>
+                                                        <div class="input-group">
+                                                            <input id="mapb" class="form-control" type="text" placeholder="Số liệu tự cấp phát.." name="mapb" readonly="readonly">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-outline-dark" type="button" onclick="capphatmapb()"><i class="fa fa-plus"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    			
+						<div class="form-group">
+                                                        <label for="tenpb">Tên phòng ban <span class="text-danger">*</span></label>
+                                                        <select class="form-control" name="tenpb" required>
+                                                            <option value="">-- Lựa chọn --</option>
+                                                            <option value="html">HTML</option>
+                                                            <option value="css">CSS</option>
+                                                            <option value="javascript">JavaScript</option>
+                                                            <option value="angular">Angular</option>
+                                                            <option value="angular">React</option>
+                                                            <option value="vuejs">Vue.js</option>
+                                                            <option value="ruby">Ruby</option>
+                                                            <option value="php">PHP</option>
+                                                            <option value="asp">ASP.NET</option>
+                                                            <option value="python">Python</option>
+                                                            <option value="mysql">MySQL</option>
+                                                        </select>
+                                                    </div>																																						
+                                                    <div class="form-group">
+                                                        <label for="sdt">Số điện thoại <span class="text-danger">*</span></label>
+                                                        <input type="number" name="sdt" class="form-control" placeholder="Vui lòng nhập liệu.." required>
+                                                    </div>									
 									</div>
 									<input type="submit" value="Thêm mới" name="themmoi" class="btn btn-primary">
 								</form>
@@ -435,7 +455,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h3>Danh Sách Phòng Ban</h3><form class="navbar-form">
+                                    <h3>DANH SÁCH PHÒNG BAN</h3>
+					<form class="form-group">
                                         <div class="input-group no-border">
                                             <input type="search" value="" class="form-control" placeholder="Tìm kiếm...">
                                             <button type="submit" class="btn btn-primary">
