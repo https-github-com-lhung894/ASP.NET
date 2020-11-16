@@ -21,7 +21,7 @@
     <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <link href="css/style.css" rel="stylesheet">
-
+    <link href="css/style-custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -420,39 +420,41 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header row">
-                                <div class="col-md-12">
-                                    <h2>DANH SÁCH NHÂN VIÊN</h2>
-                                </div>
-                                <div class="col-md-3">
-                                    <form class="navbar-form">
-                                        <div class="input-group no-border">
-                                            <input type="search" value="" class="form-control" placeholder="Search...">
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-9">
-                                    <a href="#" style="float:right;">
-                                        <button class="btn btn-primary"> <span style="margin-right: 10px">Thêm Mới</span><i class="fa fa-plus"></i></button>
-                                    </a>
-                                </div>
-                            </div>
                             <div class="card-body">
+                                <div class="card-title row">
+                                    <div class="col-md-12 mb-4">
+                                        <h3 class="td-center">DANH SÁCH NHÂN VIÊN</h3>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <form class="navbar-form">
+                                            <div class="input-group no-border">
+                                                <input type="search" value="" class="form-control" placeholder="Search...">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <a href="#" style="float:right;">
+                                            <button class="btn btn-primary"><span style="margin-right: 10px">Thêm Mới</span><i class="fa fa-plus"></i></button>
+                                        </a>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover">
-                                        <thead class=" text-primary">
-                                        <th style="width:10%; text-align: center; font-weight: bold">Hình Ảnh</th>
-                                        <th style="width:15%; text-align: center; font-weight: bold">Mã Nhân Viên</th>
-                                        <th style="width:15%; text-align: center; font-weight: bold">Tên Nhân Viên</th>
-                                        <th style="width:15%; text-align: center; font-weight: bold">Phòng Ban</th>
-                                        <th style="width:15%; text-align: center; font-weight: bold">Chức vụ</th>
-                                        <th style="width:15%; text-align: center; font-weight: bold">Công Việc</th>
-                                        <th style="width:5%; text-align: center; font-weight: bold">Chi Tiết</th>
-                                        <th style="width:5%; text-align: center; font-weight: bold">Sửa</th>
-                                        <th style="width:5%; text-align: center; font-weight: bold">Xóa</th>
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th style="width:10%;" class="th-center-bold">Hình ảnh</th>
+                                                <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                                <th style="width:15%;" class="th-center-bold">Tên nhân viên</th>
+                                                <th style="width:15%;" class="th-center-bold">Phòng ban</th>
+                                                <th style="width:15%;" class="th-center-bold">Chức vụ</th>
+                                                <th style="width:15%;" class="th-center-bold">Công việc</th>
+                                                <th style="width:5%;" class="th-center-bold">Chi tiết</th>
+                                                <th style="width:5%;" class="th-center-bold">Sửa</th>
+                                                <th style="width:5%;" class="th-center-bold">Xóa</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
@@ -462,17 +464,17 @@
                                                 <td> Phòng Ban </td>
                                                 <td> Chức vụ </td>
                                                 <td> Công Việc </td>
-                                                <td style="text-align: center;">
+                                                <td class="td-center">
                                                     <a href="#">
                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-info"></i></button>
                                                     </a>
                                                 </td>
-                                                <td style="text-align: center;">
+                                                <td class="td-center">
                                                     <a href="#">
                                                         <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
                                                     </a>
                                                 </td>
-                                                <td style="text-align: center;">
+                                                <td class="td-center">
                                                     <a href="#">
                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-close"></i></button>
                                                     </a>

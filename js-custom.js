@@ -18,3 +18,7 @@ function capphatmanv() {
 function capphattaikhoan() {
     $('#taikhoan').val('123456');
 }
+
+function capphatmapb() {
+    $('#mapb').val('123456');
+}

@@ -21,7 +21,7 @@
     <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <link href="css/style.css" rel="stylesheet">
-
+    <link href="css/style-custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -420,44 +420,49 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header row">
-                                <div class="col-md-12">
-                                    <h2 style="text-align:center">DANH SÁCH NHÂN VIÊN TRONG PHÒNG BAN</h2></br>
-                                </div>				
-                                <div class="col-md-3">
-                                    <form class="navbar-form">
-                                        <div class="input-group no-border">
-                                            <input type="search" value="" class="form-control" placeholder="Tìm kiếm...">
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                             <div class="card-body">
+                                <div class="card-title row">
+                                    <div class="col-md-12 mb-4">
+                                        <h3 class="td-center">DANH SÁCH NHÂN VIÊN TRONG PHÒNG BAN</h3>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <form class="navbar-form">
+                                            <div class="input-group no-border">
+                                                <input type="search" value="" class="form-control" placeholder="Search...">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <a href="#" style="float:right;">
+                                            <button class="btn btn-primary"><span style="margin-right: 10px">Trở về danh sách phòng ban</span><i class="fa fa-arrow-left"></i></button>
+                                        </a>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover">
-                                        <thead class=" text-primary">
-                                        <th style="width:10%; text-align: center; font-weight: bold">Hình Ảnh</th>
-                                        <th style="width:15%; text-align: center; font-weight: bold">Mã Nhân Viên</th>
-                                        <th style="width:15%; text-align: center; font-weight: bold">Họ Nhân Viên</th>
-					<th style="width:15%; text-align: center; font-weight: bold">Tên Nhân Viên</th>
-                                        <th style="width:15%; text-align: center; font-weight: bold">Phòng Ban</th>
-                                        <th style="width:10%; text-align: center; font-weight: bold">Chức Vụ</th>
-                                        <th style="width:10%; text-align: center; font-weight: bold">Công Việc</th>                                        
-                                        <th style="width:10%; text-align: center; font-weight: bold">Thao Tác</th>
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th style="width:10%;" class="th-center-bold">Hình ảnh</th>
+                                                <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                                <th style="width:20%;" class="th-center-bold">Tên nhân viên</th>
+                                                <th style="width:15%;" class="th-center-bold">Phòng ban</th>
+                                                <th style="width:15%;" class="th-center-bold">Chức vụ</th>
+                                                <th style="width:15%;" class="th-center-bold">Công việc</th>
+                                                <th style="width:10%;" class="th-center-bold">Xoá</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td><img src="./product-img/3_Stripes_Jacquard_Polo_Shirt_Black.jpg" alt="" style="width:100%" ;=""></td>
                                                 <td> Mã Nhân Viên </td>
-						<td> Họ Nhân Viên </td>
                                                 <td> Tên Nhân Viên </td>
                                                 <td> Phòng Ban </td>
                                                 <td> Chức vụ </td>
                                                 <td> Công Việc </td>
-                                                <td style="text-align: center;">
+                                                <td class="td-center">
                                                     <a href="#">
                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-close"></i></button>
                                                     </a>
@@ -466,12 +471,11 @@
                                             <tr>
                                                 <td><img src="./product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="" style="width:100%" ;=""></td>
                                                 <td> Mã Nhân Viên </td>
-                                                <td> Họ Nhân Viên </td>
-						<td> Tên Nhân Viên </td>
+                                                <td> Tên Nhân Viên </td>
                                                 <td> Phòng Ban </td>
                                                 <td> Chức vụ </td>
-                                                <td> Công Việc </td>                                                
-                                                <td style="text-align: center;">
+                                                <td> Công Việc </td>
+                                                <td class="td-center">
                                                     <a href="#">
                                                         <button type="button" class="btn btn-primary"><i class="fa fa-close"></i></button>
                                                     </a>

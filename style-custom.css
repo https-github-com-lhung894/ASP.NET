@@ -43,3 +43,12 @@
 .form-file {
 margin: auto;
 }
+
+.th-center-bold {
+text-align: center;
+font-weight: bold;
+}
+
+.td-center {
+text-align: center;
+}
