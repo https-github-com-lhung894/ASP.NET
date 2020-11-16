@@ -15,3 +15,12 @@ E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.Assem
 E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
 E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
 E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
+E:\Github\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+E:\Github\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.dll
+E:\Github\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.pdb
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb

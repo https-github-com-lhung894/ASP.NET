@@ -285,11 +285,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+      "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+      "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\obj\\",
+      "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

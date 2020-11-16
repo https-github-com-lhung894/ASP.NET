@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj": {}
+    "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+    "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+        "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+        "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\obj\\",
+        "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -68,14 +68,14 @@
         }
       }
     },
-    "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj": {
+    "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Infrastructure\\obj\\",
+        "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -95,8 +95,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
+              "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+                "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
               }
             }
           }

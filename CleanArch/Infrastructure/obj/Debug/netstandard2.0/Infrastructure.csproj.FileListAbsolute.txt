@@ -22,3 +22,15 @@ E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infr
 E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete
 E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.dll
 E:\Github\ASP.NET\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.pdb
+E:\Github\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.deps.json
+E:\Github\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.dll
+E:\Github\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.pdb
+E:\Github\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Domain.dll
+E:\Github\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Domain.pdb
+E:\Github\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csprojAssemblyReference.cache
+E:\Github\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfoInputs.cache
+E:\Github\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfo.cs
+E:\Github\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CoreCompileInputs.cache
+E:\Github\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete
+E:\Github\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.dll
+E:\Github\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.pdb

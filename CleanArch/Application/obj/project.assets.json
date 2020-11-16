@@ -303,11 +303,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Application\\Application.csproj",
+      "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Application\\Application.csproj",
+      "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Application\\obj\\",
+      "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -327,8 +327,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
-              "projectPath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
+            "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+              "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
             }
           }
         }

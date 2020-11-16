@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xvLjr65jhhm4w0Ee26ZqsntAh8ki2PnQe13mP4HoOrQEG43WjkXHbrjNS7V2tGxzN7omgOSZ/KV+yVtt0kJ3Vg==",
+  "dgSpecHash": "Hxr9Wjaic+FpZKJ0QuhE9tijBpt3L2i2KJ16aWv77/ARIsruL8/LtVrohjSvE0alLxhv3Lemb765hjip1xBG2w==",
   "success": true,
-  "projectFilePath": "E:\\Github\\ASP.NET\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
