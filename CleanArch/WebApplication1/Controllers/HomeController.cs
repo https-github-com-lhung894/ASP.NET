@@ -8,16 +8,19 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ILoginSv loginSv;
-        public HomeController(ILoginSv loginSv)
+        private readonly INhanVienCongViecSv nhanVienCongViecSv;
+        public HomeController(ILoginSv loginSv, INhanVienCongViecSv nhanVienCongViecSv)
         {
             this.loginSv = loginSv;
+            this.nhanVienCongViecSv = nhanVienCongViecSv;
         }
         [Route("")]
         [Route("~/")]
         [Route("index")]
         public IActionResult Index()
         {
-            return View();
+            NhanVienCongViecDTO nhanVienCongViecDTO = nhanVienCongViecSv.FindById("1");
+            return View(nhanVienCongViecDTO);
         }
         [HttpPost]
         [Route("")]

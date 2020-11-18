@@ -5,14 +5,17 @@ using System.Text;
 
 namespace Application.DTOs
 {
-    public class AddNhanVien
+    public class QuanLyNhanVien
     {
         public string NhanVienId { get; set; }
         public string HoNhanVien { get; set; }
         public string TenNhanVien { get; set; }
         public string PhongBanId { get; set; }
+        public string TenPhongBan { get; set; }
         public string ChucVuId { get; set; }
+        public string TenChuVu { get; set; }
         public string CongViecId { get; set; }
+        public string TenCongViec { get; set; }
         public DateTime? NgaySinh { get; set; }
         public string NoiSinh { get; set; }
         public string DiaChi { get; set; }
@@ -25,5 +28,6 @@ namespace Application.DTOs
         public string HinhAnh { get; set; }
         public string MatKhau { get; set; }
         public int? Quyen { get; set; }
+        public double? LuongCanBan { get; set; }
     }
 }

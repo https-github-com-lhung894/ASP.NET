@@ -65,6 +65,7 @@ namespace WebApplication1
             services.AddScoped<INhanVienPhuCapSv, NhanVienPhuCapSv>();
             services.AddScoped<ILuongThangSv, LuongThangSv>();
             services.AddScoped<IThuongLeSv, ThuongLeSv>();
+            services.AddScoped<IQuanLyNhanVienSv, QuanLyNhanVienSv>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

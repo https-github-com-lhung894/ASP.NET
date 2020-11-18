@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.DTOs;
+using Application.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,16 @@ namespace WebApplication1.Areas.Admin.Controllers
     [Route("QuanLyNhanVien")]
     public class QuanLyNhanVienController : Controller
     {
-
+        private readonly IQuanLyNhanVienSv quanLyNhanVienSv;
+        public QuanLyNhanVienController(IQuanLyNhanVienSv quanLyNhanVienSv)
+        {
+            this.quanLyNhanVienSv = quanLyNhanVienSv;
+        }
         [Route("")]
         public IActionResult Index()
         {
-            return View();
+            List<QuanLyNhanVien> quanLyNhanViens = quanLyNhanVienSv.GetList();
+            return View(quanLyNhanViens);
         }
     }
 }
