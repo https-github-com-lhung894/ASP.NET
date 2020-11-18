@@ -34,3 +34,15 @@ E:\Github\CleanArch\Application\obj\Debug\netstandard2.0\Application.csproj.Core
 E:\Github\CleanArch\Application\obj\Debug\netstandard2.0\Application.csproj.CopyComplete
 E:\Github\CleanArch\Application\obj\Debug\netstandard2.0\Application.dll
 E:\Github\CleanArch\Application\obj\Debug\netstandard2.0\Application.pdb
+E:\Github\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Application.deps.json
+E:\Github\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Application.dll
+E:\Github\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Application.pdb
+E:\Github\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Domain.dll
+E:\Github\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Domain.pdb
+E:\Github\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.csprojAssemblyReference.cache
+E:\Github\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.AssemblyInfoInputs.cache
+E:\Github\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.AssemblyInfo.cs
+E:\Github\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.csproj.CoreCompileInputs.cache
+E:\Github\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.csproj.CopyComplete
+E:\Github\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.dll
+E:\Github\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.pdb
