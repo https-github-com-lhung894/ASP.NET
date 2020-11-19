@@ -10,7 +10,7 @@ namespace Application.Mappings
     {
         public static NhanVienDTO ToDTO(this NhanVien nhanVien)
         {
-            return new NhanVienDTO()
+            return nhanVien == null ? null : new NhanVienDTO()
             {
                 NhanVienId = nhanVien.NhanVienId,
                 HoNhanVien = nhanVien.HoNhanVien,
@@ -31,7 +31,7 @@ namespace Application.Mappings
         }
         public static NhanVien ToNhanVien(this NhanVienDTO nhanVienDTO)
         {
-            return new NhanVien()
+            return nhanVienDTO == null ? null : new NhanVien()
             {
                 NhanVienId = nhanVienDTO.NhanVienId,
                 HoNhanVien = nhanVienDTO.HoNhanVien,

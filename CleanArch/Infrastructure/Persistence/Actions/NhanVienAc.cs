@@ -143,7 +143,6 @@ namespace Infrastructure.Persistence.Actions
             obj.TrangThai = 0;
             myData.NhanViens.Update(obj);
             myData.SaveChanges();
-
             return null;
         }
 

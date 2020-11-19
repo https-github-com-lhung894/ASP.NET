@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Domain.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace Application.Mappings
@@ -98,10 +99,14 @@ namespace Application.Mappings
             List<QuanLyNhanVien> listQLNV = new List<QuanLyNhanVien>();
             foreach(NhanVien nhanVien in nhanViens)
             {
+                if(nhanVien.TrangThai == 0)
+                {
+                    continue;
+                }
                 ChiTietNhanVien chiTietNhanVien = chiTietNhanViens.Find(x => x.ChiTietNhanVienId == nhanVien.NhanVienId);
                 PhongBan phongBan = phongBans.Find(x => x.PhongBanId == nhanVien.PhongBanId);
                 ChucVu chucVu = chucVus.Find(x => x.ChucVuId == nhanVien.ChucVuId);
-                NhanVienCongViec nhanVienCongViec = nhanVienCongViecs.Find(x => x.NhanVienId == nhanVien.NhanVienId && x.NhanVienCongViecId != "3");
+                NhanVienCongViec nhanVienCongViec = nhanVienCongViecs.Find(x => x.NhanVienId == nhanVien.NhanVienId && x.NgayKetThuc == null);
                 CongViec congViec = null;
                 if (nhanVienCongViec != null)
                 {
