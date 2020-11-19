@@ -68,15 +68,15 @@ INSERT INTO NhanVienCongViecs(NhanVienCongViecId,NhanVienId, CongViecId, HSCongV
 ('6', 'nv00004', 'congviec4', 0.5, '2018-07-01', '2020-07-01');
 
 INSERT INTO HopDongs(HopDongId, NhanVienId, CongViecId, NgayKyHopDong, LuongCanBo, TrangThai) VALUES
-(45, 'nv00001', 'congviec1', '2018-06-22', 3000000, 0),
-(46, 'nv00002', 'congviec2', '2018-06-22', 4000000, 1),
-(47, 'nv00003', 'congviec3', '2018-06-22', 5000000, 0),
-(48, 'nv00004', 'congviec4', '2018-06-22', 3500000, 1),
-(49, 'nv00005', 'congviec1', '2018-06-22', 2000000, 0),
-(50, 'nv00006', 'congviec2', '2018-06-22', 3800000, 1),
-(51, 'nv00007', 'congviec3', '2018-06-22', 4300000, 1);
+('45', 'nv00001', 'congviec1', '2018-06-22', 3000000, 0),
+('46', 'nv00002', 'congviec2', '2018-06-22', 4000000, 1),
+('47', 'nv00003', 'congviec3', '2018-06-22', 5000000, 0),
+('48', 'nv00004', 'congviec4', '2018-06-22', 3500000, 1),
+('49', 'nv00005', 'congviec1', '2018-06-22', 2000000, 0),
+('50', 'nv00006', 'congviec2', '2018-06-22', 3800000, 1),
+('51', 'nv00007', 'congviec3', '2018-06-22', 4300000, 1);
 
-INSERT INTO ChiTietNhanViens(ChiTietNhanVienId,NhanVienId, NgaySinh, NoiSinh, TrinhDoHocVan, GioiTinh, CMNN, NgayCapCMNN, DiaChi, SDT, Email, HinhAnh) VALUES
+INSERT INTO ChiTietNhanViens(ChiTietNhanVienId,NhanVienId, NgaySinh, NoiSinh, TrinhDoHocVan, GioiTinh, CMND, NgayCapCMND, DiaChi, SDT, Email, HinhAnh) VALUES
 ('nv00001','nv00001', '2000-01-07', 'Khánh Hòa', 'Đại Học', 'Nam', '258258258', '2020-07-01', '23 Tô Hiệu', '0897647145', 'aev@gmail.com', 'nv00001.jpg'),
 ('nv00002','nv00002', '2000-01-07', 'Khánh Hòa', 'Đại Học', 'Nam', '11103031', '2020-07-01', '23 Tô Hiệu', '0897647145', 'x@gmail.com', 'nv00002.jpg'),
 ('nv00003','nv00003', '2000-01-07', 'Khánh Hòa', 'Đại Học', 'Nam', '888888888', '2020-07-01', '23 Tô Hiệu', '0897647145', 'cyt@gmail.com', 'nv00003.jpg'),

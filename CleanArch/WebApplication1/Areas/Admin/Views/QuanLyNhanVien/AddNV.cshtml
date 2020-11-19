@@ -36,7 +36,7 @@
                                 <div class="col-lg-3">
                                     <div class="input-group">
                                         <div class="form-file">
-                                            <input type="file" class="inputfile" name="your_picture" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
+                                            <input type="file" class="inputfile" name="HinhAnh" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
                                             <label for="your_picture">
                                                 <figure>
                                                     <img src="~/images/user/form-user.png" alt="" class="your_picture_image">
@@ -98,17 +98,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="ngaysinh">Họ nhân viên <span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control mydatepicker" name="HoNhanVien" placeholder="Nhập họ..." required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
-                                                </div>
+                                                <input type="text" name="HoNhanVien" class="form-control" placeholder="Nhập họ..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="ngaysinh">Tên nhân viên <span class="text-danger">*</span></label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control mydatepicker" name="TenNhanVien" placeholder="Nhập tên..." required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
-                                                </div>
+                                                <input type="text" name="TenNhanVien" class="form-control" placeholder="Nhập tên..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -121,11 +117,21 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                                <label for="gioitinh">Giới tính <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="GioiTinh" required>
+                                                    <option value="">-- Chọn giới tính --</option>
+                                                    <option value="nam">Nam</option>
+                                                    <option value="nu">Nữ</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
                                                 <label for="noisinh">Nơi sinh <span class="text-danger">*</span></label>
                                                 <input type="text" name="NoiSinh" class="form-control" placeholder="Nhập nơi sinh..." required>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="diachi">Địa chỉ <span class="text-danger">*</span></label>
                                                 <input type="text" name="DiaChi" class="form-control" placeholder="Nhập địa chỉ..." required>
@@ -134,33 +140,33 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="cmnd">Số CMND/Thẻ căn cước <span class="text-danger">*</span></label>
-                                                <input type="number" name="CMND" class="form-control" placeholder="Nhập số CMND/Thẻ căn cước..." required>
+                                                <input type="text" name="CMND" class="form-control" placeholder="Nhập số CMND/Thẻ căn cước..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="ngaycap">Ngày cấp CMND/Thẻ căn cước <span class="text-danger">*</span></label>
                                                 <div class="input-group">
-                                                    <input type="text" name="ngaycap" class="form-control mydatepicker" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                                                    <input type="text" name="NgayCapCMND" class="form-control mydatepicker" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="sdt">Số điện thoại <span class="text-danger">*</span></label>
-                                                <input type="number" name="sdt" class="form-control" placeholder="Nhập số điện thoại..." required>
+                                                <input type="text" name="SDT" class="form-control" placeholder="Nhập số điện thoại..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="mail">Email <span class="text-danger">*</span></label>
-                                                <input type="email" name="mail" class="form-control" placeholder="Nhập E-mail..." required>
+                                                <input type="text" name="Email" class="form-control" placeholder="Nhập E-mail..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="trinhdohocvan">Trình độ học vấn <span class="text-danger">*</span></label>
-                                                <select class="form-control" name="trinhdohocvan" required>
+                                                <select class="form-control" name="TrinhDoHocVan" required>
                                                     <option value="">-- Chọn trình độ học vấn --</option>
                                                     <option value="1">Trên đại học</option>
                                                     <option value="2">Đại học</option>
@@ -187,7 +193,7 @@
                                             <div class="form-group">
                                                 <label for="taikhoan">Tài khoản <span class="text-danger">*</span></label>
                                                 <div class="input-group">
-                                                    <input id="taikhoan" class="form-control" type="text" placeholder="Dữ liệu cấp phát…" name="taikhoan" readonly="readonly">
+                                                    <input id="taikhoan" class="form-control" type="text" placeholder="Dữ liệu cấp phát…" name="TaiKhoan" readonly="readonly">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-outline-dark" type="button" onclick="CapPhatTK()"><i class="fa fa-plus"></i></button>
                                                     </div>
@@ -197,7 +203,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="quyen">Quyền <span class="text-danger">*</span></label>
-                                                <select class="form-control" name="quyen" required>
+                                                <select class="form-control" name="Quyen" required>
                                                     <option value="">-- Chọn quyền --</option>
                                                     <option value="2">Trưởng phòng</option>
                                                     <option value="3">Nhân viên</option>
@@ -207,13 +213,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="matkhau">Mật khẩu <span class="text-danger">*</span></label>
-                                                <input type="password" name="matkhau" class="form-control" placeholder="Nhập mật khẩu..." required>
+                                                <input type="password" name="MatKhau" class="form-control" placeholder="Nhập mật khẩu..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="matkhau0">Nhập lại mật khẩu <span class="text-danger">*</span></label>
-                                                <input type="password" name="matkhau0" class="form-control" placeholder="Nhập lại mật khẩu..." required>
+                                                <input type="password" name="MatKhau0" class="form-control" placeholder="Nhập lại mật khẩu..." required>
                                             </div>
                                         </div>
                                     </div>
