@@ -11,9 +11,7 @@ function readURL(input) {
     }
 }
 
-function capphatmanv() {
-    $('#manv').val('123456');
-}
+
 
 function capphattaikhoan() {
     $('#taikhoan').val('123456');

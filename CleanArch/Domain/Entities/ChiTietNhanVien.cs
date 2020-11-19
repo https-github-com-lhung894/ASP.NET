@@ -17,8 +17,8 @@ namespace Domain.Entities
         [StringLength(45)]
         public string GioiTinh { get; set; }
         [StringLength(45)]
-        public string CMNN { get; set; }
-        public DateTime? NgayCapCMNN { get; set; }
+        public string CMND { get; set; }
+        public DateTime? NgayCapCMND { get; set; }
         [StringLength(45)]
         public string DiaChi { get; set; }
         [StringLength(45)]

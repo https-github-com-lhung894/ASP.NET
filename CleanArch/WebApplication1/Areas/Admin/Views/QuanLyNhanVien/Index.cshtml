@@ -37,9 +37,16 @@
                                 </form>
                             </div>
                             <div class="col-md-8">
-                                <a href="#" style="float:right;">
-                                    <button class="btn btn-primary"><span style="margin-right: 10px">Thêm Mới</span><i class="fa fa-plus"></i></button>
-                                </a>
+                                @if (ViewBag.Search == "yes")
+                                {
+                                    <a asp-controller="QuanLyNhanVien" asp-action="Index" style="float:right;"><button class="btn btn-primary">Quay lại <i class="fa fa-undo" aria-hidden="true"></i></button></a>
+                                }
+                                @if (ViewBag.Search == "no")
+                                {
+                                    <a asp-controller="QuanLyNhanVien" asp-action="AddNV" style="float:right;">
+                                        <button class="btn btn-primary"><span style="margin-right: 10px">Thêm mới </span><i class="fa fa-plus"></i></button>
+                                    </a>
+                                }
                             </div>
                         </div>
                         <div class="table-responsive">

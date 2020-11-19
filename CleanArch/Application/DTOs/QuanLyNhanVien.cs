@@ -20,8 +20,8 @@ namespace Application.DTOs
         public string NoiSinh { get; set; }
         public string DiaChi { get; set; }
         public string GioiTinh { get; set; }
-        public string CMNN { get; set; }
-        public DateTime? NgayCapCMNN { get; set; }
+        public string CMND { get; set; }
+        public DateTime? NgayCapCMND { get; set; }
         public string SDT { get; set; }
         public string Email { get; set; }
         public string TrinhDoHocVan { get; set; }
