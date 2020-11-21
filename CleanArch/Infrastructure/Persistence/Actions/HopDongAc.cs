@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,6 +33,23 @@ namespace Infrastructure.Persistence.Actions
 
             //Thêm nếu không có lỗi
             myData.HopDongs.Add(obj);
+            myData.SaveChanges();
+
+            return null;
+        }
+
+        public string AutoAdd(string nhanVienId, string congViecId, double? luongCanBan)
+        {
+            HopDong hopDong = new HopDong()
+            {
+                HopDongId = AutoKey.AutoNumber(myData.HopDongs.ToList()[myData.HopDongs.ToList().Count - 1].HopDongId),
+                NhanVienId = nhanVienId,
+                CongViecId = congViecId,
+                NgayKyHopDong = DateTime.Now,
+                LuongCanBo = luongCanBan
+            };
+
+            myData.HopDongs.Add(hopDong);
             myData.SaveChanges();
 
             return null;

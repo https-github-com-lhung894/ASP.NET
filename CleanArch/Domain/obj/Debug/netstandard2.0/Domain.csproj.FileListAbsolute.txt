@@ -32,3 +32,4 @@ E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.
 E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
 E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
 E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
+E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache

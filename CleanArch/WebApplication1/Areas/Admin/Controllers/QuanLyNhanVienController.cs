@@ -81,9 +81,9 @@ namespace WebApplication1.Areas.Admin.Controllers
         [HttpPost]
         [Route("")]
         [Route("AddNV")]
-        public IActionResult AddNV(QuanLyNhanVien quanLyNhanVien)
+        public IActionResult AddNV(AddNhanVien addNhanVien)
         {
-            ViewBag.error = quanLyNhanVienSv.AddNhanVien(quanLyNhanVien);
+            ViewBag.error = quanLyNhanVienSv.AddNhanVien(addNhanVien);
             return RedirectToAction(actionName: "Index", controllerName: "QuanLyNhanVien");
         }
     }

@@ -5,13 +5,17 @@ namespace Domain.Entities
 {
     public class HopDong
     {
+        public HopDong()
+        {
+            TrangThai = 1;
+        }
         [Key]
         [Required]
         [StringLength(45)]
         public string HopDongId { get; set; }
         public DateTime? NgayKyHopDong { get; set; }
         public double? LuongCanBo { get; set; }
-        public int? TrangThai { get; set; } = 1;
+        public int? TrangThai { get; set; }
 
         //Foreign key----
         [Required]

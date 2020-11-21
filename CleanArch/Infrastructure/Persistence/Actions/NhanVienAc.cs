@@ -54,12 +54,19 @@ namespace Infrastructure.Persistence.Actions
             //obj.NhanVienId = nhanVienId;
 
 
-
             myData.NhanViens.Add(obj);
+
+            //Thay đổi dữ liệu cuối
+            ThongTinDuLieuCuoi thongTinDuLieuCuoi = myData.ThongTinDuLieuCuois.Find("1");
+            thongTinDuLieuCuoi.NhanVienId = obj.NhanVienId;
+            myData.ThongTinDuLieuCuois.Update(thongTinDuLieuCuoi);
+
             myData.SaveChanges();
 
             return null;
         }
+
+
 
         public string CheckRelationship(NhanVien nhanVien)
         {

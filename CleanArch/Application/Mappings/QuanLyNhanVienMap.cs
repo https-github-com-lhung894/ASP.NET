@@ -7,39 +7,42 @@ namespace Application.Mappings
 {
     public static class QuanLyNhanVienMap
     {
-        public static (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien) ToObjs(this DTOs.QuanLyNhanVien quanLyNhanVien)
+        public static (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) ToObjs(this AddNhanVien addNhanVien)
         {
             return (
                 new Account()
                 {
-                    AccountId = quanLyNhanVien.NhanVienId,
-                    TaiKhoan = quanLyNhanVien.NhanVienId,
-                    MatKhau = quanLyNhanVien.MatKhau,
-                    Quyen = quanLyNhanVien.Quyen,
+                    AccountId = addNhanVien.NhanVienId,
+                    TaiKhoan = addNhanVien.TaiKhoan,
+                    MatKhau = addNhanVien.MatKhau,
+                    Quyen = addNhanVien.Quyen,
                 },
                 new NhanVien()
                 {
-                    NhanVienId = quanLyNhanVien.NhanVienId,
-                    HoNhanVien = quanLyNhanVien.HoNhanVien,
-                    TenNhanVien = quanLyNhanVien.TenNhanVien,
-                    PhongBanId = quanLyNhanVien.PhongBanId,
-                    ChucVuId = quanLyNhanVien.ChucVuId,
-                    AccountId = quanLyNhanVien.NhanVienId
+                    NhanVienId = addNhanVien.NhanVienId,
+                    HoNhanVien = addNhanVien.HoNhanVien,
+                    TenNhanVien = addNhanVien.TenNhanVien,
+                    PhongBanId = addNhanVien.PhongBanId,
+                    ChucVuId = addNhanVien.ChucVuId,
+                    AccountId = addNhanVien.NhanVienId
                 },
                 new ChiTietNhanVien()
                 {
-                    ChiTietNhanVienId = quanLyNhanVien.NhanVienId,
-                    NgaySinh = quanLyNhanVien.NgaySinh,
-                    NoiSinh = quanLyNhanVien.NoiSinh,
-                    TrinhDoHocVan = quanLyNhanVien.TrinhDoHocVan,
-                    GioiTinh = quanLyNhanVien.GioiTinh,
-                    CMND = quanLyNhanVien.CMND,
-                    NgayCapCMND = quanLyNhanVien.NgayCapCMND,
-                    DiaChi = quanLyNhanVien.DiaChi,
-                    SDT = quanLyNhanVien.SDT,
-                    Email = quanLyNhanVien.Email,
-                    HinhAnh = quanLyNhanVien.HinhAnh
-                });
+                    ChiTietNhanVienId = addNhanVien.NhanVienId,
+                    NhanVienId = addNhanVien.NhanVienId,
+                    NgaySinh = DateTime.Parse(addNhanVien.NgaySinh),
+                    NoiSinh = addNhanVien.NoiSinh,
+                    TrinhDoHocVan = addNhanVien.TrinhDoHocVan,
+                    GioiTinh = addNhanVien.GioiTinh,
+                    CMND = addNhanVien.CMND,
+                    NgayCapCMND = DateTime.Parse(addNhanVien.NgayCapCMND),
+                    DiaChi = addNhanVien.DiaChi,
+                    SDT = addNhanVien.SDT,
+                    Email = addNhanVien.Email,
+                    HinhAnh = addNhanVien.HinhAnh
+                },
+                addNhanVien.CongViecId,
+                addNhanVien.LuongCanBan);
         }
         public static QuanLyNhanVien ToDTO(NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien,PhongBan phongBan,
             ChucVu chucVu, CongViec congViec, LuongThang luongThang)

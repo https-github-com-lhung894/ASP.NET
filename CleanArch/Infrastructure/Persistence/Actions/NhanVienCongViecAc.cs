@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,6 +33,32 @@ namespace Infrastructure.Persistence.Actions
 
             //Thêm nếu không có lỗi
             myData.NhanVienCongViecs.Add(obj);
+            myData.SaveChanges();
+
+            return null;
+        }
+
+        public string AutoAdd(string nhanVienId, string congViecId)
+        {
+            //Tìm nhan vien - cong viec có ngày kết thúc == null
+            NhanVienCongViec nhanVienCongViec = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.NgayKetThuc == null);
+            DateTime? ngayKetThuc = DateTime.Now;
+            if(nhanVienCongViec == null)
+            {
+                ngayKetThuc = null;
+            }
+            nhanVienCongViec = new NhanVienCongViec()
+            {
+                NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList()
+                    .Count - 1].NhanVienCongViecId),
+                NhanVienId = nhanVienId,
+                CongViecId = congViecId,
+                HSCongViec = 0.5,
+                NgayBatDau = DateTime.Now,
+                NgayKetThuc = ngayKetThuc
+            };
+
+            myData.NhanVienCongViecs.Add(nhanVienCongViec);
             myData.SaveChanges();
 
             return null;

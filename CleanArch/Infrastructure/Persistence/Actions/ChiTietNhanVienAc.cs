@@ -14,12 +14,6 @@ namespace Infrastructure.Persistence.Actions
         }
         public string Add(ChiTietNhanVien obj)
         {
-            //Kiểm tra khóa chính
-            if (myData.ChiTietNhanViens.Find(obj.ChiTietNhanVienId) != null)
-            {
-                return "Chi tiết nhân viên id đã tồn tại";
-            }
-
             //Kiểm tra quan hệ
             if (myData.NhanViens.ToList().Find(x => x.NhanVienId == obj.NhanVienId) == null)
             {
