@@ -1,0 +1,44 @@
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.dll
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.pdb
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+E:\Đồ Án Công Nghệ Phần Mềm\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
+E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.dll
+E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.pdb
+E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
+E:\Github\ASP.NET\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
+E:\Github\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+E:\Github\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.dll
+E:\Github\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.pdb
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
+E:\Github\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
+E:\Github\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+E:\Github\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.dll
+E:\Github\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.pdb
+E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
+E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
+E:\Github\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.dll
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.pdb
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
+C:\Users\Admin\Desktop\Genaral File\CNPM\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb

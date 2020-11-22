@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-body">
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+                <li class="breadcrumb-item active">Products</li>
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Dự Án</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 row" style="margin-bottom: 10px">
+                                <div class="col-md-3"><p style=" color:#ea5774;font-weight:500;">Mã phụ cấp:</p></div>
+                                <div class="col-md-9"><p>Hello</p></div>
+                            </div>
+                            <div class="col-md-6 row" style="margin-bottom: 10px">
+                                <div class="col-md-3"><p style=" color:#ea5774;font-weight:500;">Ngày thưởng phụ cấp:</p></div>
+                                <div class="col-md-9"><p align="left">Hello</p></div>
+                            </div>
+                            <div class="col-md-6 row" style="margin-bottom: 10px">
+                                <div class="col-md-3"><p style=" color:#ea5774;font-weight:500;">Thưởng tên phụ cấp:</p></div>
+                                <div class="col-md-9"><p align="left">Hello</p></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <form method="post" class="navbar-form" asp-controller="QuanLyNhanVien" asp-action="Search">
+                                <div class="input-group no-border">
+                                    <input name="id" type="search" value="" class="form-control" placeholder="Search...">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="table-order" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20%;" class="th-center-bold">Hình ảnh</th>
+                                        <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                        <th style="width:15%;" class="th-center-bold">Tên nhân viên</th>
+                                        <th style="width:15%;" class="th-center-bold">Phòng ban</th>
+                                        <th style="width:15%;" class="th-center-bold">Chức vụ</th>
+                                        <th style="width:5%" ;>Sửa</th>
+                                        <th style="width:5%" ;>Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-order-body">
+
+                                    <tr>
+                                        <td><p>Hình ảnh</p></td>
+                                        <td><p>hello</p></td>
+                                        <td><p>hello</p></td>
+                                        <td><p>hello</p></td>
+                                        <td><p>hello</p></td>
+                                        <td><a href=""><button type="button" class="btn btn-primary" data-toggle="modal" data-target=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a></td>
+                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o"></i></button></td>
+                                    </tr>
+                                    <div class="modal fade" id=">" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title" id="" style="margin: auto;">Are you sure to delete Product ID: <?php echo $pro_id?> ?</h3>
+                                                </div>
+                                                <div class="modal-footer" style="margin: auto;">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                    <a href="">
+                                                        <button type="button" class="btn btn-danger">Yes, delete it !</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #/ container -->
+  </div>

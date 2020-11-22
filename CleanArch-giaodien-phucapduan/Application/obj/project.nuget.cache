@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "xhLlOlHdoArSpT02vC0OP49qB3rYZfg6XlnGcCcM/EOFV79sq2g/JaSZw6tYH9stATPdu7Rc7jDQl/1/ZjtY1w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Genaral File\\CNPM\\CleanArch\\Application\\Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
