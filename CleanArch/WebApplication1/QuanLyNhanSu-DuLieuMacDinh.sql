@@ -67,7 +67,7 @@ INSERT INTO NhanVienCongViecs(NhanVienCongViecId,NhanVienId, CongViecId, HSCongV
 ('5','nv00003', 'congviec3', 0.5, '2018-07-01', '2020-07-01'),
 ('6', 'nv00004', 'congviec4', 0.5, '2018-07-01', '2020-07-01');
 
-INSERT INTO HopDongs(HopDongId, NhanVienId, CongViecId, NgayKyHopDong, LuongCanBo, TrangThai) VALUES
+INSERT INTO HopDongs(HopDongId, NhanVienId, CongViecId, NgayKyHopDong, LuongCanBan, TrangThai) VALUES
 ('45', 'nv00001', 'congviec1', '2018-06-22', 3000000, 0),
 ('46', 'nv00002', 'congviec2', '2018-06-22', 4000000, 1),
 ('47', 'nv00003', 'congviec3', '2018-06-22', 5000000, 0),

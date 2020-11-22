@@ -57,7 +57,7 @@ namespace Infrastructure.Persistence.Actions
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
                 NgayKyHopDong = DateTime.Now,
-                LuongCanBo = luongCanBan
+                LuongCanBan = luongCanBan
             };
 
             myData.HopDongs.Add(hopDong);
@@ -80,13 +80,13 @@ namespace Infrastructure.Persistence.Actions
                     NhanVienId = nhanVienId,
                     CongViecId = congViecId,
                     NgayKyHopDong = DateTime.Now,
-                    LuongCanBo = luongCanBan
+                    LuongCanBan = luongCanBan
                 };
 
                 return hopDong;
             }
 
-            hd.LuongCanBo = luongCanBan;
+            hd.LuongCanBan = luongCanBan;
 
             return hd;
         }

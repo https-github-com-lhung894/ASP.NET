@@ -85,7 +85,7 @@ namespace Application.Mappings
 
                 CongViecId = congViec.CongViecId,
                 TenCongViec = congViec.TenCongViec,
-                LuongCanBan = hopDong.LuongCanBo,
+                LuongCanBan = hopDong.LuongCanBan,
 
                 NgaySinh = chiTietNhanVien.NgaySinh.ToString(),
                 NoiSinh = chiTietNhanVien.NoiSinh,

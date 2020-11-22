@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "FvAW8r2jtG2Ptrskq5HcbX/suNwaURovKAUHmKvNRi0kOgOLTF/mS4Aztnz61hU34Tn0U10svYWcgYIe3RYMJg==",
+  "dgSpecHash": "9X9iSPjv55NQlup/ktDkWPK5hj5JMurZCfqzuV1UOpirQeJE92Vpn1ovxp4yvB4a0uaTPTKecq97MLr90bH8XA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+  "projectFilePath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\lapgo\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\lapgo\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-    "C:\\Users\\lapgo\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

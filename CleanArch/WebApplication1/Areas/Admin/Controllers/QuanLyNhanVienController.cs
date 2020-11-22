@@ -115,6 +115,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         [Route("Update")]
         public IActionResult Update(QuanLyNhanVien quanLyNhanVien)
         {
+            
             string a = quanLyNhanVien.NhanVienId;
             ViewBag.error = "Update" + quanLyNhanVienSv.UpdateNhanVien(quanLyNhanVien);
             ViewBag.Update = "no";

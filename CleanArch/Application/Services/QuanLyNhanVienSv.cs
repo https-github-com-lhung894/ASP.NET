@@ -50,10 +50,10 @@ namespace Application.Services
 
         public string UpdateNhanVien(QuanLyNhanVien quanLyNhanVien)
         {
-            string errorMessage;
+            string errorMessage = null;
             (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) objs
                 = quanLyNhanVien.ToObjs();
-            errorMessage = nhanVienAc.CheckRelationship(objs.nhanVien);
+            
             if (errorMessage == null)
             {
                 errorMessage += accountAc.Update(objs.account);

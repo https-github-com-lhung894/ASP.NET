@@ -14,7 +14,7 @@ namespace Application.Mappings
             {
                 HopDongId = hopDong.HopDongId,
                 NgayKyHopDong = hopDong.NgayKyHopDong,
-                LuongCanBo = hopDong.LuongCanBo,
+                LuongCanBan = hopDong.LuongCanBan,
                 NhanVienId = hopDong.NhanVienId,
                 CongViecId = hopDong.CongViecId
             };
@@ -34,7 +34,7 @@ namespace Application.Mappings
             {
                 HopDongId = hopDongDTO.HopDongId,
                 NgayKyHopDong = hopDongDTO.NgayKyHopDong,
-                LuongCanBo = hopDongDTO.LuongCanBo,
+                LuongCanBan = hopDongDTO.LuongCanBan,
                 NhanVienId = hopDongDTO.NhanVienId,
                 CongViecId = hopDongDTO.CongViecId
             };

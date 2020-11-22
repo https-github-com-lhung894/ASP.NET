@@ -33,7 +33,7 @@
                                 <a asp-controller="QuanLyNhanVien" asp-action="Index" style="float:left;"><button class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button></aasp-controller="QuanLyNhanVien"></a>
                             </div>
                         </div>
-                        <form method="post">
+                        <form method="post" asp-controller="QuanLyNhanVien" asp-action="Update">
                             <div class="row">
                                 <div class="col-lg-12 mb-3"><h1>Sửa nhân viên @Model.quanLyNhanVien.NhanVienId</h1></div>
                                 <div class="col-lg-3">
@@ -64,7 +64,6 @@
                                                 <label for="phongban">Phòng ban <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="PhongBanId" required>
                                                     <option value="@Model.quanLyNhanVien.PhongBanId">@Model.quanLyNhanVien.TenPhongBan</option>
-                                                    <option value="">-- Chọn phòng ban --</option>
                                                     @foreach (PhongBanDTO phongBanDTO in Model.phongBanDTOs)
                                                     {
                                                         if (phongBanDTO.PhongBanId == Model.quanLyNhanVien.PhongBanId)
@@ -81,7 +80,6 @@
                                                 <label for="chucvu">Chức vụ <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="ChucVuId" required>
                                                     <option value="@Model.quanLyNhanVien.ChucVuId">@Model.quanLyNhanVien.TenChuVu</option>
-                                                    <option value="">-- Chọn chức vụ --</option>
                                                     @foreach (ChucVuDTO chucVuDTO in Model.chucVuDTOs)
                                                     {
                                                         if (chucVuDTO.ChucVuId == @Model.quanLyNhanVien.ChucVuId)
@@ -98,7 +96,6 @@
                                                 <label for="congviec">Công việc <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="CongViecId" required>
                                                     <option value="@Model.quanLyNhanVien.CongViecId">@Model.quanLyNhanVien.TenCongViec</option>
-                                                    <option value="">-- Chọn công việc --</option>
                                                     @foreach (CongViecDTO congViecDTO in Model.congViecDTOs)
                                                     {
                                                         if (congViecDTO.CongViecId == Model.quanLyNhanVien.CongViecId)
@@ -135,7 +132,6 @@
                                                 <label for="gioitinh">Giới tính <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="GioiTinh" required>
                                                     <option value="@Model.quanLyNhanVien.GioiTinh">@Model.quanLyNhanVien.GioiTinh</option>
-                                                    <option value="">-- Chọn giới tính --</option>
                                                     @if (Model.quanLyNhanVien.GioiTinh == "Nam")
                                                     {
                                                         <option value="Nữ">Nữ</option>
@@ -190,7 +186,6 @@
                                                 <label for="trinhdohocvan">Trình độ học vấn <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="TrinhDoHocVan" required>
                                                     <option value="@Model.quanLyNhanVien.TrinhDoHocVan">@Model.quanLyNhanVien.TrinhDoHocVan</option>
-                                                    <option value="">-- Chọn trình độ học vấn --</option>
                                                     @if (Model.quanLyNhanVien.TrinhDoHocVan != "Trên đại học")
                                                     {
                                                         <option value="Trên đại học">Trên đại học</option>
@@ -237,7 +232,6 @@
                                                 <label for="quyen">Quyền <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="Quyen" required>
                                                     <option inert value="@Model.quanLyNhanVien.Quyen">@(Model.quanLyNhanVien.Quyen == 1 ? "Trưởng phòng" : (Model.quanLyNhanVien.Quyen == 2 ? "Nhân viên" : "Admin"))</option>
-                                                    <option value="">-- Chọn quyền --</option>
                                                     @if (Model.quanLyNhanVien.Quyen != 1)
                                                     {
                                                         <option value="1">Trưởng phòng</option>
@@ -266,9 +260,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12 td-center">
-                                    <a asp-controller="QuanLyNhanVien" asp-action="Update">
-                                        <button type="submit" class="btn btn-primary">Sửa nhân viên</button>
-                                    </a>
+                                     <button type="submit" class="btn btn-primary">Sửa nhân viên</button>
                                 </div>
                             </div>
                         </form>
