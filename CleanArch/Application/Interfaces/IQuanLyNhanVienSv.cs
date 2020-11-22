@@ -7,7 +7,8 @@ namespace Application.Interfaces
 {
     public interface IQuanLyNhanVienSv
     {
-        string AddNhanVien(AddNhanVien addNhanVien);
+        string AddNhanVien(QuanLyNhanVien quanLyNhanVien);
         List<QuanLyNhanVien> GetList();
+        string UpdateNhanVien(QuanLyNhanVien quanLyNhanVien);
     }
 }

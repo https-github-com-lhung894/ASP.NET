@@ -16,11 +16,10 @@ namespace Application.Services
         private readonly IPhongBanAc phongBanAc;
         private readonly IChucVuAc chucVuAc;
         private readonly ICongViecAc congViecAc;
-        private readonly ILuongThangAc luongThangAc;
         private readonly IHopDongAc hopDongAc;
         public QuanLyNhanVienSv(IAccountAc accountAc, INhanVienAc nhanVienAc, IChiTietNhanVienAc chiTietNhanVienAc, 
             INhanVienCongViecAc nhanVienCongViecAc, IPhongBanAc phongBanAc, IChucVuAc chucVuAc, ICongViecAc congViecAc, 
-            ILuongThangAc luongThangAc, IHopDongAc hopDongAc)
+            IHopDongAc hopDongAc)
         {
             this.accountAc = accountAc;
             this.nhanVienAc = nhanVienAc;
@@ -29,22 +28,40 @@ namespace Application.Services
             this.phongBanAc = phongBanAc;
             this.chucVuAc = chucVuAc;
             this.congViecAc = congViecAc;
-            this.luongThangAc = luongThangAc;
             this.hopDongAc = hopDongAc;
         }
-        public string AddNhanVien(AddNhanVien addNhanVien)
+        public string AddNhanVien(QuanLyNhanVien quanLyNhanVien)
         {
             string errorMessage;
             (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) objs 
-                = addNhanVien.ToObjs();
+                = quanLyNhanVien.ToObjs();
             errorMessage = nhanVienAc.CheckRelationship(objs.nhanVien);
             if(errorMessage == null)
             {
-                accountAc.Add(objs.account);
-                nhanVienAc.Add(objs.nhanVien);
-                chiTietNhanVienAc.Add(objs.chiTietNhanVien);
-                nhanVienCongViecAc.AutoAdd(objs.nhanVien.NhanVienId, objs.congViecId);
-                hopDongAc.AutoAdd(objs.nhanVien.NhanVienId, objs.congViecId, objs.luongCanBan);
+                errorMessage += accountAc.Add(objs.account);
+                errorMessage += nhanVienAc.Add(objs.nhanVien);
+                errorMessage += chiTietNhanVienAc.Add(objs.chiTietNhanVien);
+
+                errorMessage += nhanVienCongViecAc.AutoAdd(objs.nhanVien.NhanVienId, objs.congViecId);
+                errorMessage += hopDongAc.AutoAdd(objs.nhanVien.NhanVienId, objs.congViecId, objs.luongCanBan);
+            }
+            return errorMessage;
+        }
+
+        public string UpdateNhanVien(QuanLyNhanVien quanLyNhanVien)
+        {
+            string errorMessage;
+            (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) objs
+                = quanLyNhanVien.ToObjs();
+            errorMessage = nhanVienAc.CheckRelationship(objs.nhanVien);
+            if (errorMessage == null)
+            {
+                errorMessage += accountAc.Update(objs.account);
+                errorMessage += nhanVienAc.Update(objs.nhanVien);
+                errorMessage += chiTietNhanVienAc.Update(objs.chiTietNhanVien);
+
+                errorMessage += nhanVienCongViecAc.Update(nhanVienCongViecAc.SetupForUpdate(objs.nhanVien.NhanVienId, objs.congViecId));
+                errorMessage += hopDongAc.Update(hopDongAc.SetupForUpdate(objs.nhanVien.NhanVienId, objs.congViecId, objs.luongCanBan));
             }
             return errorMessage;
         }
@@ -52,7 +69,8 @@ namespace Application.Services
         public List<QuanLyNhanVien> GetList()
         {
             return QuanLyNhanVienMap.ToListDTOs(nhanVienAc.ToList(), chiTietNhanVienAc.ToList(), phongBanAc.ToList(), 
-                chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), luongThangAc.ToList());
+                chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), hopDongAc.ToList(), accountAc.ToList());
         }
+
     }
 }

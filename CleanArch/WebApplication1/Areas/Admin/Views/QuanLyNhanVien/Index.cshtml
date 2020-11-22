@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <div class="card-title row">
                             <div class="col-md-12 mb-4">
-                                <h3 class="td-center">DANH SÁCH NHÂN VIÊN</h3>
+                                <h3 class="td-center">DANH SÁCH NHÂN VIÊN @ViewBag.ms</h3>
                             </div>
                             <div class="col-md-4">
                                 <form method="post" class="navbar-form" asp-controller="QuanLyNhanVien" asp-action="Search">
@@ -80,9 +80,10 @@
                                                 </a>
                                             </td>
                                             <td class="td-center">
-                                                <a href="#">
-                                                    <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                                </a>
+                                                <form asp-controller="QuanLyNhanVien" asp-action="UpdateId" method="post">
+                                                    <input value="@quanLyNhanVien.NhanVienId" type="hidden" name="id" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                                </form>
                                             </td>
                                             <td class="td-center">
                                                 <a>

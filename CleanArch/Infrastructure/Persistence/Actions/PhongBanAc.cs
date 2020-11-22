@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(PhongBan obj)
         {
             //Kiểm tra khóa chính
-            if (myData.PhongBans.Find(obj.PhongBanId) != null)
+            if (myData.PhongBans.ToList().Find(x => x.PhongBanId == obj.PhongBanId) != null)
             {
                 return "Phòng ban id đã tồn tại";
             }

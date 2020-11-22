@@ -16,7 +16,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(Account obj)
         {
             //Kiểm tra khóa chính
-            if(myData.Accounts.Find(obj.AccountId) != null)
+            if(myData.Accounts.ToList().Find(x => x.AccountId == obj.AccountId) != null)
             {
                 return "Account id đã tồn tại";
             }

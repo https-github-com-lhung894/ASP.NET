@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(DuAn obj)
         {
             //Kiểm tra khóa chính
-            if (myData.DuAns.Find(obj.DuAnId) != null)
+            if (myData.DuAns.ToList().Find(x => x.DuAnId == obj.DuAnId) != null)
             {
                 return "Dự án id đã tồn tại";
             }

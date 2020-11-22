@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(LuongThang obj)
         {
             //Kiểm tra khóa chính
-            if (myData.LuongThangs.Find(obj.LuongThangId) != null)
+            if (myData.LuongThangs.ToList().Find(x => x.LuongThangId == obj.LuongThangId) != null)
             {
                 return "Lương tháng id đã tồn tại";
             }

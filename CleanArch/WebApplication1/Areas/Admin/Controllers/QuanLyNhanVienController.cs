@@ -30,6 +30,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             this.thongTinDuLieuCuoiAc = thongTinDuLieuCuoiAc;
         }
 
+        //vào trang index
         [Route("")]
         [Route("Index")]
         public IActionResult Index()
@@ -40,6 +41,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             return View(quanLyNhanViens);
         }
 
+        //Xóa
         [HttpPost]
         [Route("")]
         [Route("Index")]
@@ -56,6 +58,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             return View(quanLyNhanViens);
         }
 
+        //Tìm kiếm
         [HttpPost]
         [Route("")]
         [Route("Search")]
@@ -66,24 +69,55 @@ namespace WebApplication1.Areas.Admin.Controllers
             QuanLyNhanVien quanLyNhanVien = quanLyNhanVienSv.GetList().Find(x => x.NhanVienId == id);
             quanLyNhanViens.Add( quanLyNhanVien == null ? new QuanLyNhanVien() : quanLyNhanVien);
             return View("Index", quanLyNhanViens);
-            //return View(quanLyNhanViens);
         }
 
+        //Giao diện thêm
         [Route("")]
         [Route("AddNV")]
         public IActionResult AddNV()
         {
-            (List<PhongBanDTO> phongBanDTOs, List<CongViecDTO> congViecDTOs, List<ChucVuDTO> chucVuDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois) objs;
+            (List<PhongBanDTO> phongBanDTOs, List<CongViecDTO> congViecDTOs, List<ChucVuDTO> chucVuDTOs,
+                ThongTinDuLieuCuoi thongTinDuLieuCuois) objs;
             objs = new(phongBanSv.ToList(), congViecSv.ToList(), chucVuSv.ToList(), thongTinDuLieuCuoiAc.FindById("1"));
             return View(objs);
         }
 
+        //Thêm
         [HttpPost]
         [Route("")]
         [Route("AddNV")]
-        public IActionResult AddNV(AddNhanVien addNhanVien)
+        public IActionResult AddNV(QuanLyNhanVien quanLyNhanVien)
         {
-            ViewBag.error = quanLyNhanVienSv.AddNhanVien(addNhanVien);
+            ViewBag.error = "Add " + quanLyNhanVienSv.AddNhanVien(quanLyNhanVien);
+            return RedirectToAction(actionName: "Index", controllerName: "QuanLyNhanVien");
+        }
+
+        //Giao diện update
+        [Route("")]
+        [Route("UpdateId")]
+        public IActionResult UpdateId(string id)
+        {
+            NhanVienDTO nhanVienDTO = nhanVienSv.FindById(id);
+            if (nhanVienDTO == null)
+            {
+                ViewBag.Update = "Kiểm tra lại mã nhân viên";
+                return RedirectToAction(actionName: "Index", controllerName: "QuanLyNhanVien");
+            }
+            ViewBag.Update = "yes";
+
+            (List<PhongBanDTO> phongBanDTOs, List<CongViecDTO> congViecDTOs, List<ChucVuDTO> chucVuDTOs, QuanLyNhanVien quanLyNhanVien) objs;
+            objs = new(phongBanSv.ToList(), congViecSv.ToList(), chucVuSv.ToList(), quanLyNhanVienSv.GetList().Find( x => x.NhanVienId == id));
+            return View("Update", objs);
+        }
+        //Sửa
+        [HttpPost]
+        [Route("")]
+        [Route("Update")]
+        public IActionResult Update(QuanLyNhanVien quanLyNhanVien)
+        {
+            string a = quanLyNhanVien.NhanVienId;
+            ViewBag.error = "Update" + quanLyNhanVienSv.UpdateNhanVien(quanLyNhanVien);
+            ViewBag.Update = "no";
             return RedirectToAction(actionName: "Index", controllerName: "QuanLyNhanVien");
         }
     }

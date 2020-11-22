@@ -16,7 +16,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(NhanVienCongViec obj)
         {
             //Kiểm tra khóa chính
-            if (myData.NhanVienCongViecs.Find(obj.NhanVienCongViecId) != null)
+            if (myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienCongViecId == obj.NhanVienCongViecId) != null)
             {
                 return "Nhân viên - công việc id đã tồn tại";
             }
@@ -40,17 +40,30 @@ namespace Infrastructure.Persistence.Actions
 
         public string AutoAdd(string nhanVienId, string congViecId)
         {
+            //Kiểm tra quan hệ
+            if (myData.CongViecs.ToList().Find(x => x.CongViecId == congViecId) == null)
+            {
+                return "Công việc id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
+            if (myData.NhanViens.ToList().Find(x => x.NhanVienId == nhanVienId) == null)
+            {
+                return "Nhân viên id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
+
             //Tìm nhan vien - cong viec có ngày kết thúc == null
             NhanVienCongViec nhanVienCongViec = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.NgayKetThuc == null);
             DateTime? ngayKetThuc = DateTime.Now;
+
+            //Nếu không tìm thấy => nhân viên chưa có công việc
             if(nhanVienCongViec == null)
             {
+                //Điều kiện để nhân viên có công việc vô thời hạn
                 ngayKetThuc = null;
             }
             nhanVienCongViec = new NhanVienCongViec()
             {
-                NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList()
-                    .Count - 1].NhanVienCongViecId),
+                //Tìm id cuối danh sách và tự tăng lên 1
+                NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList().Count - 1].NhanVienCongViecId),
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
                 HSCongViec = 0.5,
@@ -62,6 +75,40 @@ namespace Infrastructure.Persistence.Actions
             myData.SaveChanges();
 
             return null;
+        }
+
+        public NhanVienCongViec SetupForUpdate(string nhanVienId, string congViecId)
+        {
+            NhanVienCongViec nvcv = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId);
+            if(nvcv == null)
+            {
+                //Khởi tạo mới nếu nhân vien - công việc chưa tồn tại 
+                //Tìm nhan vien - cong viec có ngày kết thúc == null
+                NhanVienCongViec nhanVienCongViec = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.NgayKetThuc == null);
+                DateTime? ngayKetThuc = DateTime.Now;
+
+                //Nếu không tìm thấy => nhân viên chưa có công việc
+                if (nhanVienCongViec == null)
+                {
+                    //Điều kiện để nhân viên có công việc vô thời hạn
+                    ngayKetThuc = null;
+                }
+                nhanVienCongViec = new NhanVienCongViec()
+                {
+                    //Tìm id cuối danh sách và tự tăng lên 1
+                    NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList()
+                        .Count - 1].NhanVienCongViecId),
+                    NhanVienId = nhanVienId,
+                    CongViecId = congViecId,
+                    HSCongViec = 0.5,
+                    NgayBatDau = DateTime.Now,
+                    NgayKetThuc = ngayKetThuc
+                };
+
+                return nhanVienCongViec;
+            }
+
+            return nvcv;
         }
 
         public NhanVienCongViec FindById(string id)

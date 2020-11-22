@@ -16,16 +16,19 @@ namespace Application.DTOs
         public string TenChuVu { get; set; }
         public string CongViecId { get; set; }
         public string TenCongViec { get; set; }
-        public DateTime? NgaySinh { get; set; }
+        public string NgaySinh { get; set; }
         public string NoiSinh { get; set; }
         public string DiaChi { get; set; }
         public string GioiTinh { get; set; }
         public string CMND { get; set; }
-        public DateTime? NgayCapCMND { get; set; }
+        public string NgayCapCMND { get; set; }
         public string SDT { get; set; }
         public string Email { get; set; }
         public string TrinhDoHocVan { get; set; }
         public string HinhAnh { get; set; }
         public double? LuongCanBan { get; set; }
+        public string TaiKhoan { get; set; }
+        public string MatKhau { get; set; }
+        public int? Quyen { get; set; }
     }
 }

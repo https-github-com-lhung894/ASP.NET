@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(TrangThaiChamCong obj)
         {
             //Kiểm tra khóa chính
-            if (myData.TrangThaiChamCongs.Find(obj.TrangThaiChamCongId) != null)
+            if (myData.TrangThaiChamCongs.ToList().Find(x => x.TrangThaiChamCongId == obj.TrangThaiChamCongId) != null)
             {
                 return "Trạng thái chấm công id đã tồn tại";
             }

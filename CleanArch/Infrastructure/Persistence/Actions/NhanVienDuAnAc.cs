@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(NhanVienDuAn obj)
         {
             //Kiểm tra khóa chính
-            if (myData.NhanVienDuAns.Find(obj.NhanVienDuAnId) != null)
+            if (myData.NhanVienDuAns.ToList().Find(x => x.NhanVienDuAnId == obj.NhanVienDuAnId) != null)
             {
                 return "Nhân viên - dự án id đã tồn tại";
             }

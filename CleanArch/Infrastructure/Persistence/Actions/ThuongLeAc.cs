@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(ThuongLe obj)
         {
             //Kiểm tra khóa chính
-            if (myData.ThuongLes.Find(obj.ThuongLeId) != null)
+            if (myData.ThuongLes.ToList().Find(x => x.ThuongLeId == obj.ThuongLeId) != null)
             {
                 return "Thưởng lễ id đã tồn tại";
             }

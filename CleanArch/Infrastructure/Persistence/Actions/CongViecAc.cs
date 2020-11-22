@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(CongViec obj)
         {
             //Kiểm tra khóa chính
-            if (myData.CongViecs.Find(obj.CongViecId) != null)
+            if (myData.CongViecs.ToList().Find(x => x.CongViecId == obj.CongViecId) != null)
             {
                 return "Công việc id đã tồn tại";
             }

@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(NhanVien obj)
         {
             //Kiểm tra khóa chính
-            NhanVien nhanVien = myData.NhanViens.Find(obj.NhanVienId);
+            NhanVien nhanVien = myData.NhanViens.ToList().Find(x => x.NhanVienId == obj.NhanVienId);
             if (nhanVien != null)
             {
                 if(nhanVien.TrangThai == 0)

@@ -16,7 +16,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(HopDong obj)
         {
             //Kiểm tra khóa chính
-            if (myData.HopDongs.Find(obj.HopDongId) != null)
+            if (myData.HopDongs.ToList().Find(x => x.HopDongId == obj.HopDongId) != null)
             {
                 return "Hợp đồng id đã tồn tại";
             }
@@ -40,8 +40,19 @@ namespace Infrastructure.Persistence.Actions
 
         public string AutoAdd(string nhanVienId, string congViecId, double? luongCanBan)
         {
+            //Kiểm tra quan hệ
+            if (myData.CongViecs.ToList().Find(x => x.CongViecId == congViecId) == null)
+            {
+                return "Công việc id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
+            if (myData.NhanViens.ToList().Find(x => x.NhanVienId == nhanVienId) == null)
+            {
+                return "Nhân viên id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
+
             HopDong hopDong = new HopDong()
             {
+                //Tìm hợp đồng cuối danh sách rồi tự tăng lên 1
                 HopDongId = AutoKey.AutoNumber(myData.HopDongs.ToList()[myData.HopDongs.ToList().Count - 1].HopDongId),
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
@@ -53,6 +64,31 @@ namespace Infrastructure.Persistence.Actions
             myData.SaveChanges();
 
             return null;
+        }
+
+        public HopDong SetupForUpdate(string nhanVienId, string congViecId, double? luongCanBan)
+        {
+            HopDong hd = myData.HopDongs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId);
+
+            if(hd == null)
+            {
+                //Khởi tạo hợp đồng mới nếu chưa tồn tại
+                HopDong hopDong = new HopDong()
+                {
+                    //Tìm hợp đồng cuối danh sách rồi tự tăng lên 1
+                    HopDongId = AutoKey.AutoNumber(myData.HopDongs.ToList()[myData.HopDongs.ToList().Count - 1].HopDongId),
+                    NhanVienId = nhanVienId,
+                    CongViecId = congViecId,
+                    NgayKyHopDong = DateTime.Now,
+                    LuongCanBo = luongCanBan
+                };
+
+                return hopDong;
+            }
+
+            hd.LuongCanBo = luongCanBan;
+
+            return hd;
         }
 
         public HopDong FindById(string id)

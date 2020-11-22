@@ -16,7 +16,7 @@ namespace Infrastructure.Persistence.Actions
         public string Add(ChucVu obj)
         {
             //Kiểm tra khóa chính
-            if (myData.ChucVus.Find(obj.ChucVuId) != null)
+            if (myData.ChucVus.ToList().Find(x => x.ChucVuId == obj.ChucVuId) != null)
             {
                 return "Chức vụ id đã tồn tại";
             }
