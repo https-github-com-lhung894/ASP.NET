@@ -1057,23 +1057,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\lapgo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\lapgo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\lapgo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1087,8 +1083,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
-              "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
+            "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\lapgo\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
             }
           }
         }
