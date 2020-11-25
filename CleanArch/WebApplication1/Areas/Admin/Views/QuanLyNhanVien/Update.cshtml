@@ -1,0 +1,273 @@
+﻿@using Application.DTOs
+@using Domain.Entities
+@using Infrastructure.Persistence.Actions
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model (List<PhongBanDTO> phongBanDTOs, List<CongViecDTO> congViecDTOs, List<ChucVuDTO> chucVuDTOs, QuanLyNhanVien quanLyNhanVien)
+
+
+
+<div class="content-body">
+
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                <li class="breadcrumb-item"><a asp-controller="QuanLyNhanVien" asp-action="Index">Quản lý nhân viên</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Sửa nhân viên</a></li>\
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 mb-3">
+                                <a asp-controller="QuanLyNhanVien" asp-action="Index" style="float:left;"><button class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button></aasp-controller="QuanLyNhanVien"></a>
+                            </div>
+                        </div>
+                        <form method="post" asp-controller="QuanLyNhanVien" asp-action="Update">
+                            <div class="row">
+                                <div class="col-lg-12 mb-3"><h1>Sửa nhân viên @Model.quanLyNhanVien.NhanVienId</h1></div>
+                                <div class="col-lg-3">
+                                    <div class="input-group">
+                                        <div class="form-file">
+                                            <input type="file" class="inputfile" name="HinhAnh" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
+                                            <label for="your_picture">
+                                                <figure>
+                                                    <img src="~/images/user/form-user.png" alt="" class="your_picture_image">
+                                                </figure>
+                                                <span class="file-button">chọn ảnh</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="manv">Mã nhân viên <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input value="@Model.quanLyNhanVien.NhanVienId" id="manv" class="form-control" type="text" placeholder="Dữ liệu cấp phát…" name="NhanVienId" readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="phongban">Phòng ban <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="PhongBanId" required>
+                                                    <option value="@Model.quanLyNhanVien.PhongBanId">@Model.quanLyNhanVien.TenPhongBan</option>
+                                                    @foreach (PhongBanDTO phongBanDTO in Model.phongBanDTOs)
+                                                    {
+                                                        if (phongBanDTO.PhongBanId == Model.quanLyNhanVien.PhongBanId)
+                                                        {
+                                                            continue;
+                                                        }
+                                                        <option value="@phongBanDTO.PhongBanId">@phongBanDTO.TenPhongBan</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="chucvu">Chức vụ <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="ChucVuId" required>
+                                                    <option value="@Model.quanLyNhanVien.ChucVuId">@Model.quanLyNhanVien.TenChuVu</option>
+                                                    @foreach (ChucVuDTO chucVuDTO in Model.chucVuDTOs)
+                                                    {
+                                                        if (chucVuDTO.ChucVuId == @Model.quanLyNhanVien.ChucVuId)
+                                                        {
+                                                            continue;
+                                                        }
+                                                        <option value="@chucVuDTO.ChucVuId">@chucVuDTO.TenChucVu</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="congviec">Công việc <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="CongViecId" required>
+                                                    <option value="@Model.quanLyNhanVien.CongViecId">@Model.quanLyNhanVien.TenCongViec</option>
+                                                    @foreach (CongViecDTO congViecDTO in Model.congViecDTOs)
+                                                    {
+                                                        if (congViecDTO.CongViecId == Model.quanLyNhanVien.CongViecId)
+                                                        {
+                                                            continue;
+                                                        }
+                                                        <option value="@congViecDTO.CongViecId">@congViecDTO.TenCongViec</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ngaysinh">Họ nhân viên <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.HoNhanVien" type="text" name="HoNhanVien" class="form-control" placeholder="Nhập họ..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ngaysinh">Tên nhân viên <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.TenNhanVien" type="text" name="TenNhanVien" class="form-control" placeholder="Nhập tên..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ngaysinh">Ngày sinh <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input value="@Model.quanLyNhanVien.NgaySinh" type="text" class="form-control mydatepicker" name="NgaySinh" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="gioitinh">Giới tính <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="GioiTinh" required>
+                                                    <option value="@Model.quanLyNhanVien.GioiTinh">@Model.quanLyNhanVien.GioiTinh</option>
+                                                    @if (Model.quanLyNhanVien.GioiTinh == "Nam")
+                                                    {
+                                                        <option value="Nữ">Nữ</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="Nam">Nam</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="noisinh">Nơi sinh <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.NoiSinh" type="text" name="NoiSinh" class="form-control" placeholder="Nhập nơi sinh..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="diachi">Địa chỉ <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.DiaChi" type="text" name="DiaChi" class="form-control" placeholder="Nhập địa chỉ..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="cmnd">Số CMND/Thẻ căn cước <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.CMND" type="text" name="CMND" class="form-control" placeholder="Nhập số CMND/Thẻ căn cước..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ngaycap">Ngày cấp CMND/Thẻ căn cước <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input value="@Model.quanLyNhanVien.NgayCapCMND" type="text" name="NgayCapCMND" class="form-control mydatepicker" placeholder="mm/dd/yyyy" required> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="sdt">Số điện thoại <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.SDT" type="text" name="SDT" class="form-control" placeholder="Nhập số điện thoại..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="mail">Email <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.Email" type="text" name="Email" class="form-control" placeholder="Nhập E-mail..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="trinhdohocvan">Trình độ học vấn <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="TrinhDoHocVan" required>
+                                                    <option value="@Model.quanLyNhanVien.TrinhDoHocVan">@Model.quanLyNhanVien.TrinhDoHocVan</option>
+                                                    @if (Model.quanLyNhanVien.TrinhDoHocVan != "Trên đại học")
+                                                    {
+                                                        <option value="Trên đại học">Trên đại học</option>
+                                                    }
+                                                    @if (Model.quanLyNhanVien.TrinhDoHocVan != "Đại học")
+                                                    {
+                                                        <option value="Đại học">Đại học</option>
+                                                    }
+                                                    @if (Model.quanLyNhanVien.TrinhDoHocVan != "Cao đẳng")
+                                                    {
+                                                        <option value="Cao đẳng">Cao đẳng</option>
+                                                    }
+                                                    @if (Model.quanLyNhanVien.TrinhDoHocVan != "Trung cấp")
+                                                    {
+                                                        <option value="Trung cấp">Trung cấp</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="luong">Lương căn bản <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.LuongCanBan" type="number" name="LuongCanBan" class="form-control" placeholder="Nhập lương căn bản..." required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12"><h1>Tài khoản nội bộ</h1></div>
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="taikhoan">Tài khoản <span class="text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <input value="@Model.quanLyNhanVien.TaiKhoan" id="taikhoan" class="form-control" type="text" placeholder="Dữ liệu cấp phát…" name="TaiKhoan" readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="quyen">Quyền <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="Quyen" required>
+                                                    <option inert value="@Model.quanLyNhanVien.Quyen">@(Model.quanLyNhanVien.Quyen == 1 ? "Trưởng phòng" : (Model.quanLyNhanVien.Quyen == 2 ? "Nhân viên" : "Admin"))</option>
+                                                    @if (Model.quanLyNhanVien.Quyen != 1)
+                                                    {
+                                                        <option value="1">Trưởng phòng</option>
+                                                    }
+                                                    @if (Model.quanLyNhanVien.Quyen != 2)
+                                                    {
+                                                        <option value="2">Nhân viên</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="matkhau">Mật khẩu <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.MatKhau" type="password" name="MatKhau" class="form-control" placeholder="Nhập mật khẩu..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="matkhau0">Nhập lại mật khẩu <span class="text-danger">*</span></label>
+                                                <input value="@Model.quanLyNhanVien.MatKhau" type="password" name="MatKhau0" class="form-control" placeholder="Nhập lại mật khẩu..." required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12 td-center">
+                                     <button type="submit" class="btn btn-primary">Sửa nhân viên</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>

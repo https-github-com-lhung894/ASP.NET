@@ -1,0 +1,203 @@
+﻿@using Application.DTOs
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model List<QuanLyNhanVien>
+
+<div class="content-body">
+
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Quản lý nhân viên</li>
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title row">
+                            <div class="col-md-12 mb-4">
+                                <h3 class="td-center">DANH SÁCH NHÂN VIÊN @ViewBag.ms</h3>
+                            </div>
+                            <div class="col-md-4">
+                                <form method="post" class="navbar-form" asp-controller="QuanLyNhanVien" asp-action="Search">
+                                    <div class="input-group no-border">
+                                        <input name="id" type="search" value="" class="form-control" placeholder="Search...">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-8">
+                                @if (ViewBag.Search == "yes")
+                                {
+                                    <a asp-controller="QuanLyNhanVien" asp-action="Index" style="float:right;"><button class="btn btn-primary">Quay lại <i class="fa fa-undo" aria-hidden="true"></i></button></a>
+                                }
+                                @if (ViewBag.Search == "no")
+                                {
+                                    <a asp-controller="QuanLyNhanVien" asp-action="AddNV" style="float:right;">
+                                        <button class="btn btn-primary"><span style="margin-right: 10px">Thêm mới </span><i class="fa fa-plus"></i></button>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th style="width:10%;" class="th-center-bold">Hình ảnh</th>
+                                        <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                        <th style="width:15%;" class="th-center-bold">Tên nhân viên</th>
+                                        <th style="width:15%;" class="th-center-bold">Phòng ban</th>
+                                        <th style="width:15%;" class="th-center-bold">Chức vụ</th>
+                                        <th style="width:15%;" class="th-center-bold">Công việc</th>
+                                        <th style="width:5%;" class="th-center-bold">Chi tiết</th>
+                                        <th style="width:5%;" class="th-center-bold">Sửa</th>
+                                        <th style="width:5%;" class="th-center-bold">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (QuanLyNhanVien quanLyNhanVien in Model)
+                                    {
+                                        <tr>
+                                            <td><img src="./product-img/3_Stripes_Jacquard_Polo_Shirt_Black.jpg" alt="" style="width:100%" ;=""></td>
+                                            <td> @quanLyNhanVien.NhanVienId </td>
+                                            <td> @quanLyNhanVien.HoNhanVien @quanLyNhanVien.TenNhanVien </td>
+                                            <td> @quanLyNhanVien.TenPhongBan </td>
+                                            <td> @quanLyNhanVien.TenChuVu </td>
+                                            <td> @quanLyNhanVien.TenCongViec </td>
+                                            <td class="td-center">
+                                                <a href="#">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(quanLyNhanVien.NhanVienId + "chitiet")"><i class="fa fa-info"></i></button>
+                                                </a>
+                                            </td>
+                                            <td class="td-center">
+                                                <form asp-controller="QuanLyNhanVien" asp-action="UpdateId" method="post">
+                                                    <input value="@quanLyNhanVien.NhanVienId" type="hidden" name="id" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                                </form>
+                                            </td>
+                                            <td class="td-center">
+                                                <a>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(quanLyNhanVien.NhanVienId + "xoa")"><i class="fa fa-close"></i></button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach (QuanLyNhanVien quanLyNhanVien1 in Model)
+        {
+            <div class="modal fade bd-example-modal-lg" id="@(quanLyNhanVien1.NhanVienId + "chitiet")" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLongTitle" style="color:#7571f9;">Thông tin nhân viên</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4"><img src="../assets/img/3_Stripes_Jacquard_Polo_Shirt_Black.jpg" alt="" style="width:100%" ;=""></div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Mã nhân viên:</h6>
+                                            <p> @quanLyNhanVien1.NhanVienId </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Họ tên nhân viên:</h6>
+                                            <p> @quanLyNhanVien1.HoNhanVien @quanLyNhanVien1.TenNhanVien </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Phòng ban:</h6>
+                                            <p> @quanLyNhanVien1.TenPhongBan </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Chức vụ:</h6>
+                                            <p> @quanLyNhanVien1.TenChuVu </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Công việc:</h6>
+                                            <p> @quanLyNhanVien1.TenCongViec </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Lương căn bản:</h6>
+                                            <p> @quanLyNhanVien1.LuongCanBan </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Ngày sinh:</h6>
+                                            <p> @quanLyNhanVien1.NgaySinh </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Nơi sinh:</h6>
+                                            <p> @quanLyNhanVien1.NoiSinh </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Giới tính:</h6>
+                                            <p> @quanLyNhanVien1.GioiTinh </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Địa chỉ:</h6>
+                                            <p> @quanLyNhanVien1.DiaChi </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">CMND/Thẻ căn cước:</h6>
+                                            <p> @quanLyNhanVien1.CMND </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Ngày cấp CMND/Thẻ căn cước:</h6>
+                                            <p> @quanLyNhanVien1.NgayCapCMND </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số điện thoại:</h6>
+                                            <p> @quanLyNhanVien1.SDT </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Email:</h6>
+                                            <p> @quanLyNhanVien1.Email </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="@(quanLyNhanVien1.NhanVienId + "xoa")" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;">Are you sure to delete this: </h3>
+                        </div>
+                        <div class="modal-footer" style="margin: auto;">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            <form method="post" asp-controller="QuanLyNhanVien" asp-action="Index">
+                                <button name="id" type="submit" class="btn btn-danger" value="@quanLyNhanVien1.NhanVienId">Yes, delete it !</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <!-- #/ container -->
+</div>
+
