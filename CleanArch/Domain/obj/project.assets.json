@@ -279,23 +279,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {},
+    "C:\\Users\\DuongKiet\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+      "projectUniqueName": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\obj\\",
+      "projectPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\DuongKiet\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\DuongKiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

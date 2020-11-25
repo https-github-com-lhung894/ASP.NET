@@ -42,3 +42,12 @@ C:\Users\lapgo\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.
 C:\Users\lapgo\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
 C:\Users\lapgo\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
 C:\Users\lapgo\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.deps.json
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.dll
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\bin\Debug\netstandard2.0\Domain.pdb
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csprojAssemblyReference.cache
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfoInputs.cache
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.AssemblyInfo.cs
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.dll
+C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Domain\obj\Debug\netstandard2.0\Domain.pdb
