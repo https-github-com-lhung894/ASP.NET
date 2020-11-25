@@ -22,6 +22,10 @@ namespace Application.Mappings
             List<PhongBanDTO> phongBanDTOs = new List<PhongBanDTO>();
             foreach (PhongBan phongBan in phongBans)
             {
+                if (phongBan.TrangThai == 0)
+                {
+                    continue;
+                }
                 phongBanDTOs.Add(phongBan.ToDTO());
             }
             return phongBanDTOs;

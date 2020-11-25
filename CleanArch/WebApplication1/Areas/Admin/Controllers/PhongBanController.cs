@@ -28,7 +28,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         public IActionResult Index()
         {
             (List <PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois) objs;
-            objs = new(phongBanSv.ToList(), thongTinDuLieuCuoiAc.FindById("1"));
+            objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"));
             return View(objs);
         }
 
@@ -37,7 +37,14 @@ namespace WebApplication1.Areas.Admin.Controllers
         [Route("AddPB")]
         public IActionResult AddPB(PhongBanDTO phongBanDTO)
         {
-            ViewBag.error = "Add " + phongBanSv.Add(phongBanDTO);
+            string messerror = phongBanSv.AddPhongBan(phongBanDTO);
+            ViewBag.error = "Add " + messerror;
+            if (messerror == null)
+            {
+                ThongTinDuLieuCuoi t = thongTinDuLieuCuoiAc.FindById("1");
+                t.PhongBanId = phongBanDTO.PhongBanId;
+                thongTinDuLieuCuoiAc.Update(t);
+            }
             return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
         }
 

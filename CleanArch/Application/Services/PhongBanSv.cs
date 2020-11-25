@@ -15,6 +15,19 @@ namespace Application.Services
         {
             this.phongBanAc = phongBanAc;
         }
+
+        public string AddPhongBan(PhongBanDTO phongBanDTO)
+        {
+            string errorMessage;
+            errorMessage = phongBanAc.Add(phongBanDTO.ToPhongBan());
+            return errorMessage;
+        }
+
+        public List<PhongBanDTO> GetList()
+        {
+            return PhongBanMap.ToListDTO(phongBanAc.ToList());
+        }
+
         public string Add(PhongBanDTO obj)
         {
             return phongBanAc.Add(obj.ToPhongBan());
