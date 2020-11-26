@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Domain.Entities;
 using Domain.IActions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,19 +10,28 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ILoginSv loginSv;
-        private readonly INhanVienCongViecSv nhanVienCongViecSv;
-        public HomeController(ILoginSv loginSv, INhanVienCongViecSv nhanVienCongViecSv)
+        private readonly INhanVienAc nhanVienAc;
+        public HomeController(ILoginSv loginSv, INhanVienAc nhanVienAc)
         {
             this.loginSv = loginSv;
-            this.nhanVienCongViecSv = nhanVienCongViecSv;
+            this.nhanVienAc = nhanVienAc;
         }
         [Route("")]
         [Route("~/")]
         [Route("index")]
         public IActionResult Index()
         {
-            NhanVienCongViecDTO nhanVienCongViecDTO = nhanVienCongViecSv.FindById("1");
-            return View(nhanVienCongViecDTO);
+            //NhanVien nhan = new NhanVien()
+            //{
+            //    NhanVienId = "nv00032",
+            //    HoNhanVien = "Nguyễn",
+            //    TenNhanVien = "Trung Anh 1",
+            //    PhongBanId = "pb00001",
+            //    ChucVuId = "chucvu1",
+            //    AccountId = "nv00032"
+            //};
+            //nhanVienAc.Update(nhan);
+            return View();
         }
         [HttpPost]
         [Route("")]

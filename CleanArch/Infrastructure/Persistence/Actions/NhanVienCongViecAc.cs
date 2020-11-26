@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,106 @@ namespace Infrastructure.Persistence.Actions
 
         public string AutoAdd(string nhanVienId, string congViecId)
         {
+            //Tìm nhan vien - cong viec có ngày kết thúc == null
+            NhanVienCongViec nvcv = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.NgayKetThuc == null);
+
+            //Nếu tìm thấy => đặt lại ngày kết thúc bằng cuối tháng
+            if(nvcv != null)
+            {
+                int d = 30;
+                int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
+                for (int i = 0; i < array.Length; i++)
+                {
+                   if(DateTime.Now.Month == array[i])
+                    {
+                        d = 31;
+                    }
+                }
+
+                nvcv.NgayKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, d);
+
+                myData.NhanVienCongViecs.Update(nvcv);
+            }
+
+            NhanVienCongViec nhanVienCongViec = new NhanVienCongViec()
+            {
+                //Tìm id cuối danh sách và tự tăng lên 1
+                NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList().Count - 1].NhanVienCongViecId),
+                NhanVienId = nhanVienId,
+                CongViecId = congViecId,
+                HSCongViec = 0.5,
+                //Lấy ngày 1 tháng sau của ngày hiện tại
+                NgayBatDau = new DateTime((DateTime.Now.Month == 12 ? DateTime.Now.Year + 1 : DateTime.Now.Year), 
+                    (DateTime.Now.Month == 12 ? 1 : DateTime.Now.Month + 1), 1),
+                NgayKetThuc = null
+            };
+
+            myData.NhanVienCongViecs.Add(nhanVienCongViec);
+            myData.SaveChanges();
+
+            return null;
+        }
+
+        public string AutoUpdate(string nhanVienId, string congViecId)
+        {
+            NhanVienCongViec nvcv = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId && x.NgayKetThuc == null);
+
+            //Nhân viên - công việc không thây đổi => không làm gì
+            if (nvcv != null)
+            {
+                return null;
+            }
+            //Update nhân viên - công việc có ngày kết thúc bằng null
+
+            //Tìm nhân viên - công việc có ngày kết thúc == null
+            NhanVienCongViec nhanVienCongViec = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.NgayKetThuc == null);
+
+            //Nếu tìm thấy nhân viên công việc == null =>  xét lại là ngày cuối cùng của tháng
+            if (nhanVienCongViec != null)
+            {
+                int d = 30;
+                int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (DateTime.Now.Month == array[i])
+                    {
+                        d = 31;
+                    }
+                }
+                //Ngày cuối cùng của tháng
+                nhanVienCongViec.NgayKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, d);
+
+                myData.NhanVienCongViecs.Update(nhanVienCongViec);
+            }
+
+            //Khởi tạo mới nhân viên - công việc
+            nhanVienCongViec = new NhanVienCongViec()
+            {
+                //Tìm id cuối danh sách và tự tăng lên 1
+                NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList()
+                    .Count - 1].NhanVienCongViecId),
+                NhanVienId = nhanVienId,
+                CongViecId = congViecId,
+                HSCongViec = 0.5,
+                //Lấy ngày 1 tháng sau của ngày hiện tại
+                NgayBatDau = new DateTime((DateTime.Now.Month == 12 ? DateTime.Now.Year + 1 : DateTime.Now.Year),
+                    (DateTime.Now.Month == 12 ? 1 : DateTime.Now.Month + 1), 1),
+                NgayKetThuc = null
+            };
+
+            //Add nhân viên - công việc
+
+            myData.Entry(nhanVienCongViec).State = EntityState.Detached;
+
+            myData.NhanVienCongViecs.Add(nhanVienCongViec);
+            myData.SaveChanges();
+
+            return null;
+
+        }
+
+        public string CheckForeignKey(string nhanVienId, string congViecId)
+        {
             //Kiểm tra quan hệ
             if (myData.CongViecs.ToList().Find(x => x.CongViecId == congViecId) == null)
             {
@@ -50,65 +151,7 @@ namespace Infrastructure.Persistence.Actions
                 return "Nhân viên id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
             }
 
-            //Tìm nhan vien - cong viec có ngày kết thúc == null
-            NhanVienCongViec nhanVienCongViec = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.NgayKetThuc == null);
-            DateTime? ngayKetThuc = DateTime.Now;
-
-            //Nếu không tìm thấy => nhân viên chưa có công việc
-            if(nhanVienCongViec == null)
-            {
-                //Điều kiện để nhân viên có công việc vô thời hạn
-                ngayKetThuc = null;
-            }
-            nhanVienCongViec = new NhanVienCongViec()
-            {
-                //Tìm id cuối danh sách và tự tăng lên 1
-                NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList().Count - 1].NhanVienCongViecId),
-                NhanVienId = nhanVienId,
-                CongViecId = congViecId,
-                HSCongViec = 0.5,
-                NgayBatDau = DateTime.Now,
-                NgayKetThuc = ngayKetThuc
-            };
-
-            myData.NhanVienCongViecs.Add(nhanVienCongViec);
-            myData.SaveChanges();
-
             return null;
-        }
-
-        public NhanVienCongViec SetupForUpdate(string nhanVienId, string congViecId)
-        {
-            NhanVienCongViec nvcv = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId);
-            if(nvcv == null)
-            {
-                //Khởi tạo mới nếu nhân vien - công việc chưa tồn tại 
-                //Tìm nhan vien - cong viec có ngày kết thúc == null
-                NhanVienCongViec nhanVienCongViec = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.NgayKetThuc == null);
-                DateTime? ngayKetThuc = DateTime.Now;
-
-                //Nếu không tìm thấy => nhân viên chưa có công việc
-                if (nhanVienCongViec == null)
-                {
-                    //Điều kiện để nhân viên có công việc vô thời hạn
-                    ngayKetThuc = null;
-                }
-                nhanVienCongViec = new NhanVienCongViec()
-                {
-                    //Tìm id cuối danh sách và tự tăng lên 1
-                    NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList()
-                        .Count - 1].NhanVienCongViecId),
-                    NhanVienId = nhanVienId,
-                    CongViecId = congViecId,
-                    HSCongViec = 0.5,
-                    NgayBatDau = DateTime.Now,
-                    NgayKetThuc = ngayKetThuc
-                };
-
-                return nhanVienCongViec;
-            }
-
-            return nvcv;
         }
 
         public NhanVienCongViec FindById(string id)

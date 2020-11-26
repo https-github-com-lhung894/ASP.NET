@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,38 +8,13 @@ namespace Infrastructure.Persistence.Actions
 {
     public class NhanVienAc : INhanVienAc
     {
-        private readonly MyData myData;
+        private MyData myData;
         public NhanVienAc(MyData myData)
         {
             this.myData = myData;
         }
         public string Add(NhanVien obj)
         {
-            //Kiểm tra khóa chính
-            NhanVien nhanVien = myData.NhanViens.ToList().Find(x => x.NhanVienId == obj.NhanVienId);
-            if (nhanVien != null)
-            {
-                if(nhanVien.TrangThai == 0)
-                {
-                    return "Nhân viên này đã tồn tại trước đó và đã bị xóa";
-                }
-                return "Nhân viên id đã tồn tại";
-            }
-
-            //Kiểm tra quan hệ
-            if (myData.PhongBans.Find(obj.PhongBanId) == null)
-            {
-                return "Phòng ban id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
-            }
-            if(myData.ChucVus.Find(obj.ChucVuId) == null)
-            {
-                return "Chức vụ id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
-            }
-            if (myData.Accounts.Find(obj.AccountId) == null)
-            {
-                return "Account id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
-            }
-
             ////Tự động tạo khóa chính cho nhân viên
 
             ////Lấy dữ liệu từ database
@@ -66,7 +42,24 @@ namespace Infrastructure.Persistence.Actions
             return null;
         }
 
+        public string CheckForeignKey(string accountId, string phongBanId, string chucVuId)
+        {
+            //Kiểm tra quan hệ
+            if (myData.PhongBans.ToList().Find(x => x.PhongBanId == phongBanId) == null)
+            {
+                return "Phòng ban id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
+            if (myData.ChucVus.ToList().Find(x => x.ChucVuId == chucVuId) == null)
+            {
+                return "Chức vụ id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
+            if (myData.Accounts.ToList().Find(x => x.AccountId == accountId) == null)
+            {
+                return "Account id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
 
+            return null;
+        }
 
         public string CheckRelationship(NhanVien nhanVien)
         {
@@ -81,12 +74,12 @@ namespace Infrastructure.Persistence.Actions
                 return "Nhân viên id đã tồn tại";
             }
 
-            //Kiểm tra quan hệ trước khi thêm nhân viên
-            if (myData.PhongBans.Find(nhanVien.PhongBanId) == null)
+            //Kiểm tra quan hệ
+            if (myData.PhongBans.ToList().Find(x => x.PhongBanId == nhanVien.PhongBanId) == null)
             {
                 return "Phòng ban id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
             }
-            if (myData.ChucVus.Find(nhanVien.ChucVuId) == null)
+            if (myData.ChucVus.ToList().Find(x => x.ChucVuId == nhanVien.ChucVuId) == null)
             {
                 return "Chức vụ id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
             }
@@ -161,20 +154,32 @@ namespace Infrastructure.Persistence.Actions
         public string Update(NhanVien obj)
         {
             //Kiểm tra quan hệ
-            if (myData.PhongBans.Find(obj.PhongBanId) == null)
+            if (myData.PhongBans.ToList().Find(x => x.PhongBanId == obj.PhongBanId) == null)
             {
                 return "Phòng ban id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
             }
-            if (myData.ChucVus.Find(obj.ChucVuId) == null)
+            if (myData.ChucVus.ToList().Find(x => x.ChucVuId == obj.ChucVuId) == null)
             {
                 return "Chức vụ id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
             }
-            if (myData.Accounts.Find(obj.AccountId) == null)
+            if (myData.Accounts.ToList().Find(x => x.AccountId == obj.AccountId) == null)
             {
                 return "Account id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
             }
 
-            myData.NhanViens.Update(obj);
+            var local = myData.Set<NhanVien>()
+                .Local
+                .FirstOrDefault(entry => entry.NhanVienId.Equals(obj.NhanVienId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Modified;
+
             myData.SaveChanges();
 
             return null;

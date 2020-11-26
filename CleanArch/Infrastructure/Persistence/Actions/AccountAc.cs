@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace Infrastructure.Persistence.Actions
 {
     public class AccountAc : IAccountAc
     {
-        private readonly MyData myData;
+        private MyData myData;
         public AccountAc(MyData myData)
         {
             this.myData = myData;
@@ -29,7 +30,26 @@ namespace Infrastructure.Persistence.Actions
 
         public string Update(Account obj)
         {
-            myData.Accounts.Update(obj);
+            // 
+            var local = myData.Set<Account>()
+                .Local
+                .FirstOrDefault(entry => entry.AccountId.Equals(obj.AccountId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Modified;
+
+            // save 
+            //_context.SaveChanges();
+            //myData.Accounts.
+            //myData.Accounts.Update(obj);
+            //myData.Entry(obj).State = EntityState.Modified;
+
             myData.SaveChanges();
 
             return null;

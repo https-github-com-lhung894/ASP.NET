@@ -32,11 +32,11 @@ namespace Application.Services
         }
         public string AddNhanVien(QuanLyNhanVien quanLyNhanVien)
         {
-            string errorMessage;
+            string errorMessage = "";
             (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) objs 
                 = quanLyNhanVien.ToObjs();
-            errorMessage = nhanVienAc.CheckRelationship(objs.nhanVien);
-            if(errorMessage == null)
+            errorMessage += nhanVienAc.CheckRelationship(objs.nhanVien);
+            if (errorMessage == "")
             {
                 errorMessage += accountAc.Add(objs.account);
                 errorMessage += nhanVienAc.Add(objs.nhanVien);
@@ -50,18 +50,21 @@ namespace Application.Services
 
         public string UpdateNhanVien(QuanLyNhanVien quanLyNhanVien)
         {
-            string errorMessage = null;
+            string errorMessage = "";
             (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) objs
                 = quanLyNhanVien.ToObjs();
-            
-            if (errorMessage == null)
+
+            errorMessage += nhanVienCongViecAc.CheckForeignKey(objs.nhanVien.NhanVienId, objs.congViecId);
+            errorMessage += hopDongAc.CheckForeignKey(objs.nhanVien.NhanVienId, objs.congViecId);
+            if (errorMessage == "")
             {
-                errorMessage += accountAc.Update(objs.account);
                 errorMessage += nhanVienAc.Update(objs.nhanVien);
                 errorMessage += chiTietNhanVienAc.Update(objs.chiTietNhanVien);
-
-                errorMessage += nhanVienCongViecAc.Update(nhanVienCongViecAc.SetupForUpdate(objs.nhanVien.NhanVienId, objs.congViecId));
-                errorMessage += hopDongAc.Update(hopDongAc.SetupForUpdate(objs.nhanVien.NhanVienId, objs.congViecId, objs.luongCanBan));
+                
+                errorMessage += accountAc.Update(objs.account);
+                
+                errorMessage += nhanVienCongViecAc.AutoUpdate(objs.nhanVien.NhanVienId, objs.congViecId);
+                errorMessage += hopDongAc.AutoUpdate(objs.nhanVien.NhanVienId, objs.congViecId, objs.luongCanBan);
             }
             return errorMessage;
         }

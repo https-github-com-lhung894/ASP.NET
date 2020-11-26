@@ -33,7 +33,7 @@
                                 <a asp-controller="QuanLyNhanVien" asp-action="Index" style="float:left;"><button class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button></aasp-controller="QuanLyNhanVien"></a>
                             </div>
                         </div>
-                        <form method="post">
+                        <form method="post" asp-controller="QuanLyNhanVien" asp-action="AddNV">
                             <div class="row">
                                 <div class="col-lg-12 mb-3"><h1>Thông tin nhân viên @ViewBag.error</h1></div>
                                 <div class="col-lg-3">
@@ -230,9 +230,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12 td-center">
-                                    <a asp-controller="QuanLyNhanVien" asp-action="AddNV">
-                                        <button type="submit" class="btn btn-primary">Thêm nhân viên</button>
-                                    </a>
+                                    <button type="submit" class="btn btn-primary">Thêm nhân viên</button>
                                 </div>
                             </div>
                         </form>

@@ -50,6 +50,14 @@ namespace Infrastructure.Persistence.Actions
                 return "Nhân viên id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
             }
 
+            //Tìm hợp đồng có trạng thái bằng 1 xét về 0
+            HopDong hd = myData.HopDongs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId && x.TrangThai == 1);
+            if(hd != null)
+            {
+                hd.TrangThai = 0;
+                myData.HopDongs.Update(hd);
+            }
+
             HopDong hopDong = new HopDong()
             {
                 //Tìm hợp đồng cuối danh sách rồi tự tăng lên 1
@@ -66,29 +74,55 @@ namespace Infrastructure.Persistence.Actions
             return null;
         }
 
-        public HopDong SetupForUpdate(string nhanVienId, string congViecId, double? luongCanBan)
+        public HopDong AutoUpdate(string nhanVienId, string congViecId, double? luongCanBan)
         {
-            HopDong hd = myData.HopDongs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId);
-
-            if(hd == null)
+            //Kiểm tra xem hợp đồng có thay đổi ko
+            HopDong hd = myData.HopDongs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId && x.TrangThai == 1);
+            if(hd != null)
             {
-                //Khởi tạo hợp đồng mới nếu chưa tồn tại
-                HopDong hopDong = new HopDong()
-                {
-                    //Tìm hợp đồng cuối danh sách rồi tự tăng lên 1
-                    HopDongId = AutoKey.AutoNumber(myData.HopDongs.ToList()[myData.HopDongs.ToList().Count - 1].HopDongId),
-                    NhanVienId = nhanVienId,
-                    CongViecId = congViecId,
-                    NgayKyHopDong = DateTime.Now,
-                    LuongCanBan = luongCanBan
-                };
-
-                return hopDong;
+                return null;
             }
 
-            hd.LuongCanBan = luongCanBan;
+            //Tìm hợp đồng hiện tại của nhân viên xét trạng thái về 0
+            hd = myData.HopDongs.ToList().Find(x => x.NhanVienId == nhanVienId && x.TrangThai == 1);
+            if (hd != null)
+            {
+                hd.TrangThai = 0;
+                myData.HopDongs.Update(hd);
+            }
 
-            return hd;
+            //Khởi tạo hợp đồng mới
+            HopDong hopDong = new HopDong()
+            {
+                //Tìm hợp đồng cuối danh sách rồi tự tăng lên 1
+                HopDongId = AutoKey.AutoNumber(myData.HopDongs.ToList()[myData.HopDongs.ToList().Count - 1].HopDongId),
+                NhanVienId = nhanVienId,
+                CongViecId = congViecId,
+                NgayKyHopDong = DateTime.Now,
+                LuongCanBan = luongCanBan
+            };
+
+            myData.HopDongs.Add(hopDong);
+
+            
+            myData.SaveChanges();
+
+            return null;
+        }
+
+        public string CheckForeignKey(string nhanVienId, string congViecId)
+        {
+            //Kiểm tra quan hệ
+            if (myData.CongViecs.ToList().Find(x => x.CongViecId == congViecId) == null)
+            {
+                return "Công việc id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
+            if (myData.NhanViens.ToList().Find(x => x.NhanVienId == nhanVienId) == null)
+            {
+                return "Nhân viên id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
+            }
+
+            return null;
         }
 
         public HopDong FindById(string id)
