@@ -29,6 +29,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         {
             (List <PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois) objs;
             objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"));
+            ViewBag.Update = "no";
             return View(objs);
         }
 
@@ -46,6 +47,16 @@ namespace WebApplication1.Areas.Admin.Controllers
                 thongTinDuLieuCuoiAc.Update(t);
             }
             return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
+        }
+
+        [Route("")]
+        [Route("Update")]
+        public IActionResult Update()
+        {
+            (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois) objs;
+            objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"));
+            ViewBag.Update = "yes";
+            return View("Index", objs);
         }
 
         [Route("")]
