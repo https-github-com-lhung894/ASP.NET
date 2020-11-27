@@ -23,6 +23,13 @@ namespace Application.Services
             return errorMessage;
         }
 
+        public string UpdatePhongBan(PhongBanDTO phongBanDTO)
+        {
+            string errorMessage;
+            errorMessage = phongBanAc.Update(phongBanDTO.ToPhongBan());
+            return errorMessage;
+        }
+
         public List<PhongBanDTO> GetList()
         {
             return PhongBanMap.ToListDTO(phongBanAc.ToList());

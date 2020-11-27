@@ -5,9 +5,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@model (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois)
+@model (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhongBanDTO phongBanDTO)
 <div class="content-body">
-
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
@@ -16,38 +15,31 @@
             </ol>
         </div>
     </div>
-    <!-- row -->
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-md-12">
                 <div class="card">
                     <div class="card-body">
-
                         @if (ViewBag.Update == "yes")
                         {
                             <div class="card-title mb-3">
                                 <h4>SỬA PHÒNG BAN</h4>
                             </div>
-                            <form method="post" asp-controller="PhongBan" asp-action="AddPB">
+                            <form method="post" asp-controller="PhongBan" asp-action="Update">
                                 <div class="form-group">
                                     <label for="mapb">Mã phòng ban <span class="text-danger">*</span></label>
-                                    <div class="input-group">
-                                        <input id="mapb" class="form-control" type="text" placeholder="Số liệu tự cấp phát.." name="PhongBanId" readonly="readonly">
-                                        <div class="input-group-append">
-                                            <button id="btn-pb" class="btn btn-outline-dark" type="button" onclick="CapPhatMaPB()"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
+                                    <input value="@Model.phongBanDTO.PhongBanId" type="text" name="PhongBanId" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
                                 </div>
                                 <div class="form-group">
                                     <label for="tenpb">Tên phòng ban <span class="text-danger">*</span></label>
-                                    <input type="text" name="TenPhongBan" class="form-control" placeholder="Nhập tên phòng ban.." required>
+                                    <input value="@Model.phongBanDTO.TenPhongBan" type="text" name="TenPhongBan" class="form-control" placeholder="Nhập tên phòng ban.." required>
                                 </div>
                                 <div class="form-group">
                                     <label for="sdt">Số điện thoại <span class="text-danger">*</span></label>
-                                    <input type="number" name="SDTPhongBan" class="form-control" placeholder="Nhấp số điện thoại.." required>
+                                    <input value="@Model.phongBanDTO.SDTPhongBan" type="number" name="SDTPhongBan" class="form-control" placeholder="Nhấp số điện thoại.." required>
                                 </div>
-                                <input type="submit" value="Thêm mới" name="themmoi" class="btn btn-primary">
+                                <input type="submit" value="Sửa thông tin" name="sua" class="btn btn-primary">
+                                <a asp-controller="PhongBan" asp-action="Index" style="float: right;"><button type="button" class="btn btn-primary">Hủy</button></a>
                             </form>
                         }
                         else
@@ -59,7 +51,7 @@
                                 <div class="form-group">
                                     <label for="mapb">Mã phòng ban <span class="text-danger">*</span></label>
                                     <div class="input-group">
-                                        <input id="mapb" class="form-control" type="text" placeholder="Số liệu tự cấp phát.." name="PhongBanId" readonly="readonly">
+                                        <input type="text" name="PhongBanId" id="mapb" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
                                         <div class="input-group-append">
                                             <button id="btn-pb" class="btn btn-outline-dark" type="button" onclick="CapPhatMaPB()"><i class="fa fa-plus"></i></button>
                                         </div>
@@ -112,14 +104,46 @@
                                 <tbody>
                                     @foreach (PhongBanDTO phongban in Model.phongBanDTOs)
                                     {
-                                        <tr>
-                                            <td>@phongban.PhongBanId</td>
-                                            <td>@phongban.TenPhongBan</td>
-                                            <td>@phongban.SDTPhongBan</td>
-                                            <td class="td-center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-info"></i></button></a></td>
-                                            <td class="td-center"><a asp-controller="PhongBan" asp-action="Update"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
-                                            <td class="td-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(phongban.PhongBanId + "xoa")"><i class="fa fa-close"></i></button></td>
-                                        </tr>
+                                    <tr>
+                                        <td>@phongban.PhongBanId</td>
+                                        <td>@phongban.TenPhongBan</td>
+                                        <td>@phongban.SDTPhongBan</td>
+                                        @if (phongban.PhongBanId == "null")
+                                        {
+                                            <td class="td-center">
+                                                <form asp-controller="PhongBan" asp-action="Details" method="post">
+                                                    <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                                                </form>
+                                            </td>
+                                            <td class="td-center">
+                                                <button class="btn btn-primary" disabled><i class="fa fa-pencil"></i></button>    
+                                            </td>
+                                            <td class="td-center">
+                                                <button type="button" class="btn btn-primary" disabled><i class="fa fa-close"></i></button>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="td-center">
+                                                <form asp-controller="PhongBan" asp-action="Details" method="post">
+                                                    <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                                                </form>
+                                            </td>
+                                            <td class="td-center">
+                                                <form asp-controller="PhongBan" asp-action="UpdateId" method="post">
+                                                    <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                                </form>
+                                            </td>
+                                            <td class="td-center">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(phongban.PhongBanId + "xoa")">
+                                                    <i class="fa fa-close"></i>
+                                                </button>
+                                            </td>
+                                        }
+                                    </tr>
                                     }
                                     @foreach (PhongBanDTO phongban in Model.phongBanDTOs)
                                     {

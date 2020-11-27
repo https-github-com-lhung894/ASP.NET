@@ -10,5 +10,6 @@ namespace Application.Interfaces
         string AddNhanVien(QuanLyNhanVien quanLyNhanVien);
         List<QuanLyNhanVien> GetList();
         string UpdateNhanVien(QuanLyNhanVien quanLyNhanVien);
+        List<QuanLyNhanVien> GetListNVPB(string id);
     }
 }

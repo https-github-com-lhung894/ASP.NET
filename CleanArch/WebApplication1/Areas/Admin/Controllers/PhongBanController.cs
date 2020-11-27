@@ -16,10 +16,12 @@ namespace WebApplication1.Areas.Admin.Controllers
     public class PhongBanController : Controller
     {
         private readonly IPhongBanSv phongBanSv;
+        private readonly IQuanLyNhanVienSv quanLyNhanVienSv;
         private readonly IThongTinDuLieuCuoiAc thongTinDuLieuCuoiAc;
-        public PhongBanController(IPhongBanSv phongBanSv, IThongTinDuLieuCuoiAc thongTinDuLieuCuoiAc)
+        public PhongBanController(IPhongBanSv phongBanSv, IThongTinDuLieuCuoiAc thongTinDuLieuCuoiAc, IQuanLyNhanVienSv quanLyNhanVienSv)
         {
             this.phongBanSv = phongBanSv;
+            this.quanLyNhanVienSv = quanLyNhanVienSv;
             this.thongTinDuLieuCuoiAc = thongTinDuLieuCuoiAc;
         }
         
@@ -27,8 +29,8 @@ namespace WebApplication1.Areas.Admin.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
-            (List <PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois) objs;
-            objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"));
+            (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhongBanDTO PhongBanDTO) objs;
+            objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phongBanSv.FindById("null"));
             ViewBag.Update = "no";
             return View(objs);
         }
@@ -49,21 +51,41 @@ namespace WebApplication1.Areas.Admin.Controllers
             return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
         }
 
+        //Giao diện update
+        [Route("")]
+        [Route("UpdateId")]
+        public IActionResult UpdateId(string id)
+        {
+            PhongBanDTO phongBanDTO = phongBanSv.FindById(id);
+            if (phongBanDTO == null)
+            {
+                ViewBag.Update = "Kiểm tra lại mã phòng ban";
+                return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
+            }
+            ViewBag.Update = "yes";
+            (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhongBanDTO phongBanDTO) objs;
+            objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phongBanSv.FindById(id));
+            return View("Index", objs);
+        }
+
+        [HttpPost]
         [Route("")]
         [Route("Update")]
-        public IActionResult Update()
+        public IActionResult Update(PhongBanDTO phongBanDTO)
         {
-            (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois) objs;
-            objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"));
-            ViewBag.Update = "yes";
-            return View("Index", objs);
+            string a = phongBanDTO.PhongBanId;
+            ViewBag.error = "Update" + phongBanSv.UpdatePhongBan(phongBanDTO);
+            ViewBag.Update = "no";
+            return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
         }
 
         [Route("")]
         [Route("Details")]
-        public IActionResult Details()
+        public IActionResult Details(string id)
         {
-            return View();
+            (List<QuanLyNhanVien> quanLyNhanViens, PhongBanDTO phongBanDTO) objs;
+            objs = new(quanLyNhanVienSv.GetListNVPB(id), phongBanSv.FindById(id));
+            return View(objs);
         }
     }
 }

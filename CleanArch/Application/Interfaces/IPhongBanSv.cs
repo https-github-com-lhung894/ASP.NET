@@ -8,6 +8,6 @@ namespace Application.Interfaces
     {
         string AddPhongBan(PhongBanDTO phongBanDTO);
         List<PhongBanDTO> GetList();
-        //string UpdateNhanVien(QuanLyNhanVien quanLyNhanVien);
+        string UpdatePhongBan(PhongBanDTO phongBanDTO);
     }
 }
