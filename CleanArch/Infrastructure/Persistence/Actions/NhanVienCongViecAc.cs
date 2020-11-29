@@ -44,20 +44,20 @@ namespace Infrastructure.Persistence.Actions
             //Tìm nhan vien - cong viec có ngày kết thúc == null
             NhanVienCongViec nvcv = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.NgayKetThuc == null);
 
-            //Nếu tìm thấy => đặt lại ngày kết thúc bằng cuối tháng
-            if(nvcv != null)
+            //Tính ngày tháng
+            int m = 0;
+            int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
+            for (int i = 0; i < array.Length; i++)
             {
-                int d = 30;
-                int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
-                for (int i = 0; i < array.Length; i++)
+                if ((DateTime.Now.Month == array[i] && DateTime.Now.Day == 31) || (DateTime.Now.Month != array[i] && DateTime.Now.Day == 30))
                 {
-                   if(DateTime.Now.Month == array[i])
-                    {
-                        d = 31;
-                    }
+                    m = 1;
                 }
-
-                nvcv.NgayKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, d);
+            }
+            //Nếu tìm thấy => đặt lại ngày kết thúc bằng hiện tại
+            if (nvcv != null)
+            {
+                nvcv.NgayKetThuc = DateTime.Now;
 
                 myData.NhanVienCongViecs.Update(nvcv);
             }
@@ -69,9 +69,10 @@ namespace Infrastructure.Persistence.Actions
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
                 HSCongViec = 0.5,
-                //Lấy ngày 1 tháng sau của ngày hiện tại
-                NgayBatDau = new DateTime((DateTime.Now.Month == 12 ? DateTime.Now.Year + 1 : DateTime.Now.Year), 
-                    (DateTime.Now.Month == 12 ? 1 : DateTime.Now.Month + 1), 1),
+
+                //Lấy ngày hôm sau
+                NgayBatDau = new DateTime((DateTime.Now.Month == 12 && DateTime.Now.Day == 31) ? DateTime.Now.Year + 1 : DateTime.Now.Year,
+                    DateTime.Now.Month + m, m == 1 ? 1 : DateTime.Now.Day + 1),
                 NgayKetThuc = null
             };
 
@@ -85,6 +86,16 @@ namespace Infrastructure.Persistence.Actions
         {
             NhanVienCongViec nvcv = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId && x.NgayKetThuc == null);
 
+            //Tính ngày tháng
+            int m = 0;
+            int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
+            for (int i = 0; i < array.Length; i++)
+            {
+                if ((DateTime.Now.Month == array[i] && DateTime.Now.Day == 31) || (DateTime.Now.Month != array[i] && DateTime.Now.Day == 30))
+                {
+                    m = 1;
+                }
+            }
             //Nhân viên - công việc không thây đổi => không làm gì
             if (nvcv != null)
             {
@@ -98,17 +109,8 @@ namespace Infrastructure.Persistence.Actions
             //Nếu tìm thấy nhân viên công việc == null =>  xét lại là ngày cuối cùng của tháng
             if (nhanVienCongViec != null)
             {
-                int d = 30;
-                int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
-                for (int i = 0; i < array.Length; i++)
-                {
-                    if (DateTime.Now.Month == array[i])
-                    {
-                        d = 31;
-                    }
-                }
-                //Ngày cuối cùng của tháng
-                nhanVienCongViec.NgayKetThuc = new DateTime(DateTime.Now.Year, DateTime.Now.Month, d);
+                //Ngày hiện tại
+                nhanVienCongViec.NgayKetThuc = DateTime.Now;
 
                 myData.NhanVienCongViecs.Update(nhanVienCongViec);
             }
@@ -131,8 +133,8 @@ namespace Infrastructure.Persistence.Actions
                 CongViecId = congViecId,
                 HSCongViec = 0.5,
                 //Lấy ngày 1 tháng sau của ngày hiện tại
-                NgayBatDau = new DateTime((DateTime.Now.Month == 12 ? DateTime.Now.Year + 1 : DateTime.Now.Year),
-                    (DateTime.Now.Month == 12 ? 1 : DateTime.Now.Month + 1), 1),
+                NgayBatDau = new DateTime((DateTime.Now.Month == 12 && DateTime.Now.Day == 31) ? DateTime.Now.Year + 1 : DateTime.Now.Year,
+                    DateTime.Now.Month + m, m == 1 ? 1 : DateTime.Now.Day + 1),
                 NgayKetThuc = null
             };
 
@@ -177,7 +179,8 @@ namespace Infrastructure.Persistence.Actions
 
         public List<NhanVienCongViec> ToList()
         {
-            return myData.NhanVienCongViecs.ToList();
+
+            return myData.NhanVienCongViecs.ToList().FindAll(x => x.NgayBatDau == null || ((DateTime)x.NgayBatDau).AfterNow() == false);
         }
 
         public string Update(NhanVienCongViec obj)
