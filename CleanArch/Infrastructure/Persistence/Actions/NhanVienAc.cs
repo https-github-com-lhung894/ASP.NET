@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -173,8 +174,19 @@ namespace Infrastructure.Persistence.Actions
             {
                 return "Account id chưa tồn tại vui lòng khởi tạo trước khi sử dụng làm khóa ngoại";
             }
+            var local = myData.Set<NhanVien>()
+                .Local
+                .FirstOrDefault(entry => entry.NhanVienId.Equals(obj.NhanVienId));
 
-            myData.NhanViens.Update(obj);
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Modified;
+            //myData.NhanViens.Update(obj);
             myData.SaveChanges();
 
             return null;

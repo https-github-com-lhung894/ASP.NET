@@ -16,15 +16,18 @@ namespace WebApplication1.Areas.Admin.Controllers
     public class PhongBanController : Controller
     {
         private readonly IPhongBanSv phongBanSv;
+        private readonly INhanVienSv nhanVienSv;
         private readonly IQuanLyNhanVienSv quanLyNhanVienSv;
         private readonly IThongTinDuLieuCuoiAc thongTinDuLieuCuoiAc;
-        public PhongBanController(IPhongBanSv phongBanSv, IThongTinDuLieuCuoiAc thongTinDuLieuCuoiAc, IQuanLyNhanVienSv quanLyNhanVienSv)
+        public PhongBanController(IPhongBanSv phongBanSv, IThongTinDuLieuCuoiAc thongTinDuLieuCuoiAc, IQuanLyNhanVienSv quanLyNhanVienSv,
+            INhanVienSv nhanVienSv)
         {
             this.phongBanSv = phongBanSv;
+            this.nhanVienSv = nhanVienSv;
             this.quanLyNhanVienSv = quanLyNhanVienSv;
             this.thongTinDuLieuCuoiAc = thongTinDuLieuCuoiAc;
         }
-        
+
         [Route("")]
         [Route("Index")]
         public IActionResult Index()
@@ -121,6 +124,18 @@ namespace WebApplication1.Areas.Admin.Controllers
             ViewBag.Remove = "Xoá phòng ban thất bại! Lỗi " + messerror;
             ViewBag.ErrorRemove = "yes";
             return View("Index", objs);
+        }
+
+        [HttpPost]
+        [Route("")]
+        [Route("RemoveNVPB")]
+        public IActionResult RemoveNVPB(string id)
+        {
+            NhanVienDTO nhanVienDTO = nhanVienSv.FindById(id);
+            nhanVienDTO.PhongBanId = "null";
+            string messerror = nhanVienSv.Update(nhanVienDTO);
+            //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+            return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
         }
     }
 }
