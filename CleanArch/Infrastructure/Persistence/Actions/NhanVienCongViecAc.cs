@@ -114,11 +114,19 @@ namespace Infrastructure.Persistence.Actions
             }
 
             //Khởi tạo mới nhân viên - công việc
+            int max = 0;
+            List<NhanVienCongViec> nhanVienCongViecs = myData.NhanVienCongViecs.ToList();
+            foreach(NhanVienCongViec nvcv1 in nhanVienCongViecs)
+            {
+                if(int.Parse(nvcv1.NhanVienCongViecId) > max)
+                {
+                    max = int.Parse(nvcv1.NhanVienCongViecId);
+                }
+            }
             nhanVienCongViec = new NhanVienCongViec()
             {
                 //Tìm id cuối danh sách và tự tăng lên 1
-                NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList()
-                    .Count - 1].NhanVienCongViecId),
+                NhanVienCongViecId = ""+(max+1),
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
                 HSCongViec = 0.5,
@@ -130,7 +138,7 @@ namespace Infrastructure.Persistence.Actions
 
             //Add nhân viên - công việc
 
-            myData.Entry(nhanVienCongViec).State = EntityState.Detached;
+            //myData.Entry(nhanVienCongViec).State = EntityState.Detached;
 
             myData.NhanVienCongViecs.Add(nhanVienCongViec);
             myData.SaveChanges();

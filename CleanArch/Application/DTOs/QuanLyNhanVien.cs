@@ -13,7 +13,7 @@ namespace Application.DTOs
         public string PhongBanId { get; set; }
         public string TenPhongBan { get; set; }
         public string ChucVuId { get; set; }
-        public string TenChuVu { get; set; }
+        public string TenChucVu { get; set; }
         public string CongViecId { get; set; }
         public string TenCongViec { get; set; }
         public string NgaySinh { get; set; }

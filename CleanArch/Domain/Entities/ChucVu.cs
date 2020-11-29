@@ -12,7 +12,7 @@ namespace Domain.Entities
         [StringLength(45)]
         public string TenChucVu { get; set; }
         public double? HSChucVu { get; set; }
-        public double? TienPhuCapChuVu { get; set; }
+        public double? TienPhuCapChucVu { get; set; }
 
         //----
         public ICollection<NhanVien> NhanViens { get; set; }

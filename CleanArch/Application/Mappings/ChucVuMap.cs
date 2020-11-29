@@ -15,7 +15,7 @@ namespace Application.Mappings
                 ChucVuId = chucVu.ChucVuId,
                 TenChucVu = chucVu.TenChucVu,
                 HSChucVu = chucVu.HSChucVu,
-                TienPhuCapChuVu = chucVu.TienPhuCapChuVu
+                TienPhuCapChucVu = chucVu.TienPhuCapChucVu
             };
         }
         public static List<ChucVuDTO> ToListDTO(this List<ChucVu> chucVus)
@@ -34,7 +34,7 @@ namespace Application.Mappings
                 ChucVuId = chucVuDTO.ChucVuId,
                 TenChucVu = chucVuDTO.TenChucVu,
                 HSChucVu = chucVuDTO.HSChucVu,
-                TienPhuCapChuVu = chucVuDTO.TienPhuCapChuVu
+                TienPhuCapChucVu = chucVuDTO.TienPhuCapChucVu
             };
         }
     }

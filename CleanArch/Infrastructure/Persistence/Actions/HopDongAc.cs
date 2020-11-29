@@ -92,10 +92,19 @@ namespace Infrastructure.Persistence.Actions
             }
 
             //Khởi tạo hợp đồng mới
+            int max = 0;
+            List<HopDong> hopDongs = myData.HopDongs.ToList();
+            foreach (HopDong hopDong1 in hopDongs)
+            {
+                if (int.Parse(hopDong1.HopDongId) > max)
+                {
+                    max = int.Parse(hopDong1.HopDongId);
+                }
+            }
             HopDong hopDong = new HopDong()
             {
                 //Tìm hợp đồng cuối danh sách rồi tự tăng lên 1
-                HopDongId = AutoKey.AutoNumber(myData.HopDongs.ToList()[myData.HopDongs.ToList().Count - 1].HopDongId),
+                HopDongId = ""+(max+1),
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
                 NgayKyHopDong = DateTime.Now,

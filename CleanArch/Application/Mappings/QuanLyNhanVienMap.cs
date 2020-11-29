@@ -81,7 +81,7 @@ namespace Application.Mappings
                 TenPhongBan = phongBan.TenPhongBan,
 
                 ChucVuId = chucVu.ChucVuId,
-                TenChuVu = chucVu.TenChucVu,
+                TenChucVu = chucVu.TenChucVu,
 
                 CongViecId = congViec.CongViecId,
                 TenCongViec = congViec.TenCongViec,

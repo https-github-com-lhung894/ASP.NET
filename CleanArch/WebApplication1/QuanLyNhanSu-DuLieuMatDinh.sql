@@ -38,7 +38,7 @@ INSERT INTO DuAns(DuAnId, TenDuAn, PhanTramDuAn, ThuongDuAn, NgayBatDau, NgayKet
 ('da00003', 'Dự Án 3', 20, 9000000, '2020-06-09', '2020-06-25', 1),
 ('da00004', 'Dự Án 4', 100, 8000000, '2020-06-18', '2020-07-21', 1);
 
-INSERT INTO ChucVus(ChucVuId, TenChucVu, HSChucVu, TienPhuCapChuVu) VALUES
+INSERT INTO ChucVus(ChucVuId, TenChucVu, HSChucVu, TienPhuCapChucVu) VALUES
 ('chucvu1', 'Trường phòng ban', 0.5, 500000),
 ('chucvu2', 'Phó phòng ban', 0.3, 300000),
 ('chucvu3', 'Nhân viên', 0.1, 100000);
