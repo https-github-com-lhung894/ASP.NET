@@ -70,3 +70,15 @@ C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\n
 C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete
 C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.dll
 C:\Users\DuongKiet\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.pdb
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.deps.json
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.dll
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Infrastructure.pdb
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Domain.dll
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\bin\Debug\netstandard2.0\Domain.pdb
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.AssemblyInfo.cs
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.csproj.CopyComplete
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.dll
+C:\Users\Admin\Documents\GitHub\ASP.NET\CleanArch\Infrastructure\obj\Debug\netstandard2.0\Infrastructure.pdb

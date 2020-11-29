@@ -30,6 +30,13 @@ namespace Application.Services
             return errorMessage;
         }
 
+        public string RemovePhongBan(PhongBanDTO phongBanDTO)
+        {
+            string errorMessage;
+            errorMessage = phongBanAc.Remove(phongBanDTO.ToPhongBan());
+            return errorMessage;
+        }
+
         public List<PhongBanDTO> GetList()
         {
             return PhongBanMap.ToListDTO(phongBanAc.ToList());

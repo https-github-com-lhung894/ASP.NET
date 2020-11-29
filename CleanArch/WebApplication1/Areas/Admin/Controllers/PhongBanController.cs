@@ -87,5 +87,40 @@ namespace WebApplication1.Areas.Admin.Controllers
             objs = new(quanLyNhanVienSv.GetListNVPB(id), phongBanSv.FindById(id));
             return View(objs);
         }
+
+        [HttpPost]
+        [Route("")]
+        [Route("Remove")]
+        public IActionResult Remove(string id)
+        {
+            PhongBanDTO phongBanDTO = phongBanSv.FindById(id);
+            (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhongBanDTO PhongBanDTO) objs;
+            objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phongBanSv.FindById("null"));
+            if (phongBanDTO == null)
+            {
+                ViewBag.Remove = "Kiểm tra lại mã phòng ban";
+                ViewBag.ErrorRemove = "yes";
+                return View("Index", objs);
+            }
+            //List<QuanLyNhanVien> quanLyNhanViens = new List<QuanLyNhanVien>(quanLyNhanVienSv.GetListNVPB(id));
+            List<QuanLyNhanVien> quanLyNhanViens = quanLyNhanVienSv.GetListNVPB(id);
+            if (quanLyNhanViens.Count != 0)
+            {
+                ViewBag.Remove = "Xoá phòng ban thất bại! Phòng ban " + phongBanDTO.TenPhongBan + " vẫn còn nhân viên.";
+                ViewBag.ErrorRemove = "yes";
+                return View("Index", objs);
+            }
+            string messerror = phongBanSv.RemovePhongBan(phongBanDTO);
+            if (messerror == null)
+            {
+                objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phongBanSv.FindById("null"));
+                ViewBag.Remove = "Xoá phòng ban " + phongBanDTO.TenPhongBan + " thành công.";
+                ViewBag.ErrorRemove = "no";
+                return View("Index", objs);
+            }
+            ViewBag.Remove = "Xoá phòng ban thất bại! Lỗi " + messerror;
+            ViewBag.ErrorRemove = "yes";
+            return View("Index", objs);
+        }
     }
 }
