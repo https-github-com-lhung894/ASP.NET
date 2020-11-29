@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj": {}
+    "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+    "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+        "projectUniqueName": "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\obj\\",
+        "projectPath": "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Hung\\.nuget\\packages\\",
+        "outputPath": "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hung\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,20 +68,20 @@
         }
       }
     },
-    "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj": {
+    "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Infrastructure\\obj\\",
+        "projectPath": "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Hung\\.nuget\\packages\\",
+        "outputPath": "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hung\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -95,8 +95,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
+              "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+                "projectPath": "E:\\Công nghệ phần mềm\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
               }
             }
           }

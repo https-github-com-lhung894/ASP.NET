@@ -58,3 +58,15 @@ C:\Users\lapgo\Documents\GitHub\ASP.NET\CleanArch\Application\obj\Debug\netstand
 C:\Users\lapgo\Documents\GitHub\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.csproj.CopyComplete
 C:\Users\lapgo\Documents\GitHub\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.dll
 C:\Users\lapgo\Documents\GitHub\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.pdb
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Application.deps.json
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Application.dll
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Application.pdb
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Domain.dll
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\bin\Debug\netstandard2.0\Domain.pdb
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.csprojAssemblyReference.cache
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.AssemblyInfoInputs.cache
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.AssemblyInfo.cs
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.csproj.CoreCompileInputs.cache
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.csproj.CopyComplete
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.dll
+E:\Công nghệ phần mềm\ASP.NET\CleanArch\Application\obj\Debug\netstandard2.0\Application.pdb
