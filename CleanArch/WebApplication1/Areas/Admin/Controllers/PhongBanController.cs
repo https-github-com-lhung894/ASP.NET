@@ -7,6 +7,7 @@ using Application.Interfaces;
 using Domain.Entities;
 using Domain.IActions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1.Areas.Admin.Controllers
@@ -135,6 +136,22 @@ namespace WebApplication1.Areas.Admin.Controllers
             nhanVienDTO.PhongBanId = "null";
             string messerror = nhanVienSv.Update(nhanVienDTO);
             //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+            return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
+        }
+
+        [HttpPost]
+        [Route("")]
+        [Route("RemoveMultiNVPB")]
+        public ActionResult RemoveMultiNVPB(IFormCollection formCollection)
+        {
+            string[] ids = formCollection["NhanVienId"];
+            string messerror = null;
+            foreach (string id in ids)
+            {
+                NhanVienDTO nhanVienDTO = nhanVienSv.FindById(id);
+                nhanVienDTO.PhongBanId = "null";
+               messerror += nhanVienSv.Update(nhanVienDTO);
+            }
             return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
         }
     }
