@@ -87,14 +87,28 @@
                                 }
                             </div>
                             <div class="col-md-12">
-                                <form class="navbar-form">
-                                    <div class="input-group no-border">
-                                        <input type="search" value="" class="form-control" placeholder="Search...">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-                                </form>
+                                @if (ViewBag.Find == "yes")
+                                {
+                                <div class="input-group no-border">
+                                    <input type="search" name="PhongBanId" class="form-control" readonly>
+                                        <a asp-controller="PhongBan" asp-action="Index">
+                                            <button class="btn btn-primary" style="height: 45px;">
+                                                <i class="fa fa-close"></i>
+                                            </button>
+                                        </a>
+                                </div>
+                                }
+                                else
+                                {
+                                    <form class="navbar-form" asp-action="FindIdPb" asp-controller="PhongBan">
+                                        <div class="input-group no-border">
+                                            <input type="search" value="" name="PhongBanId" class="form-control" placeholder="Search...">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                }
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -110,66 +124,73 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (PhongBanDTO phongban in Model.phongBanDTOs)
+                                    @if (Model.phongBanDTOs.Count == 0)
                                     {
-                                    <tr>
-                                        <td>@phongban.PhongBanId</td>
-                                        <td>@phongban.TenPhongBan</td>
-                                        <td>@phongban.SDTPhongBan</td>
-                                        @if (phongban.PhongBanId == "null")
-                                        {
-                                            <td class="td-center">
-                                                <form asp-controller="PhongBan" asp-action="Details" method="post">
-                                                    <input value="@phongban.PhongBanId" type="hidden" name="id" />
-                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
-                                                </form>
-                                            </td>
-                                            <td class="td-center">
-                                                <button class="btn btn-primary" disabled><i class="fa fa-pencil"></i></button>    
-                                            </td>
-                                            <td class="td-center">
-                                                <button type="button" class="btn btn-primary" disabled><i class="fa fa-close"></i></button>
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td class="td-center">
-                                                <form asp-controller="PhongBan" asp-action="Details" method="post">
-                                                    <input value="@phongban.PhongBanId" type="hidden" name="id" />
-                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
-                                                </form>
-                                            </td>
-                                            <td class="td-center">
-                                                <form asp-controller="PhongBan" asp-action="UpdateId" method="post">
-                                                    <input value="@phongban.PhongBanId" type="hidden" name="id" />
-                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                                </form>
-                                            </td>
-                                            <td class="td-center">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(phongban.PhongBanId + "xoa")">
-                                                    <i class="fa fa-close"></i>
-                                                </button>
-                                            </td>
-                                        }
-                                    </tr>
+                                        <tr><th colspan="6"><p class="td-center" style="color:red;">Not found</p></th></tr>
                                     }
-                                    @foreach (PhongBanDTO phongban in Model.phongBanDTOs)
+                                    else
                                     {
-                                        <div class="modal fade" id="@(phongban.PhongBanId + "xoa")" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Bạn chắc chắn muốn<br>xoá phòng ban @phongban.TenPhongBan?</h3>
-                                                    </div>
-                                                    <div class="modal-footer" style="margin: auto;">
-                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                                                        <form method="post" asp-controller="PhongBan" asp-action="Remove">
-                                                            <button name="id" type="submit" class="btn btn-danger" value="@phongban.PhongBanId">Yes, delete it !</button>
+                                        @foreach (PhongBanDTO phongban in Model.phongBanDTOs)
+                                        {
+                                            <tr>
+                                                <td>@phongban.PhongBanId</td>
+                                                <td>@phongban.TenPhongBan</td>
+                                                <td>@phongban.SDTPhongBan</td>
+                                                @if (phongban.PhongBanId == "null")
+                                                {
+                                                    <td class="td-center">
+                                                        <form asp-controller="PhongBan" asp-action="Details" method="post">
+                                                            <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
                                                         </form>
+                                                    </td>
+                                                    <td class="td-center">
+                                                        <button class="btn btn-primary" disabled><i class="fa fa-pencil"></i></button>
+                                                    </td>
+                                                    <td class="td-center">
+                                                        <button type="button" class="btn btn-primary" disabled><i class="fa fa-close"></i></button>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="td-center">
+                                                        <form asp-controller="PhongBan" asp-action="Details" method="post">
+                                                            <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    <td class="td-center">
+                                                        <form asp-controller="PhongBan" asp-action="UpdateId" method="post">
+                                                            <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    <td class="td-center">
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(phongban.PhongBanId + "xoa")">
+                                                            <i class="fa fa-close"></i>
+                                                        </button>
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                        @foreach (PhongBanDTO phongban in Model.phongBanDTOs)
+                                        {
+                                            <div class="modal fade" id="@(phongban.PhongBanId + "xoa")" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Bạn chắc chắn muốn<br>xoá phòng ban @phongban.TenPhongBan?</h3>
+                                                        </div>
+                                                        <div class="modal-footer" style="margin: auto;">
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                            <form method="post" asp-controller="PhongBan" asp-action="Remove">
+                                                                <button name="id" type="submit" class="btn btn-danger" value="@phongban.PhongBanId">Yes, delete it !</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        }
                                     }
                                 </tbody>
                             </table>

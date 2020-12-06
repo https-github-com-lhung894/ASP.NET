@@ -42,6 +42,11 @@ namespace Application.Services
             return PhongBanMap.ToListDTO(phongBanAc.ToList());
         }
 
+        public List<PhongBanDTO> GetListPb(string id)
+        {
+            return PhongBanMap.ToListDTOPb(phongBanAc.ToList(), id);
+        }
+
         public string Add(PhongBanDTO obj)
         {
             return phongBanAc.Add(obj.ToPhongBan());

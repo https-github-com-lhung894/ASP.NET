@@ -48,7 +48,7 @@
                                             <th style="width:15%;" class="th-center-bold">Phòng ban</th>
                                             <th style="width:15%;" class="th-center-bold">Chức vụ</th>
                                             <th style="width:15%;" class="th-center-bold">Công việc</th>
-                                            @if (Model.PhongBanDTO.PhongBanId == "null")
+                                            @if (Model.PhongBanDTO.PhongBanId == "null" || Model.quanLyNhanViens.Count == 0)
                                             {
                                                 <th style="width:10%;" class="th-center-bold">Xoá<input type="checkbox" id="checkBoxAll" class="custom-checkbox" disabled style="margin-left: 5px;" /></th>
                                             }
@@ -68,7 +68,7 @@
                                                 <td> @quanLyNhanVien.TenPhongBan </td>
                                                 <td> @quanLyNhanVien.TenChuVu </td>
                                                 <td> @quanLyNhanVien.TenCongViec </td>
-                                                @if (quanLyNhanVien.PhongBanId == "null")
+                                                @if (quanLyNhanVien.PhongBanId == "null" || Model.quanLyNhanViens.Count == 0)
                                                 {
                                                     <td class="td-center">
                                                         <input type="checkbox" name="NhanVienId" class="custom-checkbox" disabled />

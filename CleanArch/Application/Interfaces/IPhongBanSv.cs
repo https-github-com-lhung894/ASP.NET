@@ -8,6 +8,7 @@ namespace Application.Interfaces
     {
         string AddPhongBan(PhongBanDTO phongBanDTO);
         List<PhongBanDTO> GetList();
+        List<PhongBanDTO> GetListPb(string id);
         string UpdatePhongBan(PhongBanDTO phongBanDTO);
         string RemovePhongBan(PhongBanDTO phongBanDTO);
     }

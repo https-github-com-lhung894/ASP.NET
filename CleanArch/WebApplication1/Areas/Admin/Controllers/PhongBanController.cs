@@ -36,7 +36,20 @@ namespace WebApplication1.Areas.Admin.Controllers
             (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhongBanDTO PhongBanDTO) objs;
             objs = new(phongBanSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phongBanSv.FindById("null"));
             ViewBag.Update = "no";
+            ViewBag.Find = "no";
             return View(objs);
+        }
+
+        [Route("")]
+        [Route("FindIdPb")]
+        public IActionResult FindIdPb(string PhongBanId)
+        {
+            //PhongBanDTO phongBanDTO = phongBanSv.FindById(PhongBanId);
+            (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhongBanDTO PhongBanDTO) objs;
+            objs = new(phongBanSv.GetListPb(PhongBanId), thongTinDuLieuCuoiAc.FindById("1"), phongBanSv.FindById("null"));
+            ViewBag.Find = "yes";
+            ViewBag.Update = "no";
+            return View("Index",objs);
         }
 
         [HttpPost]
