@@ -9,8 +9,8 @@ namespace Application.DTOs
         [StringLength(45)]
         public string HopDongId { get; set; }
         public DateTime? NgayKyHopDong { get; set; }
-        public double? LuongCanBan { get; set; }
-        public int? TrangThai { get; set; } = 1;
+        public string LuongCanBan { get; set; }
+        public int? TrangThai { get; set; }
         [Required]
         [StringLength(45)]
         public string NhanVienId { get; set; }

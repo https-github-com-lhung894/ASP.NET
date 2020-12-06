@@ -10,7 +10,7 @@ namespace Application.DTOs
         public string PhuCapId { get; set; }
         [StringLength(45)]
         public string TenPhuCap { get; set; }
-        public double TienPhuCap { get; set; }
+        public string TienPhuCap { get; set; }
         public int? TrangThai { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace Domain.Entities
         [StringLength(45)]
         public string ThuongLeId { get; set; }
         public DateTime? NgayLe { get; set; }
-        public double? TienThuongLe { get; set; }
+        public string TienThuongLe { get; set; }
     }
 }

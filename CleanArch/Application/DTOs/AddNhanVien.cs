@@ -24,7 +24,7 @@ namespace Application.DTOs
         public string HinhAnh { get; set; }
         public string MatKhau { get; set; }
         public int? Quyen { get; set; }
-        public double? LuongCanBan { get; set; }
+        public string LuongCanBan { get; set; }
         public string TaiKhoan { get; set; }
     }
 }

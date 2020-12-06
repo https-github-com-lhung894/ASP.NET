@@ -11,6 +11,6 @@ namespace Application.DTOs
         [StringLength(45)]
         public string TenChucVu { get; set; }
         public double? HSChucVu { get; set; }
-        public double? TienPhuCapChucVu { get; set; }
+        public string TienPhuCapChucVu { get; set; }
     }
 }

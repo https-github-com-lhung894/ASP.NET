@@ -14,7 +14,7 @@ namespace Domain.Entities
         [StringLength(45)]
         public string HopDongId { get; set; }
         public DateTime? NgayKyHopDong { get; set; }
-        public double? LuongCanBan { get; set; }
+        public string LuongCanBan { get; set; }
         public int? TrangThai { get; set; }
 
         //Foreign key----

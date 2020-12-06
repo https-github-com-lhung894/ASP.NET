@@ -38,7 +38,7 @@ namespace Infrastructure.Persistence.Actions
             return null;
         }
 
-        public string AutoAdd(string nhanVienId, string congViecId, double? luongCanBan)
+        public string AutoAdd(string nhanVienId, string congViecId, string luongCanBan)
         {
             //Kiểm tra quan hệ
             if (myData.CongViecs.ToList().Find(x => x.CongViecId == congViecId) == null)
@@ -58,13 +58,23 @@ namespace Infrastructure.Persistence.Actions
                 myData.HopDongs.Update(hd);
             }
 
+            //Khởi tạo mới hợp đồng
+            int max = 0;
+            List<HopDong> hopDongs = myData.HopDongs.ToList();
+            foreach (HopDong hd1 in hopDongs)
+            {
+                if (int.Parse(hd1.HopDongId) > max)
+                {
+                    max = int.Parse(hd1.HopDongId);
+                }
+            }
             HopDong hopDong = new HopDong()
             {
                 //Tìm hợp đồng cuối danh sách rồi tự tăng lên 1
-                HopDongId = AutoKey.AutoNumber(myData.HopDongs.ToList()[myData.HopDongs.ToList().Count - 1].HopDongId),
+                HopDongId = "" + (max + 1),
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
-                NgayKyHopDong = DateTime.Now,
+                NgayKyHopDong = System.DateTime.Now,
                 LuongCanBan = luongCanBan
             };
 
@@ -74,7 +84,7 @@ namespace Infrastructure.Persistence.Actions
             return null;
         }
 
-        public HopDong AutoUpdate(string nhanVienId, string congViecId, double? luongCanBan)
+        public HopDong AutoUpdate(string nhanVienId, string congViecId, string luongCanBan)
         {
             //Kiểm tra xem hợp đồng có thay đổi ko
             HopDong hd = myData.HopDongs.ToList().Find(x => x.NhanVienId == nhanVienId && x.CongViecId == congViecId && x.TrangThai == 1);
@@ -104,10 +114,10 @@ namespace Infrastructure.Persistence.Actions
             HopDong hopDong = new HopDong()
             {
                 //Tìm hợp đồng cuối danh sách rồi tự tăng lên 1
-                HopDongId = ""+(max+1),
+                HopDongId = ""+(max + 1),
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
-                NgayKyHopDong = DateTime.Now,
+                NgayKyHopDong = System.DateTime.Now,
                 LuongCanBan = luongCanBan
             };
 

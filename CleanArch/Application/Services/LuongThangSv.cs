@@ -1,6 +1,7 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Application.Mappings;
+using Domain.Entities;
 using Domain.IActions;
 using System;
 using System.Collections.Generic;
@@ -11,18 +12,31 @@ namespace Application.Services
     public class LuongThangSv : ILuongThangSv
     {
         private readonly ILuongThangAc luongThangAc;
-        public LuongThangSv(ILuongThangAc luongThangAc)
+        private readonly IChiTietNhanVienAc chiTietNhanVienAc;
+        private readonly INhanVienAc nhanVienAc;
+        private readonly IPhongBanAc phongBanAc;
+        public LuongThangSv(ILuongThangAc luongThangAc, IChiTietNhanVienAc chiTietNhanVienAc, INhanVienAc nhanVienAc, IPhongBanAc phongBanAc)
         {
             this.luongThangAc = luongThangAc;
+            this.chiTietNhanVienAc = chiTietNhanVienAc;
+            this.nhanVienAc = nhanVienAc;
+            this.phongBanAc = phongBanAc;
         }
         public string Add(LuongThangDTO obj)
         {
             return luongThangAc.Add(obj.ToLuongThang());
         }
 
+        public void AutoAdd()
+        {
+            luongThangAc.AutoAdd();
+        }
+
         public LuongThangDTO FindById(string id)
         {
-            return luongThangAc.FindById(id).ToDTO();
+            //Hàm này không dùng tới
+            return null;
+            //return luongThangAc.FindById(id).ToDTO();
         }
 
         public string Remove(LuongThangDTO obj)
@@ -32,7 +46,7 @@ namespace Application.Services
 
         public List<LuongThangDTO> ToList()
         {
-            return luongThangAc.ToList().ToListDTO();
+            return luongThangAc.ToList().ToListDTO(chiTietNhanVienAc.ToList(),nhanVienAc.ToList(),phongBanAc.ToList());
         }
 
         public string Update(LuongThangDTO obj)

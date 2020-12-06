@@ -5,5 +5,6 @@ namespace Application.Interfaces
 {
     public interface ILuongThangSv : IGeneralAction<LuongThangDTO>
     {
+        void AutoAdd();
     }
 }

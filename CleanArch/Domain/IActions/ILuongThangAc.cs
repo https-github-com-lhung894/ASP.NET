@@ -4,5 +4,6 @@ namespace Domain.IActions
 {
     public interface ILuongThangAc : IGeneralAction<LuongThang>
     {
+        void AutoAdd();
     }
 }

@@ -33,7 +33,7 @@ namespace Application.Services
         public string AddNhanVien(QuanLyNhanVien quanLyNhanVien)
         {
             string errorMessage = "";
-            (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) objs 
+            (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, string luongCanBan) objs 
                 = quanLyNhanVien.ToObjs();
             errorMessage += nhanVienAc.CheckRelationship(objs.nhanVien);
             if (errorMessage == "")
@@ -51,7 +51,7 @@ namespace Application.Services
         public string UpdateNhanVien(QuanLyNhanVien quanLyNhanVien)
         {
             string errorMessage = "";
-            (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) objs
+            (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, string luongCanBan) objs
                 = quanLyNhanVien.ToObjs();
 
             errorMessage += nhanVienCongViecAc.CheckForeignKey(objs.nhanVien.NhanVienId, objs.congViecId);

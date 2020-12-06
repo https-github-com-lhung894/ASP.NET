@@ -8,8 +8,9 @@ namespace Application.Mappings
 {
     public static class LuongThangMap
     {
-        public static LuongThangDTO ToDTO(this LuongThang luongThang)
+        public static LuongThangDTO ToDTO(this LuongThang luongThang, string hinhAnh, string hoTenNhanVien, string tenPhongBan)
         {
+
             return new LuongThangDTO()
             {
                 LuongThangId = luongThang.LuongThangId,
@@ -24,17 +25,24 @@ namespace Application.Mappings
                 ThuongLe = luongThang.ThuongLe,
                 PhuCapChucVu = luongThang.PhuCapChucVu,
                 PhuCapThamNien = luongThang.PhuCapThamNien,
-                TienDa = luongThang.TienDa,
+                TienDuAn = luongThang.TienDuAn,
                 LuongThucLanh = luongThang.LuongThucLanh,
-                NhanVienId = luongThang.NhanVienId
+                NhanVienId = luongThang.NhanVienId,
+                HinhAnh = hinhAnh,
+                HoTenNhanVien = hoTenNhanVien,
+                TenPhongBan = tenPhongBan
             };
         }
-        public static List<LuongThangDTO> ToListDTO(this List<LuongThang> luongThangs)
+        public static List<LuongThangDTO> ToListDTO(this List<LuongThang> luongThangs, List<ChiTietNhanVien> chiTietNhanViens,
+            List<NhanVien> nhanViens, List<PhongBan> phongBans)
         {
             List<LuongThangDTO> luongThangDTOs = new List<LuongThangDTO>();
             foreach (LuongThang luongThang in luongThangs)
             {
-                luongThangDTOs.Add(luongThang.ToDTO());
+                ChiTietNhanVien chiTietNhanVien = chiTietNhanViens.Find(x => x.NhanVienId == luongThang.NhanVienId);
+                NhanVien nhanVien = nhanViens.Find(x => x.NhanVienId == luongThang.NhanVienId);
+                PhongBan phongBan = phongBans.Find(x => x.PhongBanId == nhanVien.PhongBanId);
+                luongThangDTOs.Add(luongThang.ToDTO(chiTietNhanVien.HinhAnh,nhanVien.HoNhanVien + " " + nhanVien.TenNhanVien,phongBan.TenPhongBan));
             }
             return luongThangDTOs;
         }
@@ -54,7 +62,7 @@ namespace Application.Mappings
                 ThuongLe = luongThangDTO.ThuongLe,
                 PhuCapChucVu = luongThangDTO.PhuCapChucVu,
                 PhuCapThamNien = luongThangDTO.PhuCapThamNien,
-                TienDa = luongThangDTO.TienDa,
+                TienDuAn = luongThangDTO.TienDuAn,
                 LuongThucLanh = luongThangDTO.LuongThucLanh,
                 NhanVienId = luongThangDTO.NhanVienId
             };

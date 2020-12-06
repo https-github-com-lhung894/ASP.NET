@@ -7,7 +7,7 @@ namespace Application.Mappings
 {
     public static class QuanLyNhanVienMap
     {
-        public static (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, double? luongCanBan) ToObjs(this QuanLyNhanVien quanLyNhanVien)
+        public static (Account account, NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, string congViecId, string luongCanBan) ToObjs(this QuanLyNhanVien quanLyNhanVien)
         {
             return (
                 new Account()

@@ -11,7 +11,7 @@ namespace Application.DTOs
         [StringLength(45)]
         public string TenDuAn { get; set; }
         [StringLength(45)]
-        public string PhanTramDuAn { get; set; }
+        public double? PhanTramDuAn { get; set; }
         [StringLength(45)]
         public string ThuongDuAn { get; set; }
         public DateTime? NgayBatDau { get; set; }

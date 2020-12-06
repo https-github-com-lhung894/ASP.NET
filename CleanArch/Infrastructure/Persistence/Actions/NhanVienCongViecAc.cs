@@ -49,7 +49,7 @@ namespace Infrastructure.Persistence.Actions
             int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
             for (int i = 0; i < array.Length; i++)
             {
-                if ((DateTime.Now.Month == array[i] && DateTime.Now.Day == 31) || (DateTime.Now.Month != array[i] && DateTime.Now.Day == 30))
+                if ((System.DateTime.Now.Month == array[i] && System.DateTime.Now.Day == 31) || (System.DateTime.Now.Month != array[i] && System.DateTime.Now.Day == 30))
                 {
                     m = 1;
                 }
@@ -57,7 +57,7 @@ namespace Infrastructure.Persistence.Actions
             //Nếu tìm thấy => đặt lại ngày kết thúc bằng hiện tại
             if (nvcv != null)
             {
-                nvcv.NgayKetThuc = DateTime.Now;
+                nvcv.NgayKetThuc = System.DateTime.Now;
 
                 myData.NhanVienCongViecs.Update(nvcv);
             }
@@ -71,8 +71,8 @@ namespace Infrastructure.Persistence.Actions
                 HSCongViec = 0.5,
 
                 //Lấy ngày hôm sau
-                NgayBatDau = new DateTime((DateTime.Now.Month == 12 && DateTime.Now.Day == 31) ? DateTime.Now.Year + 1 : DateTime.Now.Year,
-                    DateTime.Now.Month + m, m == 1 ? 1 : DateTime.Now.Day + 1),
+                NgayBatDau = new System.DateTime((System.DateTime.Now.Month == 12 && System.DateTime.Now.Day == 31) ? System.DateTime.Now.Year + 1 : System.DateTime.Now.Year,
+                    System.DateTime.Now.Month + m, m == 1 ? 1 : System.DateTime.Now.Day + 1),
                 NgayKetThuc = null
             };
 
@@ -91,7 +91,7 @@ namespace Infrastructure.Persistence.Actions
             int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
             for (int i = 0; i < array.Length; i++)
             {
-                if ((DateTime.Now.Month == array[i] && DateTime.Now.Day == 31) || (DateTime.Now.Month != array[i] && DateTime.Now.Day == 30))
+                if ((System.DateTime.Now.Month == array[i] && System.DateTime.Now.Day == 31) || (System.DateTime.Now.Month != array[i] && System.DateTime.Now.Day == 30))
                 {
                     m = 1;
                 }
@@ -110,7 +110,7 @@ namespace Infrastructure.Persistence.Actions
             if (nhanVienCongViec != null)
             {
                 //Ngày hiện tại
-                nhanVienCongViec.NgayKetThuc = DateTime.Now;
+                nhanVienCongViec.NgayKetThuc = System.DateTime.Now;
 
                 myData.NhanVienCongViecs.Update(nhanVienCongViec);
             }
@@ -128,13 +128,13 @@ namespace Infrastructure.Persistence.Actions
             nhanVienCongViec = new NhanVienCongViec()
             {
                 //Tìm id cuối danh sách và tự tăng lên 1
-                NhanVienCongViecId = ""+(max+1),
+                NhanVienCongViecId = ""+(max + 1),
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
                 HSCongViec = 0.5,
                 //Lấy ngày 1 tháng sau của ngày hiện tại
-                NgayBatDau = new DateTime((DateTime.Now.Month == 12 && DateTime.Now.Day == 31) ? DateTime.Now.Year + 1 : DateTime.Now.Year,
-                    DateTime.Now.Month + m, m == 1 ? 1 : DateTime.Now.Day + 1),
+                NgayBatDau = new System.DateTime((System.DateTime.Now.Month == 12 && System.DateTime.Now.Day == 31) ? System.DateTime.Now.Year + 1 : System.DateTime.Now.Year,
+                    System.DateTime.Now.Month + m, m == 1 ? 1 : System.DateTime.Now.Day + 1),
                 NgayKetThuc = null
             };
 

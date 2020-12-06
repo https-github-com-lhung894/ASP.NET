@@ -8,7 +8,7 @@ namespace Application.DTOs
         [StringLength(45)]
         public string NhanVienDuAnId { get; set; }
         [StringLength(45)]
-        public string PhanTramCV { get; set; }
+        public double? PhanTramCV { get; set; }
         [Required]
         [StringLength(45)]
         public string NhanVienId { get; set; }

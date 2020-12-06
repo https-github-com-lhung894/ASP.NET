@@ -3,7 +3,9 @@ using Application.Interfaces;
 using Domain.Entities;
 using Domain.IActions;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using Infrastructure.Persistence.Actions;
 
 namespace WebApplication1.Controllers
 {
@@ -11,18 +13,17 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ILoginSv loginSv;
-        private readonly INhanVienCongViecAc nhanVienCongViecAc;
-        public HomeController(ILoginSv loginSv, INhanVienCongViecAc nhanVienCongViecAc)
+        private readonly ILuongThangSv luongThangSv;
+        public HomeController(ILoginSv loginSv, ILuongThangSv luongThangSv)
         {
             this.loginSv = loginSv;
-            this.nhanVienCongViecAc = nhanVienCongViecAc;
+            this.luongThangSv = luongThangSv;
         }
         [Route("")]
         [Route("~/")]
         [Route("index")]
         public IActionResult Index()
         {
-            List<NhanVienCongViec> li = nhanVienCongViecAc.ToList();
             return View();
         }
         [HttpPost]

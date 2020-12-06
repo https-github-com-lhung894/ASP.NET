@@ -1,236 +1,243 @@
-﻿@{
+﻿@using Application.DTOs
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+@model List<LuongThangDTO>
 
 <div class="content-body">
 
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Quản Lý Nhân Viên</a></li>
-                        <li class="breadcrumb-item active">Bảng Lương</li>
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Quản Lý Nhân Viên</a></li>
+                <li class="breadcrumb-item active">Bảng Lương</li>
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title row">
-                                    <div class="col-md-12 mb-4">
-                                        <h3 class="td-center">BẢNG LƯƠNG NHÂN VIÊN</h3>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <form class="navbar-form row">
-                                            <div class="col-md-6">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="input-group mb-3">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text">Mã nhân viên</span>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Nhập mã nhân viên..." required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="input-group mb-3">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <input type="checkbox"> Tháng
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" class="form-control" placeholder="Nhập tháng..." min="1" max="12">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="input-group mb-3">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <input type="checkbox"> Năm
-                                                                </div>
-                                                            </div>
-                                                            <input type="number" class="form-control" placeholder="Nhập năm..." min="2018" max="2020">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <div class="col-md-4">
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="optradio"> Lương căn bản
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="optradio"> Lương thực lãnh
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="optradio"> Thưởng dự án
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="input-group col-md-6">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">Từ</span>
-                                                        </div>
-                                                        <input type="text" class="form-control" placeholder="Nhập giá trị đầu...">
-                                                    </div>
-                                                    <div class="input-group col-md-6">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">Đến</span>
-                                                        </div>
-                                                        <input type="text" class="form-control" placeholder="Nhập giá trị cuối...">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 td-center">
-                                                <a href="#">
-                                                    <button class="btn btn-primary"><span style="margin-right: 10px">Tìm kiếm</span><i class="fa fa-search"></i></button>
-                                                </a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>                                  
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="text-primary">
-                                            <tr>
-                                                <th style="width:15%;" class="th-center-bold">Hình ảnh</th>
-                                                <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
-                                                <th style="width:20%;" class="th-center-bold">Tên nhân viên</th>
-                                                <th style="width:15%;" class="th-center-bold">Phòng ban</th>
-                                                <th style="width:20%;" class="th-center-bold">Lương tháng</th>
-                                                <th style="width:15%;" class="th-center-bold">Chi tiết</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><img src="./product-img/3_Stripes_Jacquard_Polo_Shirt_Black.jpg" alt="" style="width:100%" ;=""></td>
-                                                <td> Mã Nhân Viên </td>
-                                                <td> Tên Nhân Viên </td>
-                                                <td> Phòng Ban </td>
-                                                <td> 10.000.000 </td>
-                                                <td class="td-center">
-                                                    <a href="#">
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-info"></i></button>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="./product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="" style="width:100%" ;=""></td>
-                                                <td> Mã Nhân Viên </td>
-                                                <td> Tên Nhân Viên </td>
-                                                <td> Phòng Ban </td>
-                                                <td> 10.000.000 </td>
-                                                <td class="td-center">
-                                                    <a href="#">
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-info"></i></button>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title row">
+                            <div class="col-md-12 mb-4">
+                                <h3 class="td-center">BẢNG LƯƠNG NHÂN VIÊN</h3>
                             </div>
+                            <div class="col-md-12">
+                                <form class="navbar-form row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Mã nhân viên</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Nhập mã nhân viên..." required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <input type="checkbox"> Tháng
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" class="form-control" placeholder="Nhập tháng..." min="1" max="12">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <input type="checkbox"> Năm
+                                                        </div>
+                                                    </div>
+                                                    <input type="number" class="form-control" placeholder="Nhập năm..." min="2018" max="2020">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio"> Lương căn bản
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio"> Lương thực lãnh
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio"> Thưởng dự án
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-group col-md-6">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Từ</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Nhập giá trị đầu...">
+                                            </div>
+                                            <div class="input-group col-md-6">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Đến</span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Nhập giá trị cuối...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 td-center">
+                                        <a href="#">
+                                            <button class="btn btn-primary"><span style="margin-right: 10px">Tìm kiếm</span><i class="fa fa-search"></i></button>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th style="width:15%;" class="th-center-bold">Hình ảnh</th>
+                                        <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                        <th style="width:20%;" class="th-center-bold">Tên nhân viên</th>
+                                        <th style="width:15%;" class="th-center-bold">Phòng ban</th>
+                                        <th style="width:20%;" class="th-center-bold">Lương tháng</th>
+                                        <th style="width:15%;" class="th-center-bold">Chi tiết</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ string linkImg = ""; }
+                                    @foreach (LuongThangDTO luongThangDTO in Model)
+                                    {
+                                        linkImg = "../images/user/";
+                                        if (luongThangDTO.HinhAnh != null)
+                                        {
+                                            linkImg += luongThangDTO.HinhAnh;
+                                        }
+                                        else
+                                        {
+                                            linkImg += "form-user.png";
+                                        }
+                                        <tr>
+                                            <td><img src="@linkImg" alt="" style="width:100%" ;=""></td>
+                                            <td> @luongThangDTO.NhanVienId </td>
+                                            <td> @luongThangDTO.HoTenNhanVien </td>
+                                            <td> @luongThangDTO.TenPhongBan </td>
+                                            <td> @luongThangDTO.LuongThucLanh </td>
+                                            <td class="td-center">
+                                                <a>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-info"></i></button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="exampleModalLongTitle" style="color:#7571f9;">Thông tin nhân viên</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-4"><img src="./product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="" style="width:100%" ;=""></div>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Mã nhân viên:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Họ tên nhân viên:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Hệ số chức vụ:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Hệ số công việc:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Số ngày làm:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ có phép:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ không phép:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ ốm:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Phụ cấp sinh hoạt:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Phụ câp chức vụ:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Phụ cấp thâm niên:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Lương căn bản:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Thưởng lễ:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Thưởng dự án:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Ngày tính lương:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
-                                            <div class="col-md-6" style="margin-bottom: 10px">
-                                                <h6 style="color:#ea5774;font-weight:500;">Thực lãnh:</h6>
-                                                <p> php echo $order_id </p>
-                                            </div>
+            </div>
+        </div>
+        @foreach (LuongThangDTO luongThangDTO in Model)
+        {
+            <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLongTitle" style="color:#7571f9;">Thông tin nhân viên</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4"><img src="./product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="" style="width:100%" ;=""></div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Mã nhân viên:</h6>
+                                            <p> @luongThangDTO.NhanVienId </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Họ tên nhân viên:</h6>
+                                            <p> @luongThangDTO.HoTenNhanVien </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Hệ số chức vụ:</h6>
+                                            <p> @luongThangDTO.HSChucVu </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Hệ số công việc:</h6>
+                                            <p> @luongThangDTO.HSCongViec </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số ngày làm:</h6>
+                                            <p> @luongThangDTO.SoNgayLam </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ có phép:</h6>
+                                            <p> @luongThangDTO.SoNgayNghiCoPhep </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ không phép:</h6>
+                                            <p> @luongThangDTO.SoNgayNghiKhongPhep </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ ốm:</h6>
+                                            <p> @luongThangDTO.SoNgayNghiOm </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Phụ cấp sinh hoạt:</h6>
+                                            <p> @luongThangDTO.PhuCapNhanVien </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Phụ câp chức vụ:</h6>
+                                            <p> @luongThangDTO.PhuCapChucVu </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Phụ cấp thâm niên:</h6>
+                                            <p> @luongThangDTO.PhuCapThamNien </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Lương căn bản:</h6>
+                                            <p> @luongThangDTO.LuongCoBan </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Thưởng lễ:</h6>
+                                            <p> @luongThangDTO.ThuongLe </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Thưởng dự án:</h6>
+                                            <p> @luongThangDTO.TienDuAn </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Ngày tính lương:</h6>
+                                            <p> @luongThangDTO.NgayTinhLuong </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Thực lãnh:</h6>
+                                            <p> @luongThangDTO.LuongThucLanh </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- #/ container -->
-        </div>
+        }
+    </div>
+    <!-- #/ container -->
+</div>
