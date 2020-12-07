@@ -32,6 +32,12 @@ namespace Application.Services
             luongThangAc.AutoAdd();
         }
 
+        public List<LuongThangDTO> Filter(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den)
+        {
+            return luongThangAc.Filter(NhanVienId, ThangChecked, Thang, NamChecked, Nam, optradio, Tu, Den)
+                .ToListDTO(chiTietNhanVienAc.ToList(), nhanVienAc.ToList(), phongBanAc.ToList());
+        }
+
         public LuongThangDTO FindById(string id)
         {
             //Hàm này không dùng tới

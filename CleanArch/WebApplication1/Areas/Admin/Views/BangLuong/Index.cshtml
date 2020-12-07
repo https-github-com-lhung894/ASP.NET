@@ -28,7 +28,7 @@
                                 <h3 class="td-center">BẢNG LƯƠNG NHÂN VIÊN</h3>
                             </div>
                             <div class="col-md-12">
-                                <form class="navbar-form row">
+                                <form method="post" asp-controller="BangLuong" asp-action="Index" class="navbar-form row">
                                     <div class="col-md-6">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -36,7 +36,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">Mã nhân viên</span>
                                                     </div>
-                                                    <input type="text" class="form-control" placeholder="Nhập mã nhân viên..." required>
+                                                    <input name="NhanVienId" type="text" class="form-control" placeholder="Nhập mã nhân viên..." required>
                                                 </div>
                                             </div>
                                         </div>
@@ -45,20 +45,20 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input type="checkbox" class="boxCheck"> Tháng
+                                                            <input name="ThangChecked" type="checkbox" class="boxCheck"> Tháng
                                                         </div>
                                                     </div>
-                                                    <input type="number" class="form-control" placeholder="Nhập tháng..." min="1" max="12">
+                                                    <input name="Thang" type="number" class="form-control" placeholder="Nhập tháng..." min="1" max="12">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input type="checkbox" class="boxCheck"> Năm
+                                                            <input name="NamChecked" type="checkbox" class="boxCheck"> Năm
                                                         </div>
                                                     </div>
-                                                    <input type="number" class="form-control" placeholder="Nhập năm..." min="2018" max="2020">
+                                                    <input name="Nam" type="number" class="form-control" placeholder="Nhập năm..." min="2018" max="2020">
                                                 </div>
                                             </div>
                                         </div>
@@ -67,17 +67,17 @@
                                         <div class="form-group row">
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio" class="radioCheck"> Lương căn bản
+                                                    <input type="radio" name="optradio" value="LCB" class="radioCheck"> Lương căn bản
                                                 </label>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio" class="radioCheck"> Lương thực lãnh
+                                                    <input type="radio" name="optradio" value="LTL" class="radioCheck"> Lương thực lãnh
                                                 </label>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio" class="radioCheck"> Thưởng dự án
+                                                    <input type="radio" name="optradio" value="TDA" class="radioCheck"> Thưởng dự án
                                                 </label>
                                             </div>
                                         </div>
@@ -86,13 +86,13 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Từ</span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="Nhập giá trị đầu...">
+                                                <input name="Tu" type="text" class="form-control" placeholder="Nhập giá trị đầu...">
                                             </div>
                                             <div class="input-group col-md-6">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Đến</span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="Nhập giá trị cuối...">
+                                                <input name="Den" type="text" class="form-control" placeholder="Nhập giá trị cuối...">
                                             </div>
                                         </div>
                                     </div>
@@ -131,14 +131,14 @@
                                             linkImg += "form-user.png";
                                         }
                                         <tr>
-                                            <td><img src="@linkImg" alt="" style="width:100%" ;=""></td>
+                                            <td><img src="@linkImg" alt="" style="width:40%" ;=""></td>
                                             <td> @luongThangDTO.NhanVienId </td>
                                             <td> @luongThangDTO.HoTenNhanVien </td>
                                             <td> @luongThangDTO.TenPhongBan </td>
                                             <td> @luongThangDTO.LuongThucLanh </td>
                                             <td class="td-center">
                                                 <a>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"><i class="fa fa-info"></i></button>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@luongThangDTO.NhanVienId"><i class="fa fa-info"></i></button>
                                                 </a>
                                             </td>
                                         </tr>
@@ -152,7 +152,7 @@
         </div>
         @foreach (LuongThangDTO luongThangDTO in Model)
         {
-            <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal fade bd-example-modal-lg" id="@luongThangDTO.NhanVienId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

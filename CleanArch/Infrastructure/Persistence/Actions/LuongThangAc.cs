@@ -37,7 +37,7 @@ namespace Infrastructure.Persistence.Actions
         public void AutoAdd()
         {
             //Ngày đầu tiên của tháng mới bắt đầu tính lương
-            if(DateTime.Now.IsFirstDayOfMonth() != false)
+            if(DateTime.Now.IsFirstDayOfMonth() == false)
             {
                 return;
             }
@@ -183,13 +183,74 @@ namespace Infrastructure.Persistence.Actions
                     }
                     luongThang.NgayTinhLuong = DateTime.Now.FirstDayOfMonth();
                     long luongMotNgay = long.Parse(luongThang.LuongCoBan) * (long)(1.0 + (double)luongThang.HSChucVu + (double)luongThang.HSCongViec + (double)luongThang.PhuCapThamNien) / 26;
-                    luongThang.LuongThucLanh = "" + (luongMotNgay * (int)luongThang.SoNgayLam);
+                    luongThang.LuongThucLanh = "" + ((long)(luongMotNgay * (int)luongThang.SoNgayLam) + long.Parse(luongThang.ThuongLe) 
+                        + long.Parse(luongThang.TienDuAn) + long.Parse(luongThang.PhuCapNhanVien));
 
                     //Lưu vào database
                     myData.LuongThangs.Add(luongThang);
                     myData.SaveChanges();
                 }
             }
+        }
+
+        public List<LuongThang> Filter(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den)
+        {
+            List<LuongThang> luongThangs = new List<LuongThang>();
+            bool Add = false;
+            foreach(LuongThang luongThang in myData.LuongThangs.ToList())
+            {
+                if(luongThang.NhanVienId == NhanVienId)
+                {
+                    Add = true;
+                    if(ThangChecked == "on")
+                    {
+                        if(((DateTime)luongThang.NgayTinhLuong).Month != Thang)
+                        {
+                            Add = false;
+                        }
+                    }
+                    if (NamChecked == "on")
+                    {
+                        if (((DateTime)luongThang.NgayTinhLuong).Year != Nam)
+                        {
+                            Add = false;
+                        }
+                    }
+                    if(optradio == "LCB")
+                    {
+                        if(long.Parse(Tu) > long.Parse(luongThang.LuongCoBan) || long.Parse(luongThang.LuongCoBan) > long.Parse(Den))
+                        {
+                            Add = false;
+                        }
+                    }
+                    else
+                    {
+                        if (optradio == "LTL")
+                        {
+                            if (long.Parse(Tu) > long.Parse(luongThang.LuongThucLanh) || long.Parse(luongThang.LuongThucLanh) > long.Parse(Den))
+                            {
+                                Add = false;
+                            }
+                        }
+                        else
+                        {
+                            if (optradio == "TDA")
+                            {
+                                if (long.Parse(Tu) > long.Parse(luongThang.TienDuAn) || long.Parse(luongThang.TienDuAn) > long.Parse(Den))
+                                {
+                                    Add = false;
+                                }
+                            }
+                        }
+                    }
+                    if (Add)
+                    {
+                        luongThangs.Add(luongThang);
+                        Add = false;
+                    }
+                }
+            }
+            return luongThangs;
         }
 
         public LuongThang FindById(string id)

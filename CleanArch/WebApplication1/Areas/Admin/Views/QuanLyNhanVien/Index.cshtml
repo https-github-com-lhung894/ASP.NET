@@ -65,10 +65,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @{ string linkImg = ""; }
                                     @foreach (QuanLyNhanVien quanLyNhanVien in Model)
                                     {
+                                        linkImg = "../images/user/";
+                                        if (quanLyNhanVien.HinhAnh != null)
+                                        {
+                                            linkImg += quanLyNhanVien.HinhAnh;
+                                        }
+                                        else
+                                        {
+                                            linkImg += "form-user.png";
+                                        }
                                         <tr>
-                                            <td><img src="./product-img/3_Stripes_Jacquard_Polo_Shirt_Black.jpg" alt="" style="width:100%" ;=""></td>
+                                            <td><img src="@linkImg" alt="" style="width:40%" ;=""></td>
                                             <td> @quanLyNhanVien.NhanVienId </td>
                                             <td> @quanLyNhanVien.HoNhanVien @quanLyNhanVien.TenNhanVien </td>
                                             <td> @quanLyNhanVien.TenPhongBan </td>

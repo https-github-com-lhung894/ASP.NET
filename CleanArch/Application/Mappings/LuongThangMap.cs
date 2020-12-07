@@ -26,6 +26,7 @@ namespace Application.Mappings
                 PhuCapChucVu = luongThang.PhuCapChucVu,
                 PhuCapThamNien = luongThang.PhuCapThamNien,
                 TienDuAn = luongThang.TienDuAn,
+                NgayTinhLuong = luongThang.NgayTinhLuong,
                 LuongThucLanh = luongThang.LuongThucLanh,
                 NhanVienId = luongThang.NhanVienId,
                 HinhAnh = hinhAnh,
@@ -63,6 +64,7 @@ namespace Application.Mappings
                 PhuCapChucVu = luongThangDTO.PhuCapChucVu,
                 PhuCapThamNien = luongThangDTO.PhuCapThamNien,
                 TienDuAn = luongThangDTO.TienDuAn,
+                NgayTinhLuong = luongThangDTO.NgayTinhLuong,
                 LuongThucLanh = luongThangDTO.LuongThucLanh,
                 NhanVienId = luongThangDTO.NhanVienId
             };

@@ -22,7 +22,17 @@ namespace WebApplication1.Areas.Admin.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
+            luongThangSv.AutoAdd();
+
             List<LuongThangDTO> luongThangDTOs = luongThangSv.ToList();
+            return View(luongThangDTOs);
+        }
+        [HttpPost]
+        [Route("")]
+        [Route("Index")]
+        public IActionResult Index(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den)
+        {
+            List<LuongThangDTO> luongThangDTOs = luongThangSv.Filter(NhanVienId, ThangChecked, Thang, NamChecked, Nam, optradio, Tu, Den);
             return View(luongThangDTOs);
         }
     }
