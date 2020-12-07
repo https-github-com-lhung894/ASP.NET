@@ -75,5 +75,11 @@ namespace Application.Services
                 chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), hopDongAc.ToList(), accountAc.ToList());
         }
 
+        public List<QuanLyNhanVien> GetListNVPB(string id)
+        {
+            return QuanLyNhanVienMap.ToListNVPBDTOs(nhanVienAc.ToList(), chiTietNhanVienAc.ToList(), phongBanAc.ToList(),
+                chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), hopDongAc.ToList(), accountAc.ToList(), id);
+        }
+
     }
 }

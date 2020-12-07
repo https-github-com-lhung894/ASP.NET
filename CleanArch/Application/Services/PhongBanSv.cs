@@ -15,6 +15,38 @@ namespace Application.Services
         {
             this.phongBanAc = phongBanAc;
         }
+
+        public string AddPhongBan(PhongBanDTO phongBanDTO)
+        {
+            string errorMessage;
+            errorMessage = phongBanAc.Add(phongBanDTO.ToPhongBan());
+            return errorMessage;
+        }
+
+        public string UpdatePhongBan(PhongBanDTO phongBanDTO)
+        {
+            string errorMessage;
+            errorMessage = phongBanAc.Update(phongBanDTO.ToPhongBan());
+            return errorMessage;
+        }
+
+        public string RemovePhongBan(PhongBanDTO phongBanDTO)
+        {
+            string errorMessage;
+            errorMessage = phongBanAc.Remove(phongBanDTO.ToPhongBan());
+            return errorMessage;
+        }
+
+        public List<PhongBanDTO> GetList()
+        {
+            return PhongBanMap.ToListDTO(phongBanAc.ToList());
+        }
+
+        public List<PhongBanDTO> GetListPb(string id)
+        {
+            return PhongBanMap.ToListDTOPb(phongBanAc.ToList(), id);
+        }
+
         public string Add(PhongBanDTO obj)
         {
             return phongBanAc.Add(obj.ToPhongBan());

@@ -1,61 +1,73 @@
-﻿@{
+﻿@using Application.DTOs
+@using Domain.Entities
+@using Infrastructure.Persistence.Actions
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
+@model (List<PhongBanDTO> phongBanDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhongBanDTO phongBanDTO)
 <div class="content-body">
-
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <li class="breadcrumb-item active">Quản lý phòng ban</li>
             </ol>
         </div>
     </div>
-    <!-- row -->
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4 col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title mb-3">
-                            <h4>THÊM PHÒNG BAN</h4>
-                        </div>
-                        <form action="#" method="post">
-                            <div class="form-group">
-                                <label for="mapb">Mã phòng ban <span class="text-danger">*</span></label>
-                                <div class="input-group">
-                                    <input id="mapb" class="form-control" type="text" placeholder="Số liệu tự cấp phát.." name="mapb" readonly="readonly">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-dark" type="button" onclick="capphatmapb()"><i class="fa fa-plus"></i></button>
+                        @if (ViewBag.Update == "yes")
+                        {
+                            <div class="card-title mb-3">
+                                <h4>SỬA PHÒNG BAN</h4>
+                            </div>
+                            <form method="post" asp-controller="PhongBan" asp-action="Update">
+                                <div class="form-group">
+                                    <label for="mapb">Mã phòng ban <span class="text-danger">*</span></label>
+                                    <input value="@Model.phongBanDTO.PhongBanId" type="text" name="PhongBanId" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tenpb">Tên phòng ban <span class="text-danger">*</span></label>
+                                    <input value="@Model.phongBanDTO.TenPhongBan" type="text" name="TenPhongBan" class="form-control" placeholder="Nhập tên phòng ban.." required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sdt">Số điện thoại <span class="text-danger">*</span></label>
+                                    <input value="@Model.phongBanDTO.SDTPhongBan" type="number" name="SDTPhongBan" class="form-control" placeholder="Nhấp số điện thoại.." required>
+                                </div>
+                                <input type="submit" value="Sửa thông tin" name="sua" class="btn btn-primary">
+                                <a asp-controller="PhongBan" asp-action="Index" style="float: right;"><button type="button" class="btn btn-primary">Hủy</button></a>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="card-title mb-3">
+                                <h4>THÊM PHÒNG BAN</h4>
+                            </div>
+                            <form method="post" asp-controller="PhongBan" asp-action="AddPB">
+                                <div class="form-group">
+                                    <label for="mapb">Mã phòng ban <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" name="PhongBanId" id="mapb" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
+                                        <div class="input-group-append">
+                                            <button id="btn-pb" class="btn btn-outline-dark" type="button" onclick="CapPhatMaPB()"><i class="fa fa-plus"></i></button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="tenpb">Tên phòng ban <span class="text-danger">*</span></label>
-                                <select class="form-control" name="tenpb" required>
-                                    <option value="">-- Lựa chọn --</option>
-                                    <option value="html">HTML</option>
-                                    <option value="css">CSS</option>
-                                    <option value="javascript">JavaScript</option>
-                                    <option value="angular">Angular</option>
-                                    <option value="angular">React</option>
-                                    <option value="vuejs">Vue.js</option>
-                                    <option value="ruby">Ruby</option>
-                                    <option value="php">PHP</option>
-                                    <option value="asp">ASP.NET</option>
-                                    <option value="python">Python</option>
-                                    <option value="mysql">MySQL</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="sdt">Số điện thoại <span class="text-danger">*</span></label>
-                                <input type="number" name="sdt" class="form-control" placeholder="Vui lòng nhập liệu.." required>
-                            </div>
-                            <input type="submit" value="Thêm mới" name="themmoi" class="btn btn-primary">
-                        </form>
+                                <div class="form-group">
+                                    <label for="tenpb">Tên phòng ban <span class="text-danger">*</span></label>
+                                    <input type="text" name="TenPhongBan" class="form-control" placeholder="Nhập tên phòng ban.." required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sdt">Số điện thoại <span class="text-danger">*</span></label>
+                                    <input type="number" name="SDTPhongBan" class="form-control" placeholder="Nhấp số điện thoại.." required>
+                                </div>
+                                <input type="submit" value="Thêm mới" name="themmoi" class="btn btn-primary">
+                            </form>
+                        }
                     </div>
                 </div>
             </div>
@@ -65,16 +77,38 @@
                         <div class="card-title">
                             <div class="col-md-12 mb-4">
                                 <h4>DANH SÁCH PHÒNG BAN</h4>
+                                @if (ViewBag.ErrorRemove == "yes")
+                                {
+                                    <p class="td-center" style="color:red;">@ViewBag.Remove</p>
+                                }
+                                else
+                                {
+                                    <p class="td-center" style="color:green;">@ViewBag.Remove</p>
+                                }
                             </div>
                             <div class="col-md-12">
-                                <form class="navbar-form">
-                                    <div class="input-group no-border">
-                                        <input type="search" value="" class="form-control" placeholder="Search...">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-                                </form>
+                                @if (ViewBag.Find == "yes")
+                                {
+                                <div class="input-group no-border">
+                                    <input type="search" name="PhongBanId" class="form-control" readonly>
+                                        <a asp-controller="PhongBan" asp-action="Index">
+                                            <button class="btn btn-primary" style="height: 45px;">
+                                                <i class="fa fa-close"></i>
+                                            </button>
+                                        </a>
+                                </div>
+                                }
+                                else
+                                {
+                                    <form class="navbar-form" asp-action="FindIdPb" asp-controller="PhongBan">
+                                        <div class="input-group no-border">
+                                            <input type="search" value="" name="PhongBanId" class="form-control" placeholder="Search...">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                }
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -90,51 +124,74 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>A</td>
-                                        <td>B</td>
-                                        <td>C</td>
-                                        <td class="td-center"<a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-info"></i></button></a></td>
-                                        <td class="td-center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
-                                        <td class="td-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-close"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>A</td>
-                                        <td>B</td>
-                                        <td>C</td>
-                                        <td class="td-center"<a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-info"></i></button></a></td>
-                                        <td class="td-center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
-                                        <td class="td-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-close"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>A</td>
-                                        <td>B</td>
-                                        <td>C</td>
-                                        <td class="td-center"<a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-info"></i></button></a></td>
-                                        <td class="td-center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
-                                        <td class="td-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-close"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>A</td>
-                                        <td>B</td>
-                                        <td>C</td>
-                                        <td class="td-center"<a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-info"></i></button></a></td>
-                                        <td class="td-center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
-                                        <td class="td-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-close"></i></button></td>
-                                    </tr>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Bạn chắc chắn muốn<br>  xoá phòng ban này?</h3>
-                                                </div>
-                                                <div class="modal-footer" style="margin: auto;">
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                                                    <a href="#"><button type="button" class="btn btn-danger">Yes, delete it !</button></a>
+                                    @if (Model.phongBanDTOs.Count == 0)
+                                    {
+                                        <tr><th colspan="6"><p class="td-center" style="color:red;">Not found</p></th></tr>
+                                    }
+                                    else
+                                    {
+                                        @foreach (PhongBanDTO phongban in Model.phongBanDTOs)
+                                        {
+                                            <tr>
+                                                <td>@phongban.PhongBanId</td>
+                                                <td>@phongban.TenPhongBan</td>
+                                                <td>@phongban.SDTPhongBan</td>
+                                                @if (phongban.PhongBanId == "null")
+                                                {
+                                                    <td class="td-center">
+                                                        <form asp-controller="PhongBan" asp-action="Details" method="post">
+                                                            <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    <td class="td-center">
+                                                        <button class="btn btn-primary" disabled><i class="fa fa-pencil"></i></button>
+                                                    </td>
+                                                    <td class="td-center">
+                                                        <button type="button" class="btn btn-primary" disabled><i class="fa fa-close"></i></button>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="td-center">
+                                                        <form asp-controller="PhongBan" asp-action="Details" method="post">
+                                                            <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    <td class="td-center">
+                                                        <form asp-controller="PhongBan" asp-action="UpdateId" method="post">
+                                                            <input value="@phongban.PhongBanId" type="hidden" name="id" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    <td class="td-center">
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(phongban.PhongBanId + "xoa")">
+                                                            <i class="fa fa-close"></i>
+                                                        </button>
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                        @foreach (PhongBanDTO phongban in Model.phongBanDTOs)
+                                        {
+                                            <div class="modal fade" id="@(phongban.PhongBanId + "xoa")" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Bạn chắc chắn muốn<br>xoá phòng ban @phongban.TenPhongBan?</h3>
+                                                        </div>
+                                                        <div class="modal-footer" style="margin: auto;">
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                            <form method="post" asp-controller="PhongBan" asp-action="Remove">
+                                                                <button name="id" type="submit" class="btn btn-danger" value="@phongban.PhongBanId">Yes, delete it !</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        }
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -145,3 +202,9 @@
     </div>
     <!-- #/ container -->
 </div>
+<script>
+    function CapPhatMaPB() {
+        $('#mapb').val('@AutoKey.InCreasedByOne(Model.thongTinDuLieuCuois.PhongBanId)');
+        $('#btn-pb').prop('disabled', true);
+    }
+</script>

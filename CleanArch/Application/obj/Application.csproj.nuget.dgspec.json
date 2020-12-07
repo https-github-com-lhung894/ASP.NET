@@ -1,38 +1,38 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Github\\ASP.NET\\CleanArch\\Application\\Application.csproj": {}
+    "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Application\\Application.csproj": {}
   },
   "projects": {
-    "E:\\Github\\ASP.NET\\CleanArch\\Application\\Application.csproj": {
+    "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Application\\obj\\",
+        "projectPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\DuongKiet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DuongKiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
-            "targetAlias": "netstandard2.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
-              "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
-                "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
+              "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
               }
             }
           }
@@ -44,14 +44,12 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
-            "NETStandard.Library": {
-              "suppressParent": "All",
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -64,36 +62,44 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+    "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\Github\\ASP.NET\\CleanArch\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\DuongKiet\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DuongKiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
-            "targetAlias": "netstandard2.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -104,14 +110,12 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
-            "NETStandard.Library": {
-              "suppressParent": "All",
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
+              "version": "[5.0.0, )"
             },
             "System.ComponentModel.Annotations": {
               "target": "Package",
@@ -128,6 +132,14 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }

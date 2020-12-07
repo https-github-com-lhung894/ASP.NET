@@ -22,10 +22,32 @@ namespace Application.Mappings
             List<PhongBanDTO> phongBanDTOs = new List<PhongBanDTO>();
             foreach (PhongBan phongBan in phongBans)
             {
+                if (phongBan.TrangThai == 0)
+                {
+                    continue;
+                }
                 phongBanDTOs.Add(phongBan.ToDTO());
             }
             return phongBanDTOs;
         }
+
+        public static List<PhongBanDTO> ToListDTOPb(this List<PhongBan> phongBans, string id)
+        {
+            List<PhongBanDTO> phongBanDTOs = new List<PhongBanDTO>();
+            foreach (PhongBan phongBan in phongBans)
+            {
+                if (phongBan.TrangThai == 0 || phongBan.PhongBanId != id)
+                {
+                    continue;
+                }
+                else
+                {
+                    phongBanDTOs.Add(phongBan.ToDTO());
+                }
+            }
+            return phongBanDTOs;
+        }
+
         public static PhongBan ToPhongBan(this PhongBanDTO phongBanDTO)
         {
             return new PhongBan()
