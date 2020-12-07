@@ -45,7 +45,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input type="checkbox"> Tháng
+                                                            <input type="checkbox" class="boxCheck"> Tháng
                                                         </div>
                                                     </div>
                                                     <input type="number" class="form-control" placeholder="Nhập tháng..." min="1" max="12">
@@ -55,7 +55,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input type="checkbox"> Năm
+                                                            <input type="checkbox" class="boxCheck"> Năm
                                                         </div>
                                                     </div>
                                                     <input type="number" class="form-control" placeholder="Nhập năm..." min="2018" max="2020">
@@ -67,17 +67,17 @@
                                         <div class="form-group row">
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio"> Lương căn bản
+                                                    <input type="radio" name="optradio" class="radioCheck"> Lương căn bản
                                                 </label>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio"> Lương thực lãnh
+                                                    <input type="radio" name="optradio" class="radioCheck"> Lương thực lãnh
                                                 </label>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio"> Thưởng dự án
+                                                    <input type="radio" name="optradio" class="radioCheck"> Thưởng dự án
                                                 </label>
                                             </div>
                                         </div>
@@ -100,6 +100,7 @@
                                         <a href="#">
                                             <button class="btn btn-primary"><span style="margin-right: 10px">Tìm kiếm</span><i class="fa fa-search"></i></button>
                                         </a>
+                                        <button class="btn btn-primary" onclick="resetElement()"><span style="margin-right: 10px">Reset</span><i class="fa fa-refresh"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -241,3 +242,9 @@
     </div>
     <!-- #/ container -->
 </div>
+<script>
+    function resetElement() {
+        $(".radioCheck").prop('checked', false);
+        $(".boxCheck").prop('checked', false);
+    }
+</script>
