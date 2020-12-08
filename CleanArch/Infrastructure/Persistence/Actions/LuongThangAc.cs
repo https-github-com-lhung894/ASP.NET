@@ -197,8 +197,18 @@ namespace Infrastructure.Persistence.Actions
         {
             List<LuongThang> luongThangs = new List<LuongThang>();
             bool Add = false;
+            bool BThang = true;
+            bool BNam = true;
+            bool BLCB = true;
+            bool BLTL = true;
+            bool BTDA = true;
+            
             foreach(LuongThang luongThang in myData.LuongThangs.ToList())
             {
+                if(NhanVienId == null && ThangChecked == null && Thang == 0 && NamChecked == null && Nam == 0 && optradio == null && Tu == null && Den == null)
+                {
+                    continue;
+                }
                 if(luongThang.NhanVienId == NhanVienId)
                 {
                     Add = true;
@@ -247,6 +257,64 @@ namespace Infrastructure.Persistence.Actions
                     {
                         luongThangs.Add(luongThang);
                         Add = false;
+                    }
+                }
+                else
+                {   if(NhanVienId == null)
+                    {
+                        if (ThangChecked == "on")
+                        {
+                            if (((DateTime)luongThang.NgayTinhLuong).Month != Thang)
+                            {
+                                BThang = false;
+                            }
+                        }
+                        if (NamChecked == "on")
+                        {
+                            if (((DateTime)luongThang.NgayTinhLuong).Year != Nam)
+                            {
+                                BNam = false;
+                            }
+                        }
+                        if (optradio == "LCB")
+                        {
+                            if (long.Parse(Tu) > long.Parse(luongThang.LuongCoBan) || long.Parse(luongThang.LuongCoBan) > long.Parse(Den))
+                            {
+                                BLCB = false;
+                            }
+                        }
+                        else
+                        {
+                            if (optradio == "LTL")
+                            {
+                                if (long.Parse(Tu) > long.Parse(luongThang.LuongThucLanh) || long.Parse(luongThang.LuongThucLanh) > long.Parse(Den))
+                                {
+                                    BLTL = false;
+                                }
+                            }
+                            else
+                            {
+                                if (optradio == "TDA")
+                                {
+                                    if (long.Parse(Tu) > long.Parse(luongThang.TienDuAn) || long.Parse(luongThang.TienDuAn) > long.Parse(Den))
+                                    {
+                                        BTDA = false;
+                                    }
+                                }
+                            }
+                        }
+                        Add = BThang && BNam && BLCB && BLTL && BTDA;
+
+                        if (Add)
+                        {
+                            luongThangs.Add(luongThang);
+                        }
+                        Add = false;
+                        BThang = true;
+                        BNam = true;
+                        BLCB = true;
+                        BLTL = true;
+                        BTDA = true;
                     }
                 }
             }

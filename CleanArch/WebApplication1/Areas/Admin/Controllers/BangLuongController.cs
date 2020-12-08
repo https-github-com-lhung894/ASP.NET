@@ -24,8 +24,10 @@ namespace WebApplication1.Areas.Admin.Controllers
         {
             luongThangSv.AutoAdd();
 
-            List<LuongThangDTO> luongThangDTOs = luongThangSv.ToList();
-            return View(luongThangDTOs);
+            (List<LuongThangDTO> luongThangDTOs, string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio,
+                string Tu, string Den) objs = (luongThangSv.ToList(), null, null, 0, null, 0, null, null, null);
+
+            return View(objs);
         }
         [HttpPost]
         [Route("")]
@@ -33,7 +35,11 @@ namespace WebApplication1.Areas.Admin.Controllers
         public IActionResult Index(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den)
         {
             List<LuongThangDTO> luongThangDTOs = luongThangSv.Filter(NhanVienId, ThangChecked, Thang, NamChecked, Nam, optradio, Tu, Den);
-            return View(luongThangDTOs);
+
+            (List<LuongThangDTO> luongThangDTOs, string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio,
+                string Tu, string Den) objs = (luongThangDTOs, NhanVienId, ThangChecked, Thang, NamChecked, Nam, optradio, Tu, Den);
+
+            return View(objs);
         }
     }
 }

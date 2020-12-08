@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-@model List<LuongThangDTO>
+@model (List<LuongThangDTO> luongThangDTOs, string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den)
 
 <div class="content-body">
 
@@ -36,7 +36,14 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">Mã nhân viên</span>
                                                     </div>
-                                                    <input name="NhanVienId" type="text" class="form-control" placeholder="Nhập mã nhân viên..." required>
+                                                    @if (Model.NhanVienId != null)
+                                                    {
+                                                        <input name="NhanVienId" type="text" class="form-control" value="@Model.NhanVienId" placeholder="Nhập mã nhân viên...">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input name="NhanVienId" type="text" class="form-control" placeholder="Nhập mã nhân viên...">
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -45,20 +52,56 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input name="ThangChecked" type="checkbox" class="boxCheck"> Tháng
+                                                            @if (Model.ThangChecked == "on")
+                                                            {
+                                                                <div>
+                                                                    <input name="ThangChecked" type="checkbox" class="boxCheck" checked>Tháng
+                                                                </div>
+                                                             }
+                                                            else
+                                                            {
+                                                                <div>
+                                                                    <input name="ThangChecked" type="checkbox" class="boxCheck">Tháng
+                                                                </div>
+                                                            }
                                                         </div>
                                                     </div>
-                                                    <input name="Thang" type="number" class="form-control" placeholder="Nhập tháng..." min="1" max="12">
+                                                    @if (Model.Thang != 0)
+                                                    {
+                                                        <input name="Thang" type="number" class="form-control" value="@Model.Thang" placeholder="Nhập tháng..." min="1" max="12">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input name="Thang" type="number" class="form-control" placeholder="Nhập tháng..." min="1" max="12">
+                                                    }
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <input name="NamChecked" type="checkbox" class="boxCheck"> Năm
+                                                            @if (Model.NamChecked == "on")
+                                                            {
+                                                                <div>
+                                                                    <input name="NamChecked" type="checkbox" class="boxCheck" checked> Năm
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div>
+                                                                    <input name="NamChecked" type="checkbox" class="boxCheck"> Năm
+                                                                </div>
+                                                            }
                                                         </div>
                                                     </div>
-                                                    <input name="Nam" type="number" class="form-control" placeholder="Nhập năm..." min="2018" max="2020">
+                                                    @if (Model.Nam != 0)
+                                                    {
+                                                        <input name="Nam" type="number" class="form-control" value="@Model.Nam" placeholder="Nhập năm..." min="2018" max="2020">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input name="Nam" type="number" class="form-control" placeholder="Nhập năm..." min="2018" max="2020">
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -67,17 +110,50 @@
                                         <div class="form-group row">
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio" value="LCB" class="radioCheck"> Lương căn bản
+                                                    @if (Model.optradio == "LCB")
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="LCB" class="radioCheck" checked> Lương căn bản
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="LCB" class="radioCheck"> Lương căn bản
+                                                        </div>
+                                                    }
                                                 </label>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio" value="LTL" class="radioCheck"> Lương thực lãnh
+                                                    @if (Model.optradio == "LTL")
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="LTL" class="radioCheck" checked> Lương thực lãnh
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="LTL" class="radioCheck"> Lương thực lãnh
+                                                        </div>
+                                                    }
                                                 </label>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="radio-inline">
-                                                    <input type="radio" name="optradio" value="TDA" class="radioCheck"> Thưởng dự án
+                                                    @if (Model.optradio == "TDA")
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="TDA" class="radioCheck" checked> Thưởng dự án
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="TDA" class="radioCheck"> Thưởng dự án
+                                                        </div>
+                                                    }
                                                 </label>
                                             </div>
                                         </div>
@@ -86,13 +162,27 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Từ</span>
                                                 </div>
-                                                <input name="Tu" type="text" class="form-control" placeholder="Nhập giá trị đầu...">
+                                                @if (Model.Tu != null)
+                                                {
+                                                    <input name="Tu" type="text" class="form-control" value="@Model.Tu" placeholder="Nhập giá trị đầu...">
+                                                }
+                                                else
+                                                {
+                                                    <input name="Tu" type="text" class="form-control" placeholder="Nhập giá trị đầu...">
+                                                }
                                             </div>
                                             <div class="input-group col-md-6">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">Đến</span>
                                                 </div>
-                                                <input name="Den" type="text" class="form-control" placeholder="Nhập giá trị cuối...">
+                                                @if (Model.Den != null)
+                                                {
+                                                    <input name="Den" type="text" class="form-control" value="@Model.Den" placeholder="Nhập giá trị cuối...">
+                                                }
+                                                else
+                                                {
+                                                    <input name="Den" type="text" class="form-control" placeholder="Nhập giá trị cuối...">
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -100,9 +190,9 @@
                                         <a href="#">
                                             <button class="btn btn-primary"><span style="margin-right: 10px">Tìm kiếm</span><i class="fa fa-search"></i></button>
                                         </a>
-                                        <button class="btn btn-primary" onclick="resetElement()"><span style="margin-right: 10px">Reset</span><i class="fa fa-refresh"></i></button>
                                     </div>
                                 </form>
+                                <button class="btn btn-primary float-right" onclick="resetElement()"><span style="margin-right: 10px">Reset</span><i class="fa fa-refresh"></i></button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -119,7 +209,7 @@
                                 </thead>
                                 <tbody>
                                     @{ string linkImg = ""; }
-                                    @foreach (LuongThangDTO luongThangDTO in Model)
+                                    @foreach (LuongThangDTO luongThangDTO in Model.luongThangDTOs)
                                     {
                                         linkImg = "../images/user/";
                                         if (luongThangDTO.HinhAnh != null)
@@ -150,7 +240,7 @@
                 </div>
             </div>
         </div>
-        @foreach (LuongThangDTO luongThangDTO in Model)
+        @foreach (LuongThangDTO luongThangDTO in Model.luongThangDTOs)
         {
             <div class="modal fade bd-example-modal-lg" id="@luongThangDTO.NhanVienId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -246,5 +336,10 @@
     function resetElement() {
         $(".radioCheck").prop('checked', false);
         $(".boxCheck").prop('checked', false);
+        $('input[name=NhanVienId').val('');
+        $('input[name=Nam').val('');
+        $('input[name=Thang').val('');
+        $('input[name=Tu').val('');
+        $('input[name=Den').val('');
     }
 </script>
