@@ -1,8 +1,10 @@
 ﻿using Domain.IActions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     [Route("Table")]
     public class TableController : Controller

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     [Route("BangLuong")]
     public class BangLuongController : Controller

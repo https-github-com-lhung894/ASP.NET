@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using Domain.Entities;
 using Domain.IActions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     [Route("QuanLyNhanVien")]
     public class QuanLyNhanVienController : Controller

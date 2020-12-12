@@ -3,12 +3,18 @@ using Application.Services;
 using Domain.IActions;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Actions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 
 namespace WebApplication1
 {
@@ -23,6 +29,29 @@ namespace WebApplication1
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("hft4GJ7YF3Gdseg7dejo4"))
+                };
+            });
+
             services.AddControllersWithViews();
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddRazorPages();
@@ -75,9 +104,20 @@ namespace WebApplication1
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSession();
+            //Add JWToken to all incoming HTTP Request Header
+            app.Use(async (context, next) =>
+            {
+                var JWToken = context.Session.GetString("JWToken");
+                if (!string.IsNullOrEmpty(JWToken))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
+                }
+                await next();
+            });
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             //app.UseEndpoints(endpoints =>
             //{
             //    endpoints.MapGet("/", async context =>
