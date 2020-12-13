@@ -51,6 +51,7 @@ namespace WebApplication1
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("hft4GJ7YF3Gdseg7dejo4"))
                 };
             });
+            
 
             services.AddControllersWithViews();
             services.AddMvc(option => option.EnableEndpointRouting = false);

@@ -17,11 +17,21 @@ namespace Application.Mappings
             };
         }
 
-        public static List<BangChamCongDTO> ToListDTO(this List<BangChamCong> bangChamCongs)
+        public static List<BangChamCongDTO> ToListDTO(this List<BangChamCong> bangChamCongs, string NhanVienId, 
+            List<NhanVien> nhanViens, List<Account> accounts)
         {
+            NhanVien nv = nhanViens.Find(x => x.NhanVienId == NhanVienId);
+            Account ac = accounts.Find(x => x.AccountId == NhanVienId);
+
             List<BangChamCongDTO> bangChamCongDTOs = new List<BangChamCongDTO>();
             foreach (BangChamCong bangChamCong in bangChamCongs)
             {
+                NhanVien nv1 = nhanViens.Find(x => x.NhanVienId == bangChamCong.NhanVienId);
+                if(nv1.PhongBanId != nv.PhongBanId && ac.Quyen == 1)
+                {
+                    continue;
+                }
+
                 bangChamCongDTOs.Add(bangChamCong.ToDTO());
             }
             return bangChamCongDTOs;

@@ -3,14 +3,16 @@ using Application.Interfaces;
 using Domain.Entities;
 using Domain.IActions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "0,1")]
     [Area("Admin")]
     [Route("QuanLyNhanVien")]
     public class QuanLyNhanVienController : Controller
@@ -39,7 +41,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         {
             ViewBag.Search = "no";
             List<QuanLyNhanVien> quanLyNhanViens = new List<QuanLyNhanVien>();
-            quanLyNhanViens.AddRange(quanLyNhanVienSv.GetList());
+            quanLyNhanViens.AddRange(quanLyNhanVienSv.GetList(NhanVienIdToken()));
             return View(quanLyNhanViens);
         }
 
@@ -56,7 +58,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
             
             List<QuanLyNhanVien> quanLyNhanViens = new List<QuanLyNhanVien>();
-            quanLyNhanViens.AddRange(quanLyNhanVienSv.GetList());
+            quanLyNhanViens.AddRange(quanLyNhanVienSv.GetList(NhanVienIdToken()));
             return View(quanLyNhanViens);
         }
 
@@ -68,7 +70,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         {
             ViewBag.Search = "yes";
             List<QuanLyNhanVien> quanLyNhanViens = new List<QuanLyNhanVien>();
-            QuanLyNhanVien quanLyNhanVien = quanLyNhanVienSv.GetList().Find(x => x.NhanVienId == id);
+            QuanLyNhanVien quanLyNhanVien = quanLyNhanVienSv.GetList(NhanVienIdToken()).Find(x => x.NhanVienId == id);
             quanLyNhanViens.Add( quanLyNhanVien == null ? new QuanLyNhanVien() : quanLyNhanVien);
             return View("Index", quanLyNhanViens);
         }
@@ -108,7 +110,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             ViewBag.Update = "yes";
 
             (List<PhongBanDTO> phongBanDTOs, List<CongViecDTO> congViecDTOs, List<ChucVuDTO> chucVuDTOs, QuanLyNhanVien quanLyNhanVien) objs;
-            objs = new(phongBanSv.ToList(), congViecSv.ToList(), chucVuSv.ToList(), quanLyNhanVienSv.GetList().Find( x => x.NhanVienId == id));
+            objs = new(phongBanSv.ToList(), congViecSv.ToList(), chucVuSv.ToList(), quanLyNhanVienSv.GetList(NhanVienIdToken()).Find( x => x.NhanVienId == id));
             return View("Update", objs);
         }
         //Sửa
@@ -120,6 +122,14 @@ namespace WebApplication1.Areas.Admin.Controllers
             ViewBag.error = "Update" + quanLyNhanVienSv.UpdateNhanVien(quanLyNhanVien);
             ViewBag.Update = "no";
             return RedirectToAction(actionName: "Index", controllerName: "QuanLyNhanVien");
+        }
+        public string NhanVienIdToken()
+        {
+            var jwt = HttpContext.Session.GetString("JWToken");
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadJwtToken(jwt);
+            var claims = token.Claims.ToList();
+            return claims[0].Value;
         }
     }
 }

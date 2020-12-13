@@ -8,7 +8,10 @@ namespace Infrastructure.Persistence
         public static void Initialize(MyData context)
         {
             context.Database.EnsureCreated();
-            if (context.NhanViens.Any()) return;
+            if (context.NhanViens.Any())
+            {
+                return;
+            }
 
             
 

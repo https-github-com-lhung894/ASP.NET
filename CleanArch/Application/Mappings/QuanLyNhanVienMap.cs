@@ -105,10 +105,14 @@ namespace Application.Mappings
             };
         }
         
-        public static List<QuanLyNhanVien> ToListDTOs(List<NhanVien> nhanViens, List<ChiTietNhanVien> chiTietNhanViens, 
+        public static List<QuanLyNhanVien> ToListDTOs(string NhanVienId, List<NhanVien> nhanViens, List<ChiTietNhanVien> chiTietNhanViens, 
             List<PhongBan> phongBans, List<ChucVu> chucVus, List<NhanVienCongViec> nhanVienCongViecs, List<CongViec> congViecs, 
             List<HopDong> hopDongs, List<Account> accounts)
         {
+            //Dữ liệu kiểm tra phong ban
+            Account ac = accounts.Find(x => x.AccountId == NhanVienId);
+            NhanVien nv = nhanViens.Find(x => x.NhanVienId == NhanVienId);
+
             List<QuanLyNhanVien> listQLNV = new List<QuanLyNhanVien>();
             foreach(NhanVien nhanVien in nhanViens)
             {
@@ -117,8 +121,12 @@ namespace Application.Mappings
                 {
                     continue;
                 }
-                ChiTietNhanVien chiTietNhanVien = chiTietNhanViens.Find(x => x.ChiTietNhanVienId == nhanVien.NhanVienId);
                 PhongBan phongBan = phongBans.Find(x => x.PhongBanId == nhanVien.PhongBanId);
+                if(phongBan.PhongBanId != nv.PhongBanId && ac.Quyen == 1)
+                {
+                    continue;
+                }
+                ChiTietNhanVien chiTietNhanVien = chiTietNhanViens.Find(x => x.ChiTietNhanVienId == nhanVien.NhanVienId);
                 ChucVu chucVu = chucVus.Find(x => x.ChucVuId == nhanVien.ChucVuId);
                 //Tìm công việc hiện tại ứng với nhân viên
                 NhanVienCongViec nhanVienCongViec = nhanVienCongViecs.Find(x => x.NhanVienId == nhanVien.NhanVienId && x.NgayKetThuc == null);

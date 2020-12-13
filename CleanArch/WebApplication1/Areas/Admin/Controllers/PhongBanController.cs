@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "0")]
     [Area("Admin")]
     [Route("PhongBan")]
     public class PhongBanController : Controller

@@ -35,11 +35,20 @@ namespace Application.Mappings
             };
         }
         public static List<LuongThangDTO> ToListDTO(this List<LuongThang> luongThangs, List<ChiTietNhanVien> chiTietNhanViens,
-            List<NhanVien> nhanViens, List<PhongBan> phongBans)
+            List<NhanVien> nhanViens, List<PhongBan> phongBans, List<Account> accounts, string NhanVienId)
         {
+            NhanVien nv = nhanViens.Find(x => x.NhanVienId == NhanVienId);
+            Account ac = accounts.Find(x => x.AccountId == NhanVienId);
+
             List<LuongThangDTO> luongThangDTOs = new List<LuongThangDTO>();
             foreach (LuongThang luongThang in luongThangs)
             {
+                NhanVien nv1 = nhanViens.Find(x => x.NhanVienId == luongThang.NhanVienId);
+                if (nv1.PhongBanId != nv.PhongBanId && ac.Quyen == 1)
+                {
+                    continue;
+                }
+
                 ChiTietNhanVien chiTietNhanVien = chiTietNhanViens.Find(x => x.NhanVienId == luongThang.NhanVienId);
                 NhanVien nhanVien = nhanViens.Find(x => x.NhanVienId == luongThang.NhanVienId);
                 PhongBan phongBan = phongBans.Find(x => x.PhongBanId == nhanVien.PhongBanId);

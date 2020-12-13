@@ -69,9 +69,9 @@ namespace Application.Services
             return errorMessage;
         }
 
-        public List<QuanLyNhanVien> GetList()
+        public List<QuanLyNhanVien> GetList(string NhanVienId)
         {
-            return QuanLyNhanVienMap.ToListDTOs(nhanVienAc.ToList(), chiTietNhanVienAc.ToList(), phongBanAc.ToList(), 
+            return QuanLyNhanVienMap.ToListDTOs(NhanVienId,nhanVienAc.ToList(), chiTietNhanVienAc.ToList(), phongBanAc.ToList(), 
                 chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), hopDongAc.ToList(), accountAc.ToList());
         }
 

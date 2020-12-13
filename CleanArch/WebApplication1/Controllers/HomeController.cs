@@ -61,7 +61,9 @@ namespace WebApplication1.Controllers
             {
                 var claims = new[]
                 {
-                    new Claim("Email", login.email)
+                    new Claim("NhanVienId", ac.NhanVienId),
+                    new Claim("TaiKhoan", ac.email),
+                    new Claim(ClaimTypes.Role, ac.Quyen.ToString())
                 };
                 var tokenString = GenerateJSONWebToken(claims);
 
@@ -85,6 +87,12 @@ namespace WebApplication1.Controllers
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        [Route("Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return Redirect("~/Home/Index");
         }
     }
 }

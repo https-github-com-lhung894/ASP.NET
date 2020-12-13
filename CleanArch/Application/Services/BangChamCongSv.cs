@@ -1,6 +1,7 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Application.Mappings;
+using Domain.Entities;
 using Domain.IActions;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,14 @@ namespace Application.Services
 {
     public class BangChamCongSv : IBangChamCongSv
     {
+        private readonly INhanVienAc nhanVienAc;
+        private readonly IAccountAc accountAc;
         private readonly IBangChamCongAc bangChamCongAc;
-        public BangChamCongSv(IBangChamCongAc bangChamCongAc)
+        public BangChamCongSv(IBangChamCongAc bangChamCongAc, INhanVienAc nhanVienAc, IAccountAc accountAc)
         {
             this.bangChamCongAc = bangChamCongAc;
+            this.nhanVienAc = nhanVienAc;
+            this.accountAc = accountAc;
         }
         public string Add(BangChamCongDTO obj)
         {
@@ -31,7 +36,13 @@ namespace Application.Services
 
         public List<BangChamCongDTO> ToList()
         {
-            return bangChamCongAc.ToList().ToListDTO();
+            return null;
+        }
+        public List<BangChamCongDTO> ToList(string NhanVienId)
+        {
+            List<NhanVien> nhanViens = nhanVienAc.ToList();
+            List<Account> accounts = accountAc.ToList();
+            return bangChamCongAc.ToList().ToListDTO(NhanVienId, nhanViens, accounts);
         }
 
         public string Update(BangChamCongDTO obj)

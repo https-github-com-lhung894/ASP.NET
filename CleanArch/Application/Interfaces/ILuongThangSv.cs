@@ -6,7 +6,9 @@ namespace Application.Interfaces
 {
     public interface ILuongThangSv : IGeneralAction<LuongThangDTO>
     {
+        public List<LuongThangDTO> ToList(string NhanVienId);
         void AutoAdd();
-        List<LuongThangDTO> Filter(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den);
+        List<LuongThangDTO> Filter(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, 
+            string optradio, string Tu, string Den, string NhanVienIdToKen);
     }
 }

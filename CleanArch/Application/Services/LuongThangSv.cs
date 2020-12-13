@@ -15,12 +15,15 @@ namespace Application.Services
         private readonly IChiTietNhanVienAc chiTietNhanVienAc;
         private readonly INhanVienAc nhanVienAc;
         private readonly IPhongBanAc phongBanAc;
-        public LuongThangSv(ILuongThangAc luongThangAc, IChiTietNhanVienAc chiTietNhanVienAc, INhanVienAc nhanVienAc, IPhongBanAc phongBanAc)
+        private readonly IAccountAc accountAc;
+        public LuongThangSv(ILuongThangAc luongThangAc, IChiTietNhanVienAc chiTietNhanVienAc, INhanVienAc nhanVienAc, 
+            IPhongBanAc phongBanAc, IAccountAc accountAc)
         {
             this.luongThangAc = luongThangAc;
             this.chiTietNhanVienAc = chiTietNhanVienAc;
             this.nhanVienAc = nhanVienAc;
             this.phongBanAc = phongBanAc;
+            this.accountAc = accountAc;
         }
         public string Add(LuongThangDTO obj)
         {
@@ -32,10 +35,13 @@ namespace Application.Services
             luongThangAc.AutoAdd();
         }
 
-        public List<LuongThangDTO> Filter(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den)
+        public List<LuongThangDTO> Filter(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, 
+            string optradio, string Tu, string Den, string NhanVienIdToKen)
         {
+
+
             return luongThangAc.Filter(NhanVienId, ThangChecked, Thang, NamChecked, Nam, optradio, Tu, Den)
-                .ToListDTO(chiTietNhanVienAc.ToList(), nhanVienAc.ToList(), phongBanAc.ToList());
+                .ToListDTO(chiTietNhanVienAc.ToList(), nhanVienAc.ToList(), phongBanAc.ToList(), accountAc.ToList(), NhanVienIdToKen);
         }
 
         public LuongThangDTO FindById(string id)
@@ -52,7 +58,12 @@ namespace Application.Services
 
         public List<LuongThangDTO> ToList()
         {
-            return luongThangAc.ToList().ToListDTO(chiTietNhanVienAc.ToList(),nhanVienAc.ToList(),phongBanAc.ToList());
+            return null;
+        }
+        public List<LuongThangDTO> ToList(string NhanVienId)
+        {
+            return luongThangAc.ToList().ToListDTO(chiTietNhanVienAc.ToList(), nhanVienAc.ToList(), phongBanAc.ToList(),
+                accountAc.ToList(),NhanVienId);
         }
 
         public string Update(LuongThangDTO obj)

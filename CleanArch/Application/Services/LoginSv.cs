@@ -9,16 +9,19 @@ namespace Application.Services
 {
     public class LoginSv : ILoginSv
     {
-        private readonly IAccountAc _accountAc;
+        private readonly INhanVienAc nhanVienAc;
+        private readonly IAccountAc accountAc;
 
-        public LoginSv(IAccountAc _accountAc)
+        public LoginSv(IAccountAc accountAc, INhanVienAc nhanVienAc)
         {
-            this._accountAc = _accountAc;
+            this.accountAc = accountAc;
+            this.nhanVienAc = nhanVienAc;
         }
         public List<LoginDTO> GetAllAccount()
         {
-            List<Account> accounts = _accountAc.ToList();
-            return accounts.ToLoginList();
+            List<NhanVien> nhanViens = nhanVienAc.ToList();
+            List<Account> accounts = accountAc.ToList();
+            return accounts.ToLoginList(nhanViens);
         }
     }
 }
