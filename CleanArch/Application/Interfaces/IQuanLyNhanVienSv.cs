@@ -11,5 +11,6 @@ namespace Application.Interfaces
         List<QuanLyNhanVien> GetList();
         string UpdateNhanVien(QuanLyNhanVien quanLyNhanVien);
         List<QuanLyNhanVien> GetListNVPB(string id);
+        
     }
 }

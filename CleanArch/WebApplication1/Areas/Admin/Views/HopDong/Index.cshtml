@@ -1,0 +1,168 @@
+﻿@using Application.DTOs
+@using Domain.Entities
+@using Infrastructure.Persistence.Actions
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model List<QuanLyHopDong>
+<div class="content-body">
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Quản lý hợp đồng</li>
+            </ol>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3 class="td-center">DANH SÁCH HỢP ĐỒNG</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="DataTable" class="table table-bordered table-hover zero-configuration">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th style="width:15%;" class="th-center-bold">Mã hợp đồng</th>
+                                        <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                        <th style="width:15%;" class="th-center-bold">Tên nhân viên</th>
+                                        <th style="width:15%;" class="th-center-bold">Công việc</th>
+                                        <th style="width:15%;" class="th-center-bold">Ngày ký hợp đồng</th>
+                                        <th style="width:15%;" class="th-center-bold">Trạng thái hợp đồng</th>
+                                        <th style="width:10%;" class="th-center-bold">Chi tiết</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (QuanLyHopDong quanLyHopDong in Model)
+                                    {
+                                        <tr>
+                                            <td>@quanLyHopDong.HopDongId</td>
+                                            <td>@quanLyHopDong.NhanVienId</td>
+                                            <td>@quanLyHopDong.HoNhanVien @quanLyHopDong.TenNhanVien</td>
+                                            <td>@quanLyHopDong.TenCongViec</td>
+                                            <td>@quanLyHopDong.NgayKyHopDong</td>
+                                            @if (@quanLyHopDong.TrangThai == 1)
+                                            {
+                                                <td>Hiện hành</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Kết thúc</td>
+                                            }
+                                            <td class="td-center">
+                                                <a>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@("hopdong" + quanLyHopDong.HopDongId + "chitiet")"><i class="fa fa-info"></i></button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach (QuanLyHopDong quanLyHopDongCT in Model)
+        {
+            <div class="modal fade bd-example-modal-lg" id="@("hopdong" + quanLyHopDongCT.HopDongId + "chitiet")" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLongTitle" style="color:#7571f9;">Thông tin hợp đồng</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4"><img src="./product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="" style="width:100%" ;=""></div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Mã hợp đồng:</h6>
+                                            <p> @quanLyHopDongCT.HopDongId </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Mã nhân viên:</h6>
+                                            <p> @quanLyHopDongCT.NhanVienId </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Họ tên nhân viên:</h6>
+                                            <p> @quanLyHopDongCT.HoNhanVien @quanLyHopDongCT.TenNhanVien </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Công việc:</h6>
+                                            <p> @quanLyHopDongCT.TenCongViec </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Chức vụ:</h6>
+                                            <p> @quanLyHopDongCT.TenChucVu </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Ngày ký hợp đồng:</h6>
+                                            <p> @quanLyHopDongCT.NgayKyHopDong </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Ngày bắt đầu công việc:</h6>
+                                            <p> @quanLyHopDongCT.NgayBatDau </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Ngày kết thúc công việc:</h6>
+                                            @if (quanLyHopDongCT.NgayKetThuc == null)
+                                            {
+                                                <p> Chưa có </p>
+                                            }
+                                            else
+                                            {
+                                                <p> @quanLyHopDongCT.NgayKetThuc </p>
+                                            }
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Lương căn bản:</h6>
+                                            <p> @quanLyHopDongCT.LuongCanBan </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Trạng thái:</h6>
+                                            @if (@quanLyHopDongCT.TrangThai == 1)
+                                            {
+                                                <p> Hiện hành </p>
+                                            }
+                                            else
+                                            {
+                                                <p> Kết thúc </p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- #/ container -->
+</div>
+
+<style>
+    input[type="checkbox"]:after {
+        border: 1px solid #7571f9 !important;
+        margin: auto !important;
+    }
+
+    #DataTable_filter .form-control {
+        border: 1px solid #7571f9;
+        border-radius: 0.5rem;
+    }
+
+    #DataTable_length .form-control {
+        border: 1px solid #7571f9;
+        border-radius: 0.5rem;
+    }
+</style>
