@@ -15,6 +15,7 @@ namespace Application.Services
         {
             this.hopDongAc = hopDongAc;
         }
+
         public string Add(HopDongDTO obj)
         {
             return hopDongAc.Add(obj.ToHopDong());
