@@ -82,7 +82,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         {
             (List<PhongBanDTO> phongBanDTOs, List<CongViecDTO> congViecDTOs, List<ChucVuDTO> chucVuDTOs,
                 ThongTinDuLieuCuoi thongTinDuLieuCuois) objs;
-            objs = new(phongBanSv.ToList(), congViecSv.ToList(), chucVuSv.ToList(), thongTinDuLieuCuoiAc.FindById("1"));
+            objs = new(phongBanSv.ToListPermission(NhanVienIdToken()), congViecSv.ToList(), chucVuSv.ToList(), thongTinDuLieuCuoiAc.FindById("1"));
             return View(objs);
         }
 

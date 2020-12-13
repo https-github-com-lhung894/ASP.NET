@@ -65,13 +65,22 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="phongban">Phòng ban <span class="text-danger">*</span></label>
-                                                <select class="form-control" name="PhongBanId" required>
-                                                    <option value="">-- Chọn phòng ban --</option>
-                                                    @foreach (PhongBanDTO phongBanDTO in Model.phongBanDTOs)
-                                                    {
-                                                        <option value="@phongBanDTO.PhongBanId">@phongBanDTO.TenPhongBan</option>
-                                                    }
-                                                </select>
+                                                @if (Model.phongBanDTOs.Count == 1)
+                                                {
+                                                    <select class="form-control" name="PhongBanId" readonly="readonly" required>
+                                                        <option value="">@Model.phongBanDTOs[0].TenPhongBan</option>
+                                                    </select>
+                                                }
+                                                else
+                                                {
+                                                    <select class="form-control" name="PhongBanId" required>
+                                                        <option value="">-- Chọn phòng ban --</option>
+                                                        @foreach (PhongBanDTO phongBanDTO in Model.phongBanDTOs)
+                                                        {
+                                                            <option value="@phongBanDTO.PhongBanId">@phongBanDTO.TenPhongBan</option>
+                                                        }
+                                                    </select>
+                                                }
                                             </div>
                                         </div>
                                         <div class="col-md-6">

@@ -11,9 +11,13 @@ namespace Application.Services
     public class PhongBanSv : IPhongBanSv
     {
         private readonly IPhongBanAc phongBanAc;
-        public PhongBanSv(IPhongBanAc phongBanAc)
+        private readonly INhanVienAc nhanVienAc;
+        private readonly IAccountAc accountAc;
+        public PhongBanSv(IPhongBanAc phongBanAc, INhanVienAc nhanVienAc, IAccountAc accountAc)
         {
             this.phongBanAc = phongBanAc;
+            this.nhanVienAc = nhanVienAc;
+            this.accountAc = accountAc;
         }
 
         public string AddPhongBan(PhongBanDTO phongBanDTO)
@@ -62,14 +66,19 @@ namespace Application.Services
             return phongBanAc.Remove(obj.ToPhongBan());
         }
 
-        public List<PhongBanDTO> ToList()
+        public List<PhongBanDTO> ToListPermission(string NhanVienIdToken)
         {
-            return phongBanAc.ToList().ToListDTO();
+            return phongBanAc.ToList().ToListDTO(nhanVienAc.ToList(), accountAc.ToList(), NhanVienIdToken);
         }
 
         public string Update(PhongBanDTO obj)
         {
             return phongBanAc.Update(obj.ToPhongBan());
+        }
+
+        public List<PhongBanDTO> ToList()
+        {
+            return phongBanAc.ToList().ToListDTO();
         }
     }
 }

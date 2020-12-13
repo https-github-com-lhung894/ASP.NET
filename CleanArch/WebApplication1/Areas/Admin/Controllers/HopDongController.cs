@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.DTOs;
@@ -12,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "0,1")]
     [Area("Admin")]
     [Route("HopDong")]
     public class HopDongController : Controller
@@ -31,8 +32,16 @@ namespace WebApplication1.Areas.Admin.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
-            List<QuanLyHopDong> quanLyHopDongs = quanLyHopDongSv.GetListNVHD();
+            List<QuanLyHopDong> quanLyHopDongs = quanLyHopDongSv.GetListNVHD(NhanVienIdToken());
             return View(quanLyHopDongs);
+        }
+        public string NhanVienIdToken()
+        {
+            var jwt = HttpContext.Session.GetString("JWToken");
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadJwtToken(jwt);
+            var claims = token.Claims.ToList();
+            return claims[0].Value;
         }
     }
 }

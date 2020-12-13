@@ -7,7 +7,7 @@ namespace Application.Interfaces
 {
     public interface IQuanLyHopDongSv
     {
-        List<QuanLyHopDong> GetListNVHD();
+        List<QuanLyHopDong> GetListNVHD(string NhanVienIdToken);
 
     }
 }

@@ -57,8 +57,11 @@ namespace Application.Mappings
 
         public static List<QuanLyHopDong> ToListNVHDDTOs(List<NhanVien> nhanViens, List<ChiTietNhanVien> chiTietNhanViens,
             List<ChucVu> chucVus, List<NhanVienCongViec> nhanVienCongViecs, List<CongViec> congViecs,
-            List<HopDong> hopDongs)
+            List<HopDong> hopDongs, string NhanVienIdToKen, List<Account> accounts)
         {
+            NhanVien nv = nhanViens.Find(x => x.NhanVienId == NhanVienIdToKen);
+            Account ac = accounts.Find(x => x.AccountId == NhanVienIdToKen);
+
             List<QuanLyHopDong> listNVHD = new List<QuanLyHopDong>();
             foreach (HopDong hopDong in hopDongs)
             {
@@ -67,6 +70,13 @@ namespace Application.Mappings
                 CongViec congViec = null;
                 ChiTietNhanVien chiTietNhanVien = null;
                 NhanVien nhanVien = nhanViens.Find(x => x.NhanVienId == hopDong.NhanVienId);
+
+                //Quyền của nhân viên được xem hay ko
+                if(nhanVien.PhongBanId != nv.PhongBanId && ac.Quyen == 1)
+                {
+                    continue;
+                }
+
                 if (nhanVien != null)
                 {
                     chucVu = chucVus.Find(x => x.ChucVuId == nhanVien.ChucVuId);

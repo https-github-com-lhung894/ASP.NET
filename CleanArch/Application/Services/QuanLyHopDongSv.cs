@@ -15,10 +15,11 @@ namespace Application.Services
         private readonly IChucVuAc chucVuAc;
         private readonly ICongViecAc congViecAc;
         private readonly IHopDongAc hopDongAc;
+        private readonly IAccountAc accountAc;
 
         public QuanLyHopDongSv(INhanVienAc nhanVienAc, IChiTietNhanVienAc chiTietNhanVienAc,
             INhanVienCongViecAc nhanVienCongViecAc, IChucVuAc chucVuAc, ICongViecAc congViecAc,
-            IHopDongAc hopDongAc)
+            IHopDongAc hopDongAc, IAccountAc accountAc)
         {
             this.nhanVienAc = nhanVienAc;
             this.chiTietNhanVienAc = chiTietNhanVienAc;
@@ -26,12 +27,14 @@ namespace Application.Services
             this.chucVuAc = chucVuAc;
             this.congViecAc = congViecAc;
             this.hopDongAc = hopDongAc;
+            this.accountAc = accountAc;
         }
 
-        public List<QuanLyHopDong> GetListNVHD()
+        public List<QuanLyHopDong> GetListNVHD(string NhanVienIdToken)
         {
             return QuanLyHopDongMap.ToListNVHDDTOs(nhanVienAc.ToList(), chiTietNhanVienAc.ToList(),
-                chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), hopDongAc.ToList());
+                chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), hopDongAc.ToList(), 
+                NhanVienIdToken, accountAc.ToList());
         }
     
     }

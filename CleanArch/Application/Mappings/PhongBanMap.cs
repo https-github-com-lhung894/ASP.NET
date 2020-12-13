@@ -57,5 +57,28 @@ namespace Application.Mappings
                 SDTPhongBan = phongBanDTO.SDTPhongBan
             };
         }
+        public static List<PhongBanDTO> ToListDTO(this List<PhongBan> phongBans, List<NhanVien> nhanViens, List<Account> accounts,
+            string NhanVienIdToken)
+        {
+            NhanVien nv = nhanViens.Find(x => x.NhanVienId == NhanVienIdToken);
+            Account ac = accounts.Find(x => x.AccountId == NhanVienIdToken);
+
+            List<PhongBanDTO> phongBanDTOs = new List<PhongBanDTO>();
+            foreach (PhongBan phongBan in phongBans)
+            {
+                //Quyền lấy ra các phòng ban
+                if (nv.PhongBanId != phongBan.PhongBanId && ac.Quyen == 1)
+                {
+                    continue;
+                }
+
+                if (phongBan.TrangThai == 0)
+                {
+                    continue;
+                }
+                phongBanDTOs.Add(phongBan.ToDTO());
+            }
+            return phongBanDTOs;
+        }
     }
 }
