@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,6 +30,11 @@ namespace Infrastructure.Persistence.Actions
         public DuAn FindById(string id)
         {
             return myData.DuAns.Find(id);
+        }
+
+        public List<DuAn> ProjectInProgress()
+        {
+            return myData.DuAns.ToList().FindAll(x => ((DateTime)x.NgayKetThuc).AfterNow());
         }
 
         public string Remove(DuAn obj)

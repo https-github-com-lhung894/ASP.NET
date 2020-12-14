@@ -87,6 +87,11 @@ namespace Infrastructure.Persistence.Actions
             return null;
         }
 
+        public int Count()
+        {
+            return myData.NhanViens.ToList().FindAll(x => x.TrangThai == 1).Count;
+        }
+
         public NhanVien FindById(string id)
         {
             return myData.NhanViens.Find(id);

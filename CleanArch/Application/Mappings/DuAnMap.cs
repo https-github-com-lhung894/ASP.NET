@@ -6,7 +6,7 @@ namespace Application.Mappings
 {
     public static class DuAnMap
     {
-        public static DuAnDTO ToDTO(this DuAn duAn)
+        public static DuAnDTO ToDTO(this DuAn duAn, int soLuongNhanVien)
         {
             return new DuAnDTO()
             {
@@ -15,15 +15,18 @@ namespace Application.Mappings
                 PhanTramDuAn = duAn.PhanTramDuAn,
                 ThuongDuAn = duAn.ThuongDuAn,
                 NgayBatDau = duAn.NgayBatDau,
-                NgayKetThuc = duAn.NgayKetThuc
+                NgayKetThuc = duAn.NgayKetThuc,
+                SoLuongNhanVien = soLuongNhanVien
             };
         }
-        public static List<DuAnDTO> ToListDTO(this List<DuAn> duAns)
+        public static List<DuAnDTO> ToListDTO(this List<DuAn> duAns, List<NhanVienDuAn> nhanVienDuAns)
         {
             List<DuAnDTO> duAnDTOs = new List<DuAnDTO>();
             foreach (DuAn duAn in duAns)
             {
-                duAnDTOs.Add(duAn.ToDTO());
+                List<NhanVienDuAn> nvdas = nhanVienDuAns.FindAll(x => x.DuAnId == duAn.DuAnId);
+
+                duAnDTOs.Add(duAn.ToDTO(nvdas.Count));
             }
             return duAnDTOs;
         }

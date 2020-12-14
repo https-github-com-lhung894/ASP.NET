@@ -83,11 +83,50 @@ namespace Infrastructure.Persistence.Actions
                     m = 31;
                 }
             }
+            if (date.Month == 2)
+            {
+                if(date.Year % 4 == 0)
+                {
+                    m = 29;
+                }
+                else
+                {
+                    m = 28;
+                }
+            }
             return new DateTime(date.Year, date.Month, m);
         }
         public static DateTime FirstDayOfPreviousMonth(this DateTime date)
         {
             return new DateTime(date.Month == 1 ? date.Year - 1 : date.Year, date.Month == 1 ? 12 : date.Month - 1, 1);
+        }
+        public static DateTime Yesterday(this DateTime date)
+        {
+            //Tính ngày tháng
+            int m = 30;
+            int[] array = new int[] { 1, 3, 5, 7, 8, 10, 12 };
+            int previousMonth = date.Month == 1 ? 12 : date.Month - 1;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (previousMonth == array[i])
+                {
+                    m = 31;
+                }
+            }
+            if (previousMonth == 2)
+            {
+                if (date.Year % 4 == 0)
+                {
+                    m = 29;
+                }
+                else
+                {
+                    m = 28;
+                }
+            }
+            return new DateTime(date.Month == 1 && date.Day == 1 ? date.Year - 1 : date.Year,
+                date.Day == 1 ? (date.Month == 1 ? 12 : date.Month - 1) : date.Month,
+                date.Day == 1 ? m : date.Day - 1);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Application.DTOs
         public string ThuongDuAn { get; set; }
         public DateTime? NgayBatDau { get; set; }
         public DateTime? NgayKetThuc { get; set; }
+        public int? SoLuongNhanVien { get; set; }
         public int? TrangThai { get; set; }
     }
 }

@@ -4,5 +4,7 @@ namespace Domain.IActions
 {
     public interface IBangChamCongAc : IGeneralAction<BangChamCong>
     {
+        int NOEGTWY();
+        int NOEOY();
     }
 }

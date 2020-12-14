@@ -339,6 +339,17 @@ namespace Infrastructure.Persistence.Actions
             return myData.LuongThangs.ToList();
         }
 
+        public string TotalSalaryOfPreviousMonth()
+        {
+            List<LuongThang> luongThangs = myData.LuongThangs.ToList().FindAll(x => x.NgayTinhLuong == DateTime.Now.FirstDayOfMonth());
+            long totalSalary = 0;
+            foreach (LuongThang luongThang in luongThangs)
+            {
+                totalSalary += long.Parse(luongThang.LuongThucLanh);
+            }
+            return "" + totalSalary;
+        }
+
         public string Update(LuongThang obj)
         {
             //Kiểm tra quan hệ

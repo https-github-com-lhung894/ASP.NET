@@ -7,5 +7,6 @@ namespace Domain.IActions
     {
         void AutoAdd();
         List<LuongThang> Filter(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den);
+        string TotalSalaryOfPreviousMonth();
     }
 }

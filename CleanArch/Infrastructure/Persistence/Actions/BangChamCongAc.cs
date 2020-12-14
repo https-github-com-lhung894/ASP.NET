@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,6 +41,20 @@ namespace Infrastructure.Persistence.Actions
         public BangChamCong FindById(string id)
         {
             return myData.BangChamCongs.Find(id);
+        }
+
+        public int NOEGTWY()
+        {
+            List<BangChamCong> bangChamCongs = myData.BangChamCongs.ToList().FindAll(x => x.TrangThaiChamCongId == "tt1" && 
+                x.NgayLamViec == DateTime.Now.Yesterday());
+            return bangChamCongs.Count;
+        }
+
+        public int NOEOY()
+        {
+            List<BangChamCong> bangChamCongs = myData.BangChamCongs.ToList().FindAll(x => x.TrangThaiChamCongId != "tt1" &&
+                x.NgayLamViec == DateTime.Now.Yesterday());
+            return bangChamCongs.Count;
         }
 
         public string Remove(BangChamCong obj)

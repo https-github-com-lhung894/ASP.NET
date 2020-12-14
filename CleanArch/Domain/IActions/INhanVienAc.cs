@@ -6,5 +6,6 @@ namespace Domain.IActions
     {
         string CheckForeignKey(string accountId, string phongBanId, string chucVuId);
         string CheckRelationship(NhanVien nhanVien);
+        int Count();
     }
 }

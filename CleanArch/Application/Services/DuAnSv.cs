@@ -1,6 +1,7 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Application.Mappings;
+using Domain.Entities;
 using Domain.IActions;
 using System.Collections.Generic;
 
@@ -9,9 +10,11 @@ namespace Application.Services
     public class DuAnSv : IDuAnSv
     {
         private readonly IDuAnAc duAnAc;
-        public DuAnSv(IDuAnAc duAnAc)
+        private readonly INhanVienDuAnAc nhanVienDuAnAc;
+        public DuAnSv(IDuAnAc duAnAc, INhanVienDuAnAc nhanVienDuAnAc)
         {
             this.duAnAc = duAnAc;
+            this.nhanVienDuAnAc = nhanVienDuAnAc;
         }
         public string Add(DuAnDTO obj)
         {
@@ -20,7 +23,14 @@ namespace Application.Services
 
         public DuAnDTO FindById(string id)
         {
-            return duAnAc.FindById(id).ToDTO();
+            DuAn duAn = duAnAc.FindById(id);
+            
+            return duAn.ToDTO(nhanVienDuAnAc.ToList().FindAll(x => x.DuAnId == duAn.DuAnId).Count);
+        }
+
+        public List<DuAnDTO> ProjectInProgress()
+        {
+            return duAnAc.ProjectInProgress().ToListDTO(nhanVienDuAnAc.ToList());
         }
 
         public string Remove(DuAnDTO obj)
@@ -30,7 +40,7 @@ namespace Application.Services
 
         public List<DuAnDTO> ToList()
         {
-            return duAnAc.ToList().ToListDTO();
+            return duAnAc.ToList().ToListDTO(nhanVienDuAnAc.ToList());
         }
 
         public string Update(DuAnDTO obj)
