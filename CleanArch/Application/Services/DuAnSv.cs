@@ -2,7 +2,9 @@
 using Application.Interfaces;
 using Application.Mappings;
 using Domain.IActions;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Application.Services
 {
@@ -13,6 +15,12 @@ namespace Application.Services
         {
             this.duAnAc = duAnAc;
         }
+
+        public List<DuAnDTO> GetList()
+        {
+            return DuAnMap.ToListDTO(duAnAc.ToList());
+        }
+
         public string Add(DuAnDTO obj)
         {
             return duAnAc.Remove(obj.ToDuAn());

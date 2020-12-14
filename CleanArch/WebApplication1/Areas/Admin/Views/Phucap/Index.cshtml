@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-body">
+
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+                <li class="breadcrumb-item active">Categories</li>
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>Thêm Dự Án</h4>
+                        </div>
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="maphucap">Mã phụ cấp</label>
+                                <input type="text" placeholder="Mã dự án" class="form-control" name="maphuap" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tenphucap">Tên tên phụ cấp</label>
+                                <input type="text" placeholder="Tên dự án" class="form-control" name="tenphucap" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tienphucap">Tiền phụ cấp</label>
+                                <input type="text" placeholder="Thưởng dự án" class="form-control" name="tienphucap" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="themphucap" name="themphucap" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>Thêm nhân viên vào phụ cấp</h4>
+                        </div>
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label for="maphucap">Mã phụ cấp</label>
+                                <input type="text" placeholder="" class="form-control" name="add-maphucap" value="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="manhanvien">Mã nhân viên</label>
+                                <input type="text" placeholder="" class="form-control" name="add-manhanvien" value="" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Thêm nhân viên" name="edit-category" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Dự Án</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Mã phụ cấp</th>
+                                        <th>Tên phụ cấp</th>
+                                        <th>Thưởng phụ cấp</th>
+                                        <th>Chi tiết</th>
+                                        <th>Sửa</th>
+                                        <th>Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Thằng lòn</td>
+                                        <td>Thằng lòn</td>
+                                        <td>Thằng lòn</td>
+                                        <td style="text-align: center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-info"></i></button></a></td>
+                                        <td style="text-align: center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
+                                        <td style="text-align: center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-close"></i></button></td>
+                                    </tr>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Are you sure to delete<br>Thằng lòn ?</h3>
+                                                </div>
+                                                <div class="modal-footer" style="margin: auto;">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                    <a href="#"><button type="button" class="btn btn-danger">Yes, delete it !</button></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
