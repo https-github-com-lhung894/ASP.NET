@@ -74,10 +74,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="ngayketthuc">Ngày kết thúc</label>
-                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="ngayketthuc">
-                            </div>
-                            <div class="form-group">
                                 <input type="submit" value="Thêm nhân viên" name="edit-category" class="btn btn-primary">
                             </div>
                         </form>
@@ -116,7 +112,12 @@
                                             {
                                                 <td>Hoàn thành</td>
                                             }
-                                            <td style="text-align: center"><a asp-action="Details" asp-controller="DuAn"><button type="button" class="btn btn-primary"><i class="fa fa-info"></i></button></a></td>
+                                            <td class="td-center">
+                                                <form asp-controller="DuAn" asp-action="DuanDetail" method="post">
+                                                    <input value="@duAnDTO.DuAnId" type="hidden" name="DuAnId" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                                                </form>
+                                            </td>
                                             <td style="text-align: center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
                                             <td style="text-align: center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(duAnDTO.DuAnId + "xoa")"><i class="fa fa-close"></i></button></td>
                                         </tr>

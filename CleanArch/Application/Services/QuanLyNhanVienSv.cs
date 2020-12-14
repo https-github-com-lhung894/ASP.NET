@@ -81,6 +81,5 @@ namespace Application.Services
                 chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), hopDongAc.ToList(), accountAc.ToList(), id);
         }
 
-
     }
 }
