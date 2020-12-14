@@ -15,6 +15,13 @@ namespace Application.Services
         {
             this.duAnAc = duAnAc;
         }
+        
+        public string AddDuAn(DuAnDTO duAnDTO)
+        {
+            string errorMessage;
+            errorMessage = duAnAc.Add(duAnDTO.ToDuAn());
+            return errorMessage;
+        }
 
         public List<DuAnDTO> GetList()
         {

@@ -23,27 +23,33 @@
                     <div class="card-body">
                         <div class="card-title">
                             <h4>Thêm Dự Án</h4>
+                            <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
                         </div>
-                        <form action="" method="post">
+                        <form method="post" asp-controller="DuAn" asp-action="AddDuAn">
                             <div class="form-group">
-                                <label for="maduan">Mã dự án</label>
-                                <input type="text" placeholder="Mã dự án" class="form-control" name="maduan" required>
+                                <label for="mapb">Mã phòng ban <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" name="DuAnId" id="mapb" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
+                                    <div class="input-group-append">
+                                        <button id="btn-pb" class="btn btn-outline-dark" type="button" onclick="CapPhatMaDA()"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="tenduan">Tên dự án</label>
-                                <input type="text" placeholder="Tên dự án" class="form-control" name="tenduan" required>
+                                <input type="text" placeholder="Nhập tên dự án" class="form-control" name="TenDuAn" required>
                             </div>
                             <div class="form-group">
                                 <label for="thuongduan">Thưởng dự án</label>
-                                <input type="text" placeholder="Thưởng dự án" class="form-control" name="thuongduan" required>
+                                <input type="number" placeholder="Nhập thưởng dự án" class="form-control" name="ThuongDuAn" required>
                             </div>
                             <div class="form-group">
                                 <label for="ngaybatdau">Ngày bắt đầu</label>
-                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="ngaybatdau">
+                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="NgayBatDau">
                             </div>
                             <div class="form-group">
                                 <label for="ngayketthuc">Ngày kết thúc</label>
-                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="ngayketthuc">
+                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="NgayKetThuc">
                             </div>
                             <input type="submit" value="Thêm dự án" name="themduan" class="btn btn-primary">
                         </form>
@@ -92,6 +98,7 @@
                                     <tr>
                                         <th class="th-center-bold">Mã dự án</th>
                                         <th class="th-center-bold">Tên dự án</th>
+                                        <th class="th-center-bold">Phần trăm còn lại</th>
                                         <th class="th-center-bold">Trạng Thái</th>
                                         <th class="th-center-bold">Chi tiết</th>
                                         <th class="th-center-bold">Sửa</th>
@@ -104,6 +111,7 @@
                                         <tr>
                                             <td>@duAnDTO.DuAnId</td>
                                             <td>@duAnDTO.TenDuAn</td>
+                                            <td>@duAnDTO.PhanTramDuAn</td>
                                             @if (@duAnDTO.TrangThai == 1)
                                             {
                                                 <td>Hiện hành</td>
@@ -148,3 +156,9 @@
     </div>
     <!-- #/ container -->
 </div>
+<script>
+    function CapPhatMaDA() {
+        $('#mapb').val('@AutoKey.InCreasedByOne(Model.thongTinDuLieuCuois.DuAnId)');
+        $('#btn-pb').prop('disabled', true);
+    }
+</script>
