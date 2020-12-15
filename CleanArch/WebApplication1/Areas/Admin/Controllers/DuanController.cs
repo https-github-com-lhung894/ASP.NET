@@ -21,13 +21,15 @@ namespace WebApplication1.Areas.Admin.Controllers
     {
         private readonly IDuAnSv duAnSv;
         private readonly INhanVienSv nhanVienSv;
+        private readonly INhanVienDuAnSv nhanVienDuAnSv;
         private readonly IQuanLyNhanVienDuAnSv quanLyNhanVienDuAnSv;
         private readonly IThongTinDuLieuCuoiAc thongTinDuLieuCuoiAc;
         public DuAnController(IDuAnSv duAnSv, IThongTinDuLieuCuoiAc thongTinDuLieuCuoiAc, IQuanLyNhanVienDuAnSv quanLyNhanVienDuAnSv,
-            INhanVienSv nhanVienSv)
+            INhanVienSv nhanVienSv, INhanVienDuAnSv nhanVienDuAnSv)
         {
             this.duAnSv = duAnSv;
             this.nhanVienSv = nhanVienSv;
+            this.nhanVienDuAnSv = nhanVienDuAnSv;
             this.quanLyNhanVienDuAnSv = quanLyNhanVienDuAnSv;
             this.thongTinDuLieuCuoiAc = thongTinDuLieuCuoiAc;
         }
@@ -169,6 +171,42 @@ namespace WebApplication1.Areas.Admin.Controllers
             ViewBag.ErrorRemove = "yes";
             return View("Index", objs);
         }
-    }
 
+        [HttpPost]
+        [Route("")]
+        [Route("AddNVDA")]
+        public IActionResult AddNVDA(string NhanVienId, string DuAnId, string PhanTramCV)
+        {
+            NhanVienDuAnDTO nhanVienDuAnDTO = new NhanVienDuAnDTO();
+            nhanVienDuAnDTO.DuAnId = DuAnId;
+            nhanVienDuAnDTO.NhanVienId = NhanVienId;
+            nhanVienDuAnDTO.PhanTramCV = Convert.ToDouble(PhanTramCV);
+            List<NhanVienDuAnDTO> nhanVienDuAn = nhanVienDuAnSv.GetList();
+            (List<DuAnDTO> duAnDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, DuAnDTO duAnDTO) objs;
+            objs = new(duAnSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), duAnSv.FindById("da00001"));
+            DuAnDTO duAnDTO = duAnSv.FindById(nhanVienDuAnDTO.DuAnId);
+            DateTime dt = DateTime.Now;
+            if (duAnDTO.NgayKetThuc < dt)
+            {
+                ViewBag.ErrorNVDA = "Dự án đã kết thúc. Không thể thêm nhân viên vào nữa!";
+                return View("Index", objs);
+            }
+            foreach(NhanVienDuAnDTO nvda in nhanVienDuAn)
+            {
+                if (nvda.DuAnId == nhanVienDuAnDTO.DuAnId && nvda.NhanVienId == nhanVienDuAnDTO.NhanVienId)
+                {
+                    ViewBag.ErrorNVDA = "Không thể thêm. Nhân viên " + nhanVienDuAnDTO.NhanVienId + " đã trong dự án " + nhanVienDuAnDTO.DuAnId + "!";
+                    return View("Index", objs);
+                }
+            }
+            if (duAnDTO.PhanTramDuAn < nhanVienDuAnDTO.PhanTramCV)
+            {
+                ViewBag.ErrorNVDA = "Phần trăm tham dự lớn hơn phần trăm còn lại của dự án!";
+                return View("Index", objs);
+            }
+            string messerror = nhanVienDuAnSv.AddNVDA(nhanVienDuAnDTO);
+            ViewBag.error = "Add " + messerror;
+            return RedirectToAction(actionName: "Index", controllerName: "DuAn");
+        }
+    }
 }
