@@ -71,7 +71,6 @@ namespace WebApplication1.Areas.Admin.Controllers
             objs = new(duAnSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), duAnSv.FindById("da00001"));
             duAnDTO.PhanTramDuAn = 100;
             duAnDTO.TrangThai = 1;
-            Console.WriteLine(duAnDTO);
             DateTime dt = DateTime.Now;
             if (dt.Date > duAnDTO.NgayBatDau)
             {
@@ -92,6 +91,83 @@ namespace WebApplication1.Areas.Admin.Controllers
                 thongTinDuLieuCuoiAc.Update(t);
             }
             return RedirectToAction(actionName: "Index", controllerName: "DuAn");
+        }
+
+        [Route("")]
+        [Route("UpdateId")]
+        public IActionResult UpdateId(string DuAnId)
+        {
+            DuAnDTO duAnDTO = duAnSv.FindById(DuAnId);
+            if (duAnDTO == null)
+            {
+                ViewBag.Update = "Kiểm tra lại mã dự án";
+                return RedirectToAction(actionName: "Index", controllerName: "DuAn");
+            }
+            ViewBag.Update = "yes";
+            (List<DuAnDTO> duAnDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, DuAnDTO duAnDTO) objs;
+            objs = new(duAnSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), duAnSv.FindById(DuAnId));
+            return View("Index", objs);
+        }
+
+        [HttpPost]
+        [Route("")]
+        [Route("Update")]
+        public IActionResult Update(DuAnDTO duAnDTO)
+        {
+            DuAnDTO duAnDTOtemp = duAnSv.FindById(duAnDTO.DuAnId);
+            duAnDTO.PhanTramDuAn = duAnDTOtemp.PhanTramDuAn;
+            (List<DuAnDTO> duAnDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, DuAnDTO duAnDTO) objs;
+            objs = new(duAnSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), duAnSv.FindById(duAnDTO.DuAnId));
+            if (duAnDTO.NgayBatDau < duAnDTOtemp.NgayBatDau)
+            {
+                ViewBag.Update = "yes";
+                ViewBag.Error = "Ngày bắt đầu dự án phải bằng hoặc sau ngày bắt đầu cũ!";
+                return View("Index", objs);
+            }
+            if ((int)((DateTime)duAnDTO.NgayKetThuc - (DateTime)duAnDTO.NgayBatDau).Days < 15)
+            {
+                ViewBag.Update = "yes";
+                ViewBag.Error = "Ngày kết thúc dự án phải sau ngày bắt đầu 15 ngày!";
+                return View("Index", objs);
+            }
+            ViewBag.error = "Update" + duAnSv.UpdateDuAn(duAnDTO);
+            ViewBag.Update = "no";
+            return RedirectToAction(actionName: "Index", controllerName: "DuAn");
+        }
+
+        [HttpPost]
+        [Route("")]
+        [Route("Remove")]
+        public IActionResult Remove(string DuAnId)
+        {
+            DuAnDTO duAnDTO = duAnSv.FindById(DuAnId);
+            (List<DuAnDTO> duAnDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, DuAnDTO duAnDTO) objs;
+            objs = new(duAnSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), duAnSv.FindById("da00001"));
+            if (duAnDTO == null)
+            {
+                ViewBag.Remove = "Kiểm tra lại mã dự án";
+                ViewBag.ErrorRemove = "yes";
+                return View("Index", objs);
+            }
+            //List<QuanLyNhanVien> quanLyNhanViens = new List<QuanLyNhanVien>(quanLyNhanVienSv.GetListNVPB(id));
+            List<QuanLyNhanVienDuAn> nhanVienDuAns = quanLyNhanVienDuAnSv.GetList(NhanVienIdToken(), DuAnId);
+            if (nhanVienDuAns.Count != 0)
+            {
+                ViewBag.Remove = "Xoá dự án thất bại! Dự án " + duAnDTO.TenDuAn + " vẫn còn nhân viên.";
+                ViewBag.ErrorRemove = "yes";
+                return View("Index", objs);
+            }
+            string messerror = duAnSv.RemoveDuAn(duAnDTO);
+            if (messerror == null)
+            {
+                objs = new(duAnSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), duAnSv.FindById("da00001"));
+                ViewBag.Remove = "Xoá dự án " + duAnDTO.TenDuAn + " thành công.";
+                ViewBag.ErrorRemove = "no";
+                return View("Index", objs);
+            }
+            ViewBag.Remove = "Xoá dự án thất bại! Lỗi " + messerror;
+            ViewBag.ErrorRemove = "yes";
+            return View("Index", objs);
         }
     }
 

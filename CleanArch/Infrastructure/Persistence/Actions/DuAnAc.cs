@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -62,7 +63,20 @@ namespace Infrastructure.Persistence.Actions
 
         public string Update(DuAn obj)
         {
-            myData.DuAns.Update(obj);
+            var local = myData.Set<DuAn>()
+                .Local
+                .FirstOrDefault(entry => entry.DuAnId.Equals(obj.DuAnId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Modified;
+
+            //myData.DuAns.Update(obj);
             myData.SaveChanges();
 
             return null;

@@ -21,40 +21,94 @@
             <div class="col-lg-4 col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">
-                            <h4>Thêm Dự Án</h4>
-                            <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
+                        @if (ViewBag.Update == "yes")
+                        {
+                        <div class="card-title mb-3">
+                            <h3>SỬA DỰ ÁN</h3>
+                            @if (ViewBag.Error != null)
+                            {
+                                <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
+                            }
                         </div>
-                        <form method="post" asp-controller="DuAn" asp-action="AddDuAn">
-                            <div class="form-group">
-                                <label for="mapb">Mã phòng ban <span class="text-danger">*</span></label>
-                                <div class="input-group">
-                                    <input type="text" name="DuAnId" id="mapb" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
-                                    <div class="input-group-append">
-                                        <button id="btn-pb" class="btn btn-outline-dark" type="button" onclick="CapPhatMaDA()"><i class="fa fa-plus"></i></button>
+                            <form method="post" asp-controller="DuAn" asp-action="Update">
+                                <div class="form-group">
+                                    <label for="mada">Mã dự án <span class="text-danger">*</span></label>
+                                    <input value="@Model.duAnDTO.DuAnId" type="text" name="DuAnId" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tenduan">Tên dự án</label>
+                                    <input value="@Model.duAnDTO.TenDuAn" type="text" placeholder="Nhập tên dự án" class="form-control" name="TenDuAn" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="thuongduan">Thưởng dự án</label>
+                                    <input value="@Model.duAnDTO.ThuongDuAn" type="number" placeholder="Nhập thưởng dự án" class="form-control" name="ThuongDuAn" min="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ngaybatdau">Ngày bắt đầu</label>
+                                    <input value="@Model.duAnDTO.NgayBatDau" type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="NgayBatDau">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ngayketthuc">Ngày kết thúc</label>
+                                    <input value="@Model.duAnDTO.NgayKetThuc" type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="NgayKetThuc">
+                                </div>
+                                <div class="form-group">
+                                    <label for="DuAnId">Trạng thái <span class="text-danger">*</span></label>
+                                    <select class="form-control" name="TrangThai" required>
+                                        @if (@Model.duAnDTO.TrangThai == 1)
+                                        {
+                                            <option value="@Model.duAnDTO.TrangThai">Hiện hành</option>
+                                            <option value="2">Hoàn thành</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@Model.duAnDTO.TrangThai">Hoàn thành</option>
+                                            <option value="1">Hiện hành</option>
+                                        }
+                                    </select>
+                                </div>
+                                <input type="submit" value="Sửa thông tin" name="suaduan" class="btn btn-primary">
+                                <a asp-controller="DuAn" asp-action="Index" style="float: right;"><button type="button" class="btn btn-danger">Hủy</button></a>
+                            </form>
+                        }
+                        else
+                        {
+                        <div class="card-title mb-3">
+                            <h3>THÊM DỰ ÁN</h3>
+                            @if (ViewBag.Error != null)
+                            {
+                                <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
+                            }
+                        </div>
+                            <form method="post" asp-controller="DuAn" asp-action="AddDuAn">
+                                <div class="form-group">
+                                    <label for="mada">Mã dự án <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" name="DuAnId" id="mada" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
+                                        <div class="input-group-append">
+                                            <button id="btn-pb" class="btn btn-outline-dark" type="button" onclick="CapPhatMaDA()"><i class="fa fa-plus"></i></button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="tenduan">Tên dự án</label>
-                                <input type="text" placeholder="Nhập tên dự án" class="form-control" name="TenDuAn" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="thuongduan">Thưởng dự án</label>
-                                <input type="number" placeholder="Nhập thưởng dự án" class="form-control" name="ThuongDuAn" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="ngaybatdau">Ngày bắt đầu</label>
-                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="NgayBatDau">
-                            </div>
-                            <div class="form-group">
-                                <label for="ngayketthuc">Ngày kết thúc</label>
-                                <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="NgayKetThuc">
-                            </div>
-                            <input type="submit" value="Thêm dự án" name="themduan" class="btn btn-primary">
-                        </form>
+                                <div class="form-group">
+                                    <label for="tenduan">Tên dự án</label>
+                                    <input type="text" placeholder="Nhập tên dự án" class="form-control" name="TenDuAn" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="thuongduan">Thưởng dự án</label>
+                                    <input type="number" placeholder="Nhập thưởng dự án" class="form-control" name="ThuongDuAn" min="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ngaybatdau">Ngày bắt đầu</label>
+                                    <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="NgayBatDau">
+                                </div>
+                                <div class="form-group">
+                                    <label for="ngayketthuc">Ngày kết thúc</label>
+                                    <input type="text" class="form-control mydatepicker" placeholder="mm/dd/yyyy" name="NgayKetThuc">
+                                </div>
+                                <input type="submit" value="Thêm dự án" name="themduan" class="btn btn-primary">
+                            </form>
+                        }
                     </div>
-
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -91,10 +145,18 @@
                     <div class="card-body">
                         <div class="card-title">
                             <h3>DANH SÁCH DỰ ÁN</h3>
+                            @if (ViewBag.ErrorRemove == "yes")
+                            {
+                                <p class="td-center" style="color:red;">@ViewBag.Remove</p>
+                            }
+                            else
+                            {
+                                <p class="td-center" style="color:green;">@ViewBag.Remove</p>
+                            }
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
-                                <thead>
+                                <thead class="text-primary">
                                     <tr>
                                         <th class="th-center-bold">Mã dự án</th>
                                         <th class="th-center-bold">Tên dự án</th>
@@ -126,8 +188,17 @@
                                                     <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
                                                 </form>
                                             </td>
-                                            <td style="text-align: center"><a href="#"><button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i></button></a></td>
-                                            <td style="text-align: center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(duAnDTO.DuAnId + "xoa")"><i class="fa fa-close"></i></button></td>
+                                            <td class="td-center">
+                                                <form asp-controller="DuAn" asp-action="UpdateId" method="post">
+                                                    <input value="@duAnDTO.DuAnId" type="hidden" name="DuAnId" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                                </form>
+                                            </td>
+                                            <td class="td-center">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(duAnDTO.DuAnId + "xoa")">
+                                                    <i class="fa fa-close"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>
@@ -143,11 +214,13 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Are you sure to delete<br>Thằng lòn ?</h3>
+                            <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Bạn chắc chắn muốn xóa<br>dự án @duAnDTO.TenDuAn?</h3>
                         </div>
                         <div class="modal-footer" style="margin: auto;">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                            <a href="#"><button type="button" class="btn btn-danger">Yes, delete it !</button></a>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                            <form method="post" asp-controller="DuAn" asp-action="Remove">
+                                <button name="DuAnId" type="submit" class="btn btn-danger" value="@duAnDTO.DuAnId">Xóa dự án</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -158,7 +231,7 @@
 </div>
 <script>
     function CapPhatMaDA() {
-        $('#mapb').val('@AutoKey.InCreasedByOne(Model.thongTinDuLieuCuois.DuAnId)');
+        $('#mada').val('@AutoKey.InCreasedByOne(Model.thongTinDuLieuCuois.DuAnId)');
         $('#btn-pb').prop('disabled', true);
     }
 </script>

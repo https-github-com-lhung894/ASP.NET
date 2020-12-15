@@ -23,6 +23,20 @@ namespace Application.Services
             return errorMessage;
         }
 
+        public string UpdateDuAn(DuAnDTO duAnDTO)
+        {
+            string errorMessage;
+            errorMessage = duAnAc.Update(duAnDTO.ToDuAn());
+            return errorMessage;
+        }
+
+        public string RemoveDuAn(DuAnDTO duAnDTO)
+        {
+            string errorMessage;
+            errorMessage = duAnAc.Remove(duAnDTO.ToDuAn());
+            return errorMessage;
+        }
+
         public List<DuAnDTO> GetList()
         {
             return DuAnMap.ToListDTO(duAnAc.ToList());
