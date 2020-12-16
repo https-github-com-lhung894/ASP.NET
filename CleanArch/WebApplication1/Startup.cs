@@ -97,6 +97,8 @@ namespace WebApplication1
             services.AddScoped<IThuongLeSv, ThuongLeSv>();
             services.AddScoped<IQuanLyNhanVienSv, QuanLyNhanVienSv>();
             services.AddScoped<IQuanLyHopDongSv, QuanLyHopDongSv>();
+            services.AddScoped<IQuanLyNhanVienDuAnSv, QuanLyNhanVienDuAnSv>();
+            services.AddScoped<IQuanLyNhanVienPhuCapSv, QuanLyNhanVienPhuCapSv>();
             services.AddScoped<IDashboardSv, DashboardSv>();
         }
 

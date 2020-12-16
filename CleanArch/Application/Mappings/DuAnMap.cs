@@ -16,6 +16,7 @@ namespace Application.Mappings
                 ThuongDuAn = duAn.ThuongDuAn,
                 NgayBatDau = duAn.NgayBatDau,
                 NgayKetThuc = duAn.NgayKetThuc,
+                TrangThai = duAn.TrangThai,
                 SoLuongNhanVien = soLuongNhanVien
             };
         }
@@ -24,12 +25,16 @@ namespace Application.Mappings
             List<DuAnDTO> duAnDTOs = new List<DuAnDTO>();
             foreach (DuAn duAn in duAns)
             {
+                if (duAn.TrangThai == 0)
+                {
+                    continue;
+                }
                 List<NhanVienDuAn> nvdas = nhanVienDuAns.FindAll(x => x.DuAnId == duAn.DuAnId);
-
                 duAnDTOs.Add(duAn.ToDTO(nvdas.Count));
             }
             return duAnDTOs;
         }
+
         public static DuAn ToDuAn(this DuAnDTO duAnDTO)
         {
             return new DuAn()
@@ -39,7 +44,8 @@ namespace Application.Mappings
                 PhanTramDuAn = duAnDTO.PhanTramDuAn,
                 ThuongDuAn = duAnDTO.ThuongDuAn,
                 NgayBatDau = duAnDTO.NgayBatDau,
-                NgayKetThuc = duAnDTO.NgayKetThuc
+                NgayKetThuc = duAnDTO.NgayKetThuc,
+                TrangThai = duAnDTO.TrangThai
             };
         }
     }

@@ -42,7 +42,7 @@ namespace Application.Services
 
         public List<DuAnDTO> GetList()
         {
-            return DuAnMap.ToListDTO(duAnAc.ToList());
+            return DuAnMap.ToListDTO(duAnAc.ToList(), nhanVienDuAnAc.ToList());
         }
 
         public string Add(DuAnDTO obj)
