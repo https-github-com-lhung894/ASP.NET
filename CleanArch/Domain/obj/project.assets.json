@@ -823,19 +823,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\Name\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Name\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\obj\\",
+      "projectPath": "C:\\Users\\Name\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\Name\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Name\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Name\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -888,7 +888,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

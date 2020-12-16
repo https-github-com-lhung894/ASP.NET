@@ -15,6 +15,19 @@ namespace Application.Services
         {
             this.nhanVienPhuCapAc = nhanVienPhuCapAc;
         }
+
+        public string AddNVPC(NhanVienPhuCapDTO nhanVienPhuCapDTO)
+        {
+            string errorMessage;
+            errorMessage = nhanVienPhuCapAc.Add(nhanVienPhuCapDTO.ToNhanVienPhuCap());
+            return errorMessage;
+        }
+
+        public List<NhanVienPhuCapDTO> GetList()
+        {
+            return NhanVienPhuCapMap.ToListDTO(nhanVienPhuCapAc.ToList());
+        }
+
         public string Add(NhanVienPhuCapDTO obj)
         {
             return nhanVienPhuCapAc.Add(obj.ToNhanVienPhuCap());

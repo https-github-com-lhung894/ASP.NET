@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,7 @@ namespace Infrastructure.Persistence.Actions
         }
         public string Add(NhanVienPhuCap obj)
         {
+            obj.NhanVienPhuCapId = AutoKey.AutoNumber(myData.NhanVienPhuCaps.ToList()[myData.NhanVienPhuCaps.ToList().Count - 1].NhanVienPhuCapId);
             //Kiểm tra khóa chính
             if (myData.NhanVienPhuCaps.ToList().Find(x => x.NhanVienPhuCapId == obj.NhanVienPhuCapId) != null)
             {
@@ -44,7 +46,19 @@ namespace Infrastructure.Persistence.Actions
 
         public string Remove(NhanVienPhuCap obj)
         {
-            myData.NhanVienPhuCaps.Remove(obj);
+            //myData.NhanVienPhuCaps.Remove(obj);
+            var local = myData.Set<NhanVienPhuCap>()
+                .Local
+                .FirstOrDefault(entry => entry.NhanVienPhuCapId.Equals(obj.NhanVienPhuCapId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Deleted;
             myData.SaveChanges();
 
             return null;

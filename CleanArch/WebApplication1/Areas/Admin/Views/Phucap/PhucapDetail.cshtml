@@ -1,98 +1,117 @@
-﻿@{
+﻿@using Application.DTOs
+@using Domain.Entities
+@using Infrastructure.Persistence.Actions
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
+@model (List<QuanLyNhanVienPhuCap> nhanVienPhucaps, PhuCapDTO phuCapDTO)
 <div class="content-body">
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
-                <li class="breadcrumb-item active">Products</li>
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="DuAn">Quản lý dự án</a></li>
+                <li class="breadcrumb-item active">Danh sách nhân viên trong dự án</li>
             </ol>
         </div>
     </div>
     <!-- row -->
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">
-                            <h3>Dự Án</h3>
+                        <div class="card-title row">
+                            <div class="col-md-12 mb-4">
+                                <h3 class="td-center">DANH SÁCH NHÂN VIÊN TRONG PHỤ CẤP</h3>
+                                <h3 class="td-center">@Model.phuCapDTO.TenPhuCap</h3>
+                                @if (ViewBag.ErrorNVPC != null)
+                                {
+                                    <h4><p class="td-center" style="color:red;">@ViewBag.ErrorNVPC</p></h4>
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <a asp-controller="Phucap" asp-action="Index">
+                                    <button class="btn btn-primary"><i class="fa fa-arrow-left"></i><span style="margin-left: 10px">Trở về danh sách phụ cấp</span></button>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <button id="btnDel" type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDel" style="float:right;" disabled>
+                                    <i class="fa fa-trash-o"></i><span style="margin-left: 10px">Xoá nhân viên khỏi phụ cấp</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 row" style="margin-bottom: 10px">
-                                <div class="col-md-3"><p style=" color:#ea5774;font-weight:500;">Mã phụ cấp:</p></div>
-                                <div class="col-md-9"><p>Hello</p></div>
+                            <div class="col-lg-4" style="margin-bottom: 10px">
+                                <label class="modal-style">Mã phụ cấp: </label><span style="margin-left: 20px;">@Model.phuCapDTO.PhuCapId</span>
                             </div>
-                            <div class="col-md-6 row" style="margin-bottom: 10px">
-                                <div class="col-md-3"><p style=" color:#ea5774;font-weight:500;">Ngày thưởng phụ cấp:</p></div>
-                                <div class="col-md-9"><p align="left">Hello</p></div>
+                            <div class="col-lg-4" style="margin-bottom: 10px">
+                                <label class="modal-style">Tên phụ cấp: </label><span style="margin-left: 20px;">@Model.phuCapDTO.TenPhuCap</span>
                             </div>
-                            <div class="col-md-6 row" style="margin-bottom: 10px">
-                                <div class="col-md-3"><p style=" color:#ea5774;font-weight:500;">Thưởng tên phụ cấp:</p></div>
-                                <div class="col-md-9"><p align="left">Hello</p></div>
+                         
+       
+                            <div class="col-lg-4" style="margin-bottom: 10px">
+                                <label class="modal-style">Tiền phụ cấp: </label><span style="margin-left: 20px;">@Model.phuCapDTO.TienPhuCap</span>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <form method="post" class="navbar-form" asp-controller="QuanLyNhanVien" asp-action="Search">
-                                <div class="input-group no-border">
-                                    <input name="id" type="search" value="" class="form-control" placeholder="Search...">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="table-responsive">
-                            <table id="table-order" class="table table-bordered table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th style="width:20%;" class="th-center-bold">Hình ảnh</th>
-                                        <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
-                                        <th style="width:15%;" class="th-center-bold">Tên nhân viên</th>
-                                        <th style="width:15%;" class="th-center-bold">Phòng ban</th>
-                                        <th style="width:15%;" class="th-center-bold">Chức vụ</th>
-                                        <th style="width:5%" ;>Sửa</th>
-                                        <th style="width:5%" ;>Xóa</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-order-body">
-
-                                    <tr>
-                                        <td><p>Hình ảnh</p></td>
-                                        <td><p>hello</p></td>
-                                        <td><p>hello</p></td>
-                                        <td><p>hello</p></td>
-                                        <td><p>hello</p></td>
-                                        <td><a href=""><button type="button" class="btn btn-primary" data-toggle="modal" data-target=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a></td>
-                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-trash-o"></i></button></td>
-                                    </tr>
-                                    <div class="modal fade" id=">" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h3 class="modal-title" id="" style="margin: auto;">Are you sure to delete Product ID: <?php echo $pro_id?> ?</h3>
-                                                </div>
-                                                <div class="modal-footer" style="margin: auto;">
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                                                    <a href="">
-                                                        <button type="button" class="btn btn-danger">Yes, delete it !</button>
-                                                    </a>
-                                                </div>
-                                            </div>
+                        <form method="post" asp-controller="Phucap" asp-action="RemoveMultiNVPC">
+                            <div class="table-responsive">
+                                <table id="DataTable" class="table table-bordered table-hover zero-configuration">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%;" class="th-center-bold">Hình ảnh</th>
+                                            <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                            <th style="width:20%;" class="th-center-bold">Tên nhân viên</th>
+                                            <th style="width:20%;" class="th-center-bold">Phòng ban</th>
+                                            <th style="width:20%;" class="th-center-bold">Chức vụ</th>
+                                            <th style="width:5%;" class="th-center-bold">Xoá<input type="checkbox" id="checkBoxAll" class="custom-checkbox" onclick="checkDel()" style="margin-left: 5px;" /></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{ string linkImg = ""; }
+                                        @foreach (QuanLyNhanVienPhuCap nhanVienPhuCap in Model.nhanVienPhucaps)
+                                        {
+                                            linkImg = "../images/user/";
+                                            if (nhanVienPhuCap.HinhAnh != null)
+                                            {
+                                                linkImg += nhanVienPhuCap.HinhAnh;
+                                            }
+                                            else
+                                            {
+                                                linkImg += "form-user.png";
+                                            }
+                                            <tr>
+                                                <td><img src="@linkImg" alt="" style="width:40%" ;=""></td>
+                                                <td>@nhanVienPhuCap.NhanVienId</td>
+                                                <td>@nhanVienPhuCap.HoNhanVien @nhanVienPhuCap.TenNhanVien</td>
+                                                <td>@nhanVienPhuCap.TenPhongBan</td>
+                                                <td>@nhanVienPhuCap.TenChucVu</td>
+                                                <td class="td-center">
+                                                    <input type="checkbox" name="NhanVienPhuCapId" value="@nhanVienPhuCap.NhanVienPhuCapId" class="custom-checkbox chkCheckBoxId" onclick="checkSingleDel()" />
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal fade" id="confirmDel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="exampleModalLabel" style="margin: auto; text-align: center;">Bạn chắc chắn muốn xóa nhân viên đã chọn khỏi dự án?</h3>
+                                        </div>
+                                        <div class="modal-footer" style="margin: auto;">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-danger" value="Delete">Yes, delete it !</button>
                                         </div>
                                     </div>
-                                </tbody>
-                            </table>
-                        </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- #/ container -->
 </div>
-<!-- #/ container -->
-  </div>

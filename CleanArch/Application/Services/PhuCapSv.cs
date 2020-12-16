@@ -11,10 +11,37 @@ namespace Application.Services
     public class PhuCapSv : IPhuCapSv
     {
         private readonly IPhuCapAc phuCapAc;
+
         public PhuCapSv(IPhuCapAc phuCapAc)
         {
             this.phuCapAc = phuCapAc;
         }
+        public string AddPhuCap(PhuCapDTO phuCapDTO)
+        {
+            string errorMessage;
+            errorMessage = phuCapAc.Add(phuCapDTO.ToPhuCap());
+            return errorMessage;
+        }
+
+        public string UpdatePhuCap(PhuCapDTO phuCapDTO)
+        {
+            string errorMessage;
+            errorMessage = phuCapAc.Update(phuCapDTO.ToPhuCap());
+            return errorMessage;
+        }
+
+        public string RemovePhuCap(PhuCapDTO phuCapDTO)
+        {
+            string errorMessage;
+            errorMessage = phuCapAc.Remove(phuCapDTO.ToPhuCap());
+            return errorMessage;
+        }
+
+        public List<PhuCapDTO> GetList()
+        {
+            return PhuCapMap.ToListDTO(phuCapAc.ToList());
+        }
+
         public string Add(PhuCapDTO obj)
         {
             return phuCapAc.Add(obj.ToPhuCap());
