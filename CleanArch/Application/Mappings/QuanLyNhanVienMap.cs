@@ -45,7 +45,7 @@ namespace Application.Mappings
                 quanLyNhanVien.LuongCanBan);
         }
         
-        public static QuanLyNhanVien ToDTO(NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, PhongBan phongBan,
+        public static QuanLyNhanVien ToDTO(this NhanVien nhanVien, ChiTietNhanVien chiTietNhanVien, PhongBan phongBan,
             ChucVu chucVu, CongViec congViec, HopDong hopDong, Account account)
         {
             if (account == null)

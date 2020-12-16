@@ -1,0 +1,326 @@
+﻿@using Application.DTOs
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Staff/Views/Shared/_StaffLayout.cshtml";
+}
+@model (List<LuongThangDTO> luongThangDTOs, string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den)
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title row">
+                            <div class="col-md-12 mb-4">
+                                <h3 class="td-center">BẢNG LƯƠNG NHÂN VIÊN</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <form method="post" asp-controller="LuongNhanVien" asp-action="Index" class="navbar-form row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Mã nhân viên</span>
+                                                    </div>
+                                                    <input name="NhanVienId" type="text" class="form-control" value="@Model.NhanVienId" placeholder="Nhập mã nhân viên..." readonly="readonly">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            @if (Model.ThangChecked == "on")
+                                                            {
+                                                                <div>
+                                                                    <input name="ThangChecked" type="checkbox" class="boxCheck" checked>Tháng
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div>
+                                                                    <input name="ThangChecked" type="checkbox" class="boxCheck">Tháng
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    @if (Model.Thang != 0)
+                                                    {
+                                                        <input name="Thang" type="number" class="form-control" value="@Model.Thang" placeholder="Nhập tháng..." min="1" max="12">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input name="Thang" type="number" class="form-control" placeholder="Nhập tháng..." min="1" max="12">
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            @if (Model.NamChecked == "on")
+                                                            {
+                                                                <div>
+                                                                    <input name="NamChecked" type="checkbox" class="boxCheck" checked> Năm
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div>
+                                                                    <input name="NamChecked" type="checkbox" class="boxCheck"> Năm
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    @if (Model.Nam != 0)
+                                                    {
+                                                        <input name="Nam" type="number" class="form-control" value="@Model.Nam" placeholder="Nhập năm..." min="2018" max="2020">
+                                                    }
+                                                    else
+                                                    {
+                                                        <input name="Nam" type="number" class="form-control" placeholder="Nhập năm..." min="2018" max="2020">
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <div class="col-md-4">
+                                                <label class="radio-inline">
+                                                    @if (Model.optradio == "LCB")
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="LCB" class="radioCheck" checked> Lương căn bản
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="LCB" class="radioCheck"> Lương căn bản
+                                                        </div>
+                                                    }
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="radio-inline">
+                                                    @if (Model.optradio == "LTL")
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="LTL" class="radioCheck" checked> Lương thực lãnh
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="LTL" class="radioCheck"> Lương thực lãnh
+                                                        </div>
+                                                    }
+                                                </label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="radio-inline">
+                                                    @if (Model.optradio == "TDA")
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="TDA" class="radioCheck" checked> Thưởng dự án
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>
+                                                            <input type="radio" name="optradio" value="TDA" class="radioCheck"> Thưởng dự án
+                                                        </div>
+                                                    }
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-group col-md-6">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Từ</span>
+                                                </div>
+                                                @if (Model.Tu != null)
+                                                {
+                                                    <input name="Tu" type="text" class="form-control" value="@Model.Tu" placeholder="Nhập giá trị đầu...">
+                                                }
+                                                else
+                                                {
+                                                    <input name="Tu" type="text" class="form-control" placeholder="Nhập giá trị đầu...">
+                                                }
+                                            </div>
+                                            <div class="input-group col-md-6">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Đến</span>
+                                                </div>
+                                                @if (Model.Den != null)
+                                                {
+                                                    <input name="Den" type="text" class="form-control" value="@Model.Den" placeholder="Nhập giá trị cuối...">
+                                                }
+                                                else
+                                                {
+                                                    <input name="Den" type="text" class="form-control" placeholder="Nhập giá trị cuối...">
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 td-center">
+                                        <a href="#">
+                                            <button class="btn btn-primary"><span style="margin-right: 10px">Tìm kiếm</span><i class="fa fa-search"></i></button>
+                                        </a>
+                                    </div>
+                                </form>
+                                <button class="btn btn-primary float-right" onclick="resetElement()"><span style="margin-right: 10px">Reset</span><i class="fa fa-refresh"></i></button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th style="width:15%;" class="th-center-bold">Hình ảnh</th>
+                                        <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                        <th style="width:20%;" class="th-center-bold">Tên nhân viên</th>
+                                        <th style="width:15%;" class="th-center-bold">Phòng ban</th>
+                                        <th style="width:20%;" class="th-center-bold">Lương tháng</th>
+                                        <th style="width:15%;" class="th-center-bold">Chi tiết</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ string linkImg = ""; }
+                                    @foreach (LuongThangDTO luongThangDTO in Model.luongThangDTOs)
+                                    {
+                                        linkImg = "../images/user/";
+                                        if (luongThangDTO.HinhAnh != null)
+                                        {
+                                            linkImg += luongThangDTO.HinhAnh;
+                                        }
+                                        else
+                                        {
+                                            linkImg += "form-user.png";
+                                        }
+                                        <tr>
+                                            <td><img src="@linkImg" alt="" style="width:40%" ;=""></td>
+                                            <td> @luongThangDTO.NhanVienId </td>
+                                            <td> @luongThangDTO.HoTenNhanVien </td>
+                                            <td> @luongThangDTO.TenPhongBan </td>
+                                            <td> @luongThangDTO.LuongThucLanh </td>
+                                            <td class="td-center">
+                                                <a>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@luongThangDTO.NhanVienId"><i class="fa fa-info"></i></button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach (LuongThangDTO luongThangDTO in Model.luongThangDTOs)
+        {
+            <div class="modal fade bd-example-modal-lg" id="@luongThangDTO.NhanVienId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLongTitle" style="color:#7571f9;">Thông tin nhân viên</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4"><img src="./product-img/adidas_W.N.D._Primeblue_Jacket_Gold.jpg" alt="" style="width:100%" ;=""></div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Mã nhân viên:</h6>
+                                            <p> @luongThangDTO.NhanVienId </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Họ tên nhân viên:</h6>
+                                            <p> @luongThangDTO.HoTenNhanVien </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Hệ số chức vụ:</h6>
+                                            <p> @luongThangDTO.HSChucVu </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Hệ số công việc:</h6>
+                                            <p> @luongThangDTO.HSCongViec </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số ngày làm:</h6>
+                                            <p> @luongThangDTO.SoNgayLam </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ có phép:</h6>
+                                            <p> @luongThangDTO.SoNgayNghiCoPhep </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ không phép:</h6>
+                                            <p> @luongThangDTO.SoNgayNghiKhongPhep </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Số ngày nghỉ ốm:</h6>
+                                            <p> @luongThangDTO.SoNgayNghiOm </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Phụ cấp sinh hoạt:</h6>
+                                            <p> @luongThangDTO.PhuCapNhanVien </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Phụ câp chức vụ:</h6>
+                                            <p> @luongThangDTO.PhuCapChucVu </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Phụ cấp thâm niên:</h6>
+                                            <p> @luongThangDTO.PhuCapThamNien </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Lương căn bản:</h6>
+                                            <p> @luongThangDTO.LuongCoBan </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Thưởng lễ:</h6>
+                                            <p> @luongThangDTO.ThuongLe </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Thưởng dự án:</h6>
+                                            <p> @luongThangDTO.TienDuAn </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Ngày tính lương:</h6>
+                                            <p> @luongThangDTO.NgayTinhLuong </p>
+                                        </div>
+                                        <div class="col-md-6" style="margin-bottom: 10px">
+                                            <h6 style="color:#ea5774;font-weight:500;">Thực lãnh:</h6>
+                                            <p> @luongThangDTO.LuongThucLanh </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- #/ container -->
+</div>
+<script>
+    function resetElement() {
+        $(".radioCheck").prop('checked', false);
+        $(".boxCheck").prop('checked', false);
+        $('input[name=NhanVienId').val('');
+        $('input[name=Nam').val('');
+        $('input[name=Thang').val('');
+        $('input[name=Tu').val('');
+        $('input[name=Den').val('');
+    }
+</script>

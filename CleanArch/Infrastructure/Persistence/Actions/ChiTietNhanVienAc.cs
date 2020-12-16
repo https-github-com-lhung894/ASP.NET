@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,7 +30,8 @@ namespace Infrastructure.Persistence.Actions
 
         public ChiTietNhanVien FindById(string id)
         {
-            return myData.ChiTietNhanViens.Find(id);
+            
+            return myData.ChiTietNhanViens.ToList().Find(x => x.ChiTietNhanVienId == id);
         }
 
         public string Remove(ChiTietNhanVien obj)
@@ -54,7 +56,20 @@ namespace Infrastructure.Persistence.Actions
             }
 
             //Sửa nếu không có lỗi
-            myData.ChiTietNhanViens.Update(obj);
+            var local = myData.Set<ChiTietNhanVien>()
+                .Local
+                .FirstOrDefault(entry => entry.ChiTietNhanVienId.Equals(obj.ChiTietNhanVienId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Modified;
+
+            //myData.ChiTietNhanViens.Update(obj);
             myData.SaveChanges();
 
             return null;

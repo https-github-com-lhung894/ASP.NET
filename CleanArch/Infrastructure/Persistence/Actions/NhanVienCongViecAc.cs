@@ -78,11 +78,20 @@ namespace Infrastructure.Persistence.Actions
 
                 myData.NhanVienCongViecs.Update(nvcv);
             }
-
+            //Khởi tạo mới hợp đồng
+            int max = 0;
+            List<NhanVienCongViec> nhanVienCongViecs = myData.NhanVienCongViecs.ToList();
+            foreach (NhanVienCongViec nvcv1 in nhanVienCongViecs)
+            {
+                if (int.Parse(nvcv1.NhanVienCongViecId) > max)
+                {
+                    max = int.Parse(nvcv1.NhanVienCongViecId);
+                }
+            }
             NhanVienCongViec nhanVienCongViec = new NhanVienCongViec()
             {
                 //Tìm id cuối danh sách và tự tăng lên 1
-                NhanVienCongViecId = AutoKey.AutoNumber(myData.NhanVienCongViecs.ToList()[myData.NhanVienCongViecs.ToList().Count - 1].NhanVienCongViecId),
+                NhanVienCongViecId = (max + 1) + "",
                 NhanVienId = nhanVienId,
                 CongViecId = congViecId,
                 HSCongViec = 0.5,

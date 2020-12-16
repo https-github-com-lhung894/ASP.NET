@@ -1,0 +1,88 @@
+﻿@using Application.DTOs
+@using Domain.Entities
+@using Infrastructure.Persistence.Actions
+@{
+    ViewData["Title"] = "UpdateNV";
+    Layout = "~/Areas/Staff/Views/Shared/_StaffLayout.cshtml";
+}
+
+@model QuanLyNhanVien
+
+<div class="content-body">
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="NhanVien" asp-action="Index">Thông tin nhân viên</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Sửa thông tin</a></li>\
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 mb-3">
+                                <a asp-controller="QuanLyNhanVien" asp-action="Index" style="float:left;"><button class="btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button></aasp-controller="QuanLyNhanVien"></a>
+                            </div>
+                        </div>
+                        @{
+                            string linkImg = "../images/user/";
+                            if (Model.HinhAnh != null)
+                            {
+                                linkImg += Model.HinhAnh;
+                            }
+                            else
+                            {
+                                linkImg += "form-user.png";
+                            }
+                        }
+                        <form method="post" asp-controller="NhanVien" asp-action="UpdateNV">
+                            <div class="row">
+                                <div class="col-lg-12 mb-3"><h1>Sửa thông tin </h1></div>
+                                <div class="col-lg-3">
+                                    <div class="input-group">
+                                        <div class="form-file">
+                                            <input value="" type="file" class="inputfile" name="HinhAnh" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple />
+                                            <label for="your_picture">
+                                                <figure>
+                                                    <img src="@linkImg" alt="" class="your_picture_image">
+                                                </figure>
+                                                <span class="file-button">chọn ảnh</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="matkhau">Mật khẩu <span class="text-danger">*</span></label>
+                                                <input value="@Model.MatKhau" type="password" name="MatKhau" class="form-control" placeholder="Nhập mật khẩu..." required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="matkhau0">Nhập lại mật khẩu <span class="text-danger">*</span></label>
+                                                <input value="@Model.MatKhau" type="password" name="MatKhau0" class="form-control" placeholder="Nhập lại mật khẩu..." required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12 td-center">
+                                    <button type="submit" class="btn btn-primary">Sửa thông tin</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>

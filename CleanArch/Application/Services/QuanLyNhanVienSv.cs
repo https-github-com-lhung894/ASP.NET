@@ -81,6 +81,24 @@ namespace Application.Services
                 chucVuAc.ToList(), nhanVienCongViecAc.ToList(), congViecAc.ToList(), hopDongAc.ToList(), accountAc.ToList(), id);
         }
 
+        public QuanLyNhanVien GetByNhanVienId(string nhanVienId)
+        {
+            NhanVien nhanVien = nhanVienAc.FindById(nhanVienId);
+            PhongBan phongBan = phongBanAc.ToList().Find(x => x.PhongBanId == nhanVien.PhongBanId);
+            ChiTietNhanVien chiTietNhanVien = chiTietNhanVienAc.ToList().Find(x => x.ChiTietNhanVienId == nhanVien.NhanVienId);
+            ChucVu chucVu = chucVuAc.ToList().Find(x => x.ChucVuId == nhanVien.ChucVuId);
+            //Tìm công việc hiện tại ứng với nhân viên
+            NhanVienCongViec nhanVienCongViec = nhanVienCongViecAc.ToList().Find(x => x.NhanVienId == nhanVien.NhanVienId && x.NgayKetThuc == null);
+            CongViec congViec = null;
+            if (nhanVienCongViec != null)
+            {
+                congViec = congViecAc.ToList().Find(x => x.CongViecId == nhanVienCongViec.CongViecId);
+            }
+            //Tìm hợp đồng hiện tại ứng với nhân viên
+            HopDong hopDong = hopDongAc.ToList().Find(x => x.NhanVienId == nhanVien.NhanVienId && x.TrangThai == 1);
+            Account account = accountAc.ToList().Find(x => x.AccountId == nhanVien.NhanVienId);
 
+            return nhanVien.ToDTO(chiTietNhanVien, phongBan, chucVu, congViec, hopDong, account);
+        }
     }
 }

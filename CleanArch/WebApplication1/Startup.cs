@@ -144,6 +144,13 @@ namespace WebApplication1
                   template: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
                 );
             });
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                  name: "areas",
+                  template: "{area:exists}/{controller=NhanVien}/{action=Index}/{id?}"
+                );
+            });
         }
     }
 }

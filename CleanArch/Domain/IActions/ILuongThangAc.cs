@@ -6,6 +6,7 @@ namespace Domain.IActions
     public interface ILuongThangAc : IGeneralAction<LuongThang>
     {
         void AutoAdd();
+        List<LuongThang> ToListById(string NhanVienId);
         List<LuongThang> Filter(string NhanVienId, string ThangChecked, int Thang, string NamChecked, int Nam, string optradio, string Tu, string Den);
         string TotalSalaryOfPreviousMonth();
     }

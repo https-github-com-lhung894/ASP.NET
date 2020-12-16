@@ -66,6 +66,12 @@ namespace Application.Services
                 accountAc.ToList(),NhanVienId);
         }
 
+        public List<LuongThangDTO> ToListById(string NhanVienId)
+        {
+            return luongThangAc.ToListById(NhanVienId).ToListDTO(chiTietNhanVienAc.ToList(), nhanVienAc.ToList(), phongBanAc.ToList(),
+                accountAc.ToList());
+        }
+
         public string Update(LuongThangDTO obj)
         {
             return luongThangAc.Update(obj.ToLuongThang());

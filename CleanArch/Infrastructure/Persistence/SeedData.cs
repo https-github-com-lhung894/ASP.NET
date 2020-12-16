@@ -22,7 +22,7 @@ namespace Infrastructure.Persistence
                 new Account()
                 {
                     AccountId = "nv00000",
-                    TaiKhoan = "nv00000@email.com",
+                    TaiKhoan = "admin@gmail.com",
                     MatKhau = "123",
                     Quyen = 0
                 }

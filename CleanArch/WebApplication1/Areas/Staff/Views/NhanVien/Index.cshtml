@@ -1,0 +1,172 @@
+﻿@using Application.DTOs
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Staff/Views/Shared/_StaffLayout.cshtml";
+}
+@model QuanLyNhanVien
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12 mb-3">
+                                <a asp-controller="NhanVien" asp-action="UpdateNV" style="float:right;"><button class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa thông tin</button></aasp-controller="QuanLyNhanVien"></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 mb-3"><h1>Thông tin nhân viên @ViewBag.error</h1></div>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <div class="form-file">
+                                        <input type="file" class="inputfile" name="HinhAnh" id="your_picture" onchange="readURL(this);" data-multiple-caption="{count} files selected" multiple disabled/>
+                                        <label for="your_picture">
+                                            @{
+                                                string linkImg = "../images/user/";
+                                                if (Model.HinhAnh != null)
+                                                {
+                                                    linkImg += Model.HinhAnh;
+                                                }
+                                                else
+                                                {
+                                                    linkImg += "form-user.png";
+                                                }
+                                            }
+                                            <figure>
+                                                <img src="@linkImg" alt="" class="your_picture_image">
+                                            </figure>
+                                            <span class="file-button">chọn ảnh</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="NhanVienId">Mã nhân viên</label>
+                                            <label class="form-control" name="NhanVienId">@Model.NhanVienId</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="PhongBanId">Phòng ban</label>
+                                            <label class="form-control" name="PhongBanId">@Model.TenPhongBan</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ChucVuId">Chức vụ</label>
+                                            <label class="form-control" name="ChucVuId">@Model.TenChucVu</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="CongViecId">Công việc</label>
+                                            <label class="form-control" name="CongViecId">@Model.TenCongViec</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="HoNhanVien">Họ nhân viên</label>
+                                            <label class="form-control" name="HoNhanVien">@Model.HoNhanVien</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="TenNhanVien">Tên nhân viên</label>
+                                            <label class="form-control" name="TenNhanVien">@Model.TenNhanVien</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="NgaySinh">Ngày sinh</label>
+                                            <label class="form-control" name="NgaySinh">@Model.NgaySinh</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="GioiTinh">Giới tính</label>
+                                            <label class="form-control" name="GioiTinh">@Model.GioiTinh</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="NoiSinh">Nơi sinh</label>
+                                            <label class="form-control" name="NoiSinh">@Model.NoiSinh</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="DiaChi">Địa chỉ</label>
+                                            <label class="form-control" name="DiaChi">@Model.DiaChi</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="CMND">Số CMND/Thẻ căn cước</label>
+                                            <label class="form-control" name="CMND">@Model.CMND</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="NgayCapCMND">Ngày cấp CMND/Thẻ căn cước</label>
+                                            <label class="form-control" name="NgayCapCMND">@Model.NgayCapCMND</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="SDT">Số điện thoại</label>
+                                            <label class="form-control" name="SDT">@Model.SDT</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Email">Email</label>
+                                            <label class="form-control" name="Email">@Model.Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="TrinhDoHocVan">Trình độ học vấn</label>
+                                            <label class="form-control" name="TrinhDoHocVan">@Model.TrinhDoHocVan</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="LuongCanBan">Lương căn bản</label>
+                                            <label class="form-control" name="LuongCanBan">@Model.LuongCanBan</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12"><h1>Tài khoản nội bộ</h1></div>
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="TaiKhoan">Tài khoản</label>
+                                            <label class="form-control" name="TaiKhoan">@Model.TaiKhoan</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Quyen">Quyền</label>
+                                            <label class="form-control" name="Quyen">Nhân viên</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

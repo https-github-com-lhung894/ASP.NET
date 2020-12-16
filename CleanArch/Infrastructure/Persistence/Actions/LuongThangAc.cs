@@ -62,7 +62,7 @@ namespace Infrastructure.Persistence.Actions
                 //Chỉ tính lương cho nhân viên có 
                 //ngày bắt đầu trước hôm nay và
                 //ngày kết thúc băng null hoặc sau ngày đầu tiên của tháng trước
-                if (((DateTime)nhanVienCongViec.NgayBatDau).Before(DateTime.Now.FirstDayOfMonth()) &&
+                if (((DateTime)nhanVienCongViec.NgayBatDau).Before(DateTime.Now) &&
                     (nhanVienCongViec.NgayKetThuc == null || ((DateTime)nhanVienCongViec.NgayKetThuc).After(DateTime.Now.FirstDayOfPreviousMonth())))
                 {
                     LuongThang luongThang = new LuongThang();
@@ -337,6 +337,11 @@ namespace Infrastructure.Persistence.Actions
         public List<LuongThang> ToList()
         {
             return myData.LuongThangs.ToList();
+        }
+
+        public List<LuongThang> ToListById(string NhanVienId)
+        {
+            return myData.LuongThangs.ToList().FindAll(x => x.NhanVienId == NhanVienId);
         }
 
         public string TotalSalaryOfPreviousMonth()

@@ -69,6 +69,10 @@ namespace WebApplication1.Controllers
 
                 HttpContext.Session.SetString("JWToken", tokenString);
 
+                if(ac.Quyen == 2)
+                {
+                    return Redirect("~/NhanVien/Index");
+                }
                 return Redirect("~/Dashboard/Index");
             }
             ViewBag.error = "Sai thông tin đăng nhập!";

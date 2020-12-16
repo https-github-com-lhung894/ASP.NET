@@ -68,7 +68,7 @@
                                                 @if (Model.phongBanDTOs.Count == 1)
                                                 {
                                                     <select class="form-control" name="PhongBanId" readonly="readonly" required>
-                                                        <option value="">@Model.phongBanDTOs[0].TenPhongBan</option>
+                                                        <option value="@Model.phongBanDTOs[0].PhongBanId">@Model.phongBanDTOs[0].TenPhongBan</option>
                                                     </select>
                                                 }
                                                 else

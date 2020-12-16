@@ -56,6 +56,20 @@ namespace Application.Mappings
             }
             return luongThangDTOs;
         }
+        //Danh cho nhan vien
+        public static List<LuongThangDTO> ToListDTO(this List<LuongThang> luongThangs, List<ChiTietNhanVien> chiTietNhanViens,
+            List<NhanVien> nhanViens, List<PhongBan> phongBans, List<Account> accounts)
+        {
+            List<LuongThangDTO> luongThangDTOs = new List<LuongThangDTO>();
+            foreach (LuongThang luongThang in luongThangs)
+            {
+                ChiTietNhanVien chiTietNhanVien = chiTietNhanViens.Find(x => x.NhanVienId == luongThang.NhanVienId);
+                NhanVien nhanVien = nhanViens.Find(x => x.NhanVienId == luongThang.NhanVienId);
+                PhongBan phongBan = phongBans.Find(x => x.PhongBanId == nhanVien.PhongBanId);
+                luongThangDTOs.Add(luongThang.ToDTO(chiTietNhanVien.HinhAnh, nhanVien.HoNhanVien + " " + nhanVien.TenNhanVien, phongBan.TenPhongBan));
+            }
+            return luongThangDTOs;
+        }
         public static LuongThang ToLuongThang(this LuongThangDTO luongThangDTO)
         {
             return new LuongThang()
