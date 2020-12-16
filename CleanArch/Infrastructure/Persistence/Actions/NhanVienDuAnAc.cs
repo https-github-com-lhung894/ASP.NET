@@ -46,7 +46,18 @@ namespace Infrastructure.Persistence.Actions
 
         public string Remove(NhanVienDuAn obj)
         {
-            myData.NhanVienDuAns.Remove(obj);
+            var local = myData.Set<NhanVienDuAn>()
+                .Local
+                .FirstOrDefault(entry => entry.NhanVienDuAnId.Equals(obj.NhanVienDuAnId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Deleted;
             myData.SaveChanges();
 
             return null;

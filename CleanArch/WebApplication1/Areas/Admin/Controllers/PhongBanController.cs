@@ -141,17 +141,17 @@ namespace WebApplication1.Areas.Admin.Controllers
             return View("Index", objs);
         }
 
-        [HttpPost]
-        [Route("")]
-        [Route("RemoveNVPB")]
-        public IActionResult RemoveNVPB(string id)
-        {
-            NhanVienDTO nhanVienDTO = nhanVienSv.FindById(id);
-            nhanVienDTO.PhongBanId = "null";
-            string messerror = nhanVienSv.Update(nhanVienDTO);
-            //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
-            return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
-        }
+        //[HttpPost]
+        //[Route("")]
+        //[Route("RemoveNVPB")]
+        //public IActionResult RemoveNVPB(string id)
+        //{
+        //    NhanVienDTO nhanVienDTO = nhanVienSv.FindById(id);
+        //    nhanVienDTO.PhongBanId = "null";
+        //    string messerror = nhanVienSv.Update(nhanVienDTO);
+        //    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+        //    return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
+        //}
 
         [HttpPost]
         [Route("")]
@@ -164,7 +164,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             {
                 NhanVienDTO nhanVienDTO = nhanVienSv.FindById(id);
                 nhanVienDTO.PhongBanId = "null";
-               messerror += nhanVienSv.Update(nhanVienDTO);
+                messerror += nhanVienSv.Update(nhanVienDTO);
             }
             return RedirectToAction(actionName: "Index", controllerName: "PhongBan");
         }

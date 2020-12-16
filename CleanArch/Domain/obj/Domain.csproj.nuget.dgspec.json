@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {}
+    "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+    "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\DuongKiet\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DuongKiet\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\DuongKiet\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

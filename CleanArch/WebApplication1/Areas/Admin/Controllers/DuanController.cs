@@ -45,7 +45,6 @@ namespace WebApplication1.Areas.Admin.Controllers
             return View(objs);
         }
 
-
         [Route("")]
         [Route("DuanDetail")]
         public IActionResult DuanDetail(string DuAnId)
@@ -159,7 +158,8 @@ namespace WebApplication1.Areas.Admin.Controllers
                 ViewBag.ErrorRemove = "yes";
                 return View("Index", objs);
             }
-            string messerror = duAnSv.RemoveDuAn(duAnDTO);
+            duAnDTO.TrangThai = 0;
+            string messerror = duAnSv.UpdateDuAn(duAnDTO);
             if (messerror == null)
             {
                 objs = new(duAnSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), duAnSv.FindById("da00001"));
@@ -204,8 +204,13 @@ namespace WebApplication1.Areas.Admin.Controllers
                 ViewBag.ErrorNVDA = "Phần trăm tham dự lớn hơn phần trăm còn lại của dự án!";
                 return View("Index", objs);
             }
-            //string messerror = nhanVienDuAnSv.AddNVDA(nhanVienDuAnDTO);
-            //ViewBag.error = "Add " + messerror;
+            string messerror = nhanVienDuAnSv.AddNVDA(nhanVienDuAnDTO);
+            ViewBag.error = "Add " + messerror;
+            if (messerror == null)
+            {
+                duAnDTO.PhanTramDuAn -= nhanVienDuAnDTO.PhanTramCV;
+                ViewBag.error = "Update" + duAnSv.UpdateDuAn(duAnDTO);
+            }
             return RedirectToAction(actionName: "Index", controllerName: "DuAn");
         }
 
@@ -223,6 +228,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             (List<QuanLyNhanVienDuAn> nhanVienDuAns, DuAnDTO duAnDTO) objs;
             objs = new(quanLyNhanVienDuAnSv.GetList(NhanVienIdToken(), DuAnId), duAnSv.FindById(DuAnId));
             DuAnDTO duAnDTO = duAnSv.FindById(nhanVienDuAnDTO.DuAnId);
+            double ptHienco = 0;
             DateTime dt = DateTime.Now;
             if (duAnDTO.NgayKetThuc < dt)
             {
@@ -233,6 +239,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             {
                 if (nvda.DuAnId == nhanVienDuAnDTO.DuAnId && nvda.NhanVienId == nhanVienDuAnDTO.NhanVienId)
                 {
+                    ptHienco = (double)nvda.PhanTramCV + (double)duAnDTO.PhanTramDuAn;
                     if ((nvda.PhanTramCV + duAnDTO.PhanTramDuAn) < nhanVienDuAnDTO.PhanTramCV)
                     {
                         //ViewBag.ErrorNVDA = "Không thể thêm. Nhân viên " + nhanVienDuAnDTO.NhanVienId + " đã trong dự án " + nhanVienDuAnDTO.DuAnId + "!";
@@ -243,6 +250,29 @@ namespace WebApplication1.Areas.Admin.Controllers
             }
             string messerror = nhanVienDuAnSv.UpdateNVDA(nhanVienDuAnDTO);
             ViewBag.error = "Update " + messerror;
+            if (messerror == null)
+            {
+                duAnDTO.PhanTramDuAn = ptHienco - nhanVienDuAnDTO.PhanTramCV;
+                ViewBag.error = "Update" + duAnSv.UpdateDuAn(duAnDTO);
+            }
+            return RedirectToAction(actionName: "Index", controllerName: "DuAn");
+        }
+
+        [HttpPost]
+        [Route("")]
+        [Route("RemoveMultiNVDA")]
+        public ActionResult RemoveMultiNVDA(IFormCollection formCollection)
+        {
+            string[] ids = formCollection["NhanVienDuAnId"];
+            string messerror = null;
+            foreach (string id in ids)
+            {
+                NhanVienDuAnDTO nhanVienDuAnDTO = nhanVienDuAnSv.FindById(id);
+                DuAnDTO duAnDTO = duAnSv.FindById(nhanVienDuAnDTO.DuAnId);
+                duAnDTO.PhanTramDuAn += nhanVienDuAnDTO.PhanTramCV;
+                messerror += nhanVienDuAnSv.Remove(nhanVienDuAnDTO);
+                ViewBag.error = "Update" + duAnSv.UpdateDuAn(duAnDTO);
+            }
             return RedirectToAction(actionName: "Index", controllerName: "DuAn");
         }
     }
