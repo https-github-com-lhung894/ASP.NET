@@ -688,11 +688,7 @@
         }
       },
       "System.Collections.Immutable/1.7.1": {},
-      "System.ComponentModel.Annotations/5.0.0": {
-        "compile": {
-          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
-        }
-      },
+      "System.ComponentModel.Annotations/5.0.0": {},
       "System.Diagnostics.DiagnosticSource/4.7.1": {},
       "System.Memory/4.5.4": {},
       "System.Reflection.Metadata/1.6.0": {},

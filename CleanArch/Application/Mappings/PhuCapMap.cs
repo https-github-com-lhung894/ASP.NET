@@ -14,7 +14,8 @@ namespace Application.Mappings
             {
                 PhuCapId = phuCap.PhuCapId,
                 TenPhuCap = phuCap.TenPhuCap,
-                TienPhuCap = phuCap.TienPhuCap
+                TienPhuCap = phuCap.TienPhuCap,
+                TrangThai = phuCap.TrangThai
             };
         }
         public static List<PhuCapDTO> ToListDTO(this List<PhuCap> phuCaps)
@@ -22,6 +23,10 @@ namespace Application.Mappings
             List<PhuCapDTO> phuCapDTOs = new List<PhuCapDTO>();
             foreach (PhuCap phuCap in phuCaps)
             {
+                if (phuCap.TrangThai == 0)
+                {
+                    continue;
+                }
                 phuCapDTOs.Add(phuCap.ToDTO());
             }
             return phuCapDTOs;
@@ -32,7 +37,8 @@ namespace Application.Mappings
             {
                 PhuCapId = phuCapDTO.PhuCapId,
                 TenPhuCap = phuCapDTO.TenPhuCap,
-                TienPhuCap = phuCapDTO.TienPhuCap
+                TienPhuCap = phuCapDTO.TienPhuCap,
+                TrangThai = phuCapDTO.TrangThai
             };
         }
     }

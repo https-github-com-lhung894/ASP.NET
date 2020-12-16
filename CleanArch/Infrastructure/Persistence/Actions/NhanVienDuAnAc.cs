@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,7 @@ namespace Infrastructure.Persistence.Actions
         }
         public string Add(NhanVienDuAn obj)
         {
+            obj.NhanVienDuAnId = AutoKey.AutoNumber(myData.NhanVienDuAns.ToList()[myData.NhanVienDuAns.ToList().Count - 1].NhanVienDuAnId);
             //Kiểm tra khóa chính
             if (myData.NhanVienDuAns.ToList().Find(x => x.NhanVienDuAnId == obj.NhanVienDuAnId) != null)
             {
@@ -44,7 +46,18 @@ namespace Infrastructure.Persistence.Actions
 
         public string Remove(NhanVienDuAn obj)
         {
-            myData.NhanVienDuAns.Remove(obj);
+            var local = myData.Set<NhanVienDuAn>()
+                .Local
+                .FirstOrDefault(entry => entry.NhanVienDuAnId.Equals(obj.NhanVienDuAnId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Deleted;
             myData.SaveChanges();
 
             return null;
@@ -68,7 +81,19 @@ namespace Infrastructure.Persistence.Actions
             }
 
             //Sửa nếu không có lỗi
-            myData.NhanVienDuAns.Update(obj);
+            //myData.NhanVienDuAns.Update(obj);
+            var local = myData.Set<NhanVienDuAn>()
+                .Local
+                .FirstOrDefault(entry => entry.NhanVienDuAnId.Equals(obj.NhanVienDuAnId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Modified;
             myData.SaveChanges();
 
             return null;

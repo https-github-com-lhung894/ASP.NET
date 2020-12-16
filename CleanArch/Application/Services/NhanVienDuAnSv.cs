@@ -15,6 +15,26 @@ namespace Application.Services
         {
             this.nhanVienDuAnAc = nhanVienDuAnAc;
         }
+
+        public string AddNVDA(NhanVienDuAnDTO nhanVienDuAnDTO)
+        {
+            string errorMessage;
+            errorMessage = nhanVienDuAnAc.Add(nhanVienDuAnDTO.ToNhanVienDuAn());
+            return errorMessage;
+        }
+
+        public string UpdateNVDA(NhanVienDuAnDTO nhanVienDuAnDTO)
+        {
+            string errorMessage;
+            errorMessage = nhanVienDuAnAc.Update(nhanVienDuAnDTO.ToNhanVienDuAn());
+            return errorMessage;
+        }
+
+        public List<NhanVienDuAnDTO> GetList()
+        {
+            return NhanVienDuAnMap.ToListDTO(nhanVienDuAnAc.ToList());
+        }
+
         public string Add(NhanVienDuAnDTO obj)
         {
             return nhanVienDuAnAc.Add(obj.ToNhanVienDuAn());

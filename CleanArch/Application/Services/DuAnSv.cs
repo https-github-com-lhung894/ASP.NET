@@ -3,7 +3,9 @@ using Application.Interfaces;
 using Application.Mappings;
 using Domain.Entities;
 using Domain.IActions;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Application.Services
 {
@@ -16,6 +18,33 @@ namespace Application.Services
             this.duAnAc = duAnAc;
             this.nhanVienDuAnAc = nhanVienDuAnAc;
         }
+        
+        public string AddDuAn(DuAnDTO duAnDTO)
+        {
+            string errorMessage;
+            errorMessage = duAnAc.Add(duAnDTO.ToDuAn());
+            return errorMessage;
+        }
+
+        public string UpdateDuAn(DuAnDTO duAnDTO)
+        {
+            string errorMessage;
+            errorMessage = duAnAc.Update(duAnDTO.ToDuAn());
+            return errorMessage;
+        }
+
+        public string RemoveDuAn(DuAnDTO duAnDTO)
+        {
+            string errorMessage;
+            errorMessage = duAnAc.Remove(duAnDTO.ToDuAn());
+            return errorMessage;
+        }
+
+        public List<DuAnDTO> GetList()
+        {
+            return DuAnMap.ToListDTO(duAnAc.ToList());
+        }
+
         public string Add(DuAnDTO obj)
         {
             return duAnAc.Remove(obj.ToDuAn());

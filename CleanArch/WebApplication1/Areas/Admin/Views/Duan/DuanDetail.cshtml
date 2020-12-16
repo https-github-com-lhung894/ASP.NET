@@ -1,0 +1,163 @@
+﻿@using Application.DTOs
+@using Domain.Entities
+@using Infrastructure.Persistence.Actions
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model (List<QuanLyNhanVienDuAn> nhanVienDuAns, DuAnDTO duAnDTO)
+<div class="content-body">
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index" asp-controller="DuAn">Quản lý dự án</a></li>
+                <li class="breadcrumb-item active">Danh sách nhân viên trong dự án</li>
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title row">
+                            <div class="col-md-12 mb-4">
+                                <h3 class="td-center">DANH SÁCH NHÂN VIÊN TRONG DỰ ÁN</h3>
+                                <h3 class="td-center">@Model.duAnDTO.TenDuAn</h3>
+                                @if (ViewBag.ErrorNVDA != null)
+                                {
+                                    <h4><p class="td-center" style="color:red;">@ViewBag.ErrorNVDA</p></h4>
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <a asp-controller="DuAn" asp-action="Index">
+                                    <button class="btn btn-primary"><i class="fa fa-arrow-left"></i><span style="margin-left: 10px">Trở về danh sách dự án</span></button>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <button id="btnDel" type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDel" style="float:right;" disabled>
+                                    <i class="fa fa-trash-o"></i><span style="margin-left: 10px">Xoá nhân viên khỏi dự án</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4" style="margin-bottom: 10px">
+                                <label class="modal-style">Mã dự án: </label><span style="margin-left: 20px;">@Model.duAnDTO.DuAnId</span>
+                            </div>
+                            <div class="col-lg-4" style="margin-bottom: 10px">
+                                <label class="modal-style">Tên dự án: </label><span style="margin-left: 20px;">@Model.duAnDTO.TenDuAn</span>
+                            </div>
+                            <div class="col-lg-4" style="margin-bottom: 10px">
+                                <label class="modal-style">Phần trăm dự án còn lại: </label><span style="margin-left: 20px;">@Model.duAnDTO.PhanTramDuAn</span>
+                            </div>
+                            <div class="col-lg-4" style="margin-bottom: 10px">
+                                <label class="modal-style">Ngày bắt đầu dự án: </label><span style="margin-left: 20px;">@Model.duAnDTO.NgayBatDau</span>
+                            </div>
+                            <div class="col-lg-4" style="margin-bottom: 10px">
+                                <label class="modal-style">Ngày kết thúc dự án: </label><span style="margin-left: 20px;">@Model.duAnDTO.NgayKetThuc</span>
+                            </div>
+                        </div>
+                        <form method="post" asp-controller="DuAn" asp-action="RemoveMultiNVDA">
+                            <div class="table-responsive">
+                                <table id="DataTable" class="table table-bordered table-hover zero-configuration">
+                                    <thead class="text-primary">
+                                        <tr>
+                                            <th style="width:20%;" class="th-center-bold">Hình ảnh</th>
+                                            <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
+                                            <th style="width:15%;" class="th-center-bold">Tên nhân viên</th>
+                                            <th style="width:15%;" class="th-center-bold">Phòng ban</th>
+                                            <th style="width:15%;" class="th-center-bold">Chức vụ</th>
+                                            <th style="width:10%;" class="th-center-bold">% Tham dự</th>
+                                            <th style="width:5%;" class="th-center-bold">Sửa</th>
+                                            <th style="width:5%;" class="th-center-bold">Xoá<input type="checkbox" id="checkBoxAll" class="custom-checkbox" onclick="checkDel()" style="margin-left: 5px;" /></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{ string linkImg = ""; }
+                                        @foreach (QuanLyNhanVienDuAn nhanVienDuAn in Model.nhanVienDuAns)
+                                        {
+                                            linkImg = "../images/user/";
+                                            if (nhanVienDuAn.HinhAnh != null)
+                                            {
+                                                linkImg += nhanVienDuAn.HinhAnh;
+                                            }
+                                            else
+                                            {
+                                                linkImg += "form-user.png";
+                                            }
+                                            <tr>
+                                                <td class="td-center"><img src="@linkImg" alt="" style="width:40%" ;=""></td>
+                                                <td>@nhanVienDuAn.NhanVienId</td>
+                                                <td>@nhanVienDuAn.HoNhanVien @nhanVienDuAn.TenNhanVien</td>
+                                                <td>@nhanVienDuAn.TenPhongBan</td>
+                                                <td>@nhanVienDuAn.TenChucVu</td>
+                                                <td>@nhanVienDuAn.PhanTramCV</td>
+                                                <td><a><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@("suaNVDA"+nhanVienDuAn.NhanVienDuAnId)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a></td>
+                                                <td class="td-center">
+                                                    <input type="checkbox" name="NhanVienDuAnId" value="@nhanVienDuAn.NhanVienDuAnId" class="custom-checkbox chkCheckBoxId" onclick="checkSingleDel()" />
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal fade" id="confirmDel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="exampleModalLabel" style="margin: auto; text-align: center;">Bạn chắc chắn muốn xóa nhân viên đã chọn khỏi dự án?</h3>
+                                        </div>
+                                        <div class="modal-footer" style="margin: auto;">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-danger" value="Delete">Yes, delete it !</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach (QuanLyNhanVienDuAn nhanVienDuAn in Model.nhanVienDuAns)
+        {
+            <div class="modal fade" id="@("suaNVDA"+nhanVienDuAn.NhanVienDuAnId)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form method="post" asp-controller="DuAn" asp-action="UpdateNVDA">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Sửa phần trăm tham dự của @nhanVienDuAn.HoNhanVien @nhanVienDuAn.TenNhanVien</h5>
+                                <input type="hidden" value="@nhanVienDuAn.NhanVienDuAnId" name="NhanVienDuAnId"/>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="DuAnId">Mã dự án</label>
+                                    <input type="text" value="@Model.duAnDTO.DuAnId" class="form-control" name="DuAnId" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="NhanVienId">Mã nhân viên</label>
+                                    <input type="text" value="@nhanVienDuAn.NhanVienId" class="form-control" name="NhanVienId" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PhanTramCV">Phần trăm tham dự</label>
+                                    <div class="input-group mb-3">
+                                        <input type="number" value="@nhanVienDuAn.PhanTramCV" class="form-control" placeholder="Nhập phần trăm tham dự..." name="PhanTramCV" min="1" max="100">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                                <button type="submit" class="btn btn-success" value="Sua">Sửa</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- #/ container -->
+</div>

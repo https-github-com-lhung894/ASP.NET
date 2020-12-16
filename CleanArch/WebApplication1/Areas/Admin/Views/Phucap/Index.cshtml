@@ -1,0 +1,200 @@
+﻿@using Application.DTOs
+@using Domain.Entities
+@using Infrastructure.Persistence.Actions
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model (List<PhuCapDTO> phuCapDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhuCapDTO phuCapDTO)
+<div class="content-body">
+
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+                <li class="breadcrumb-item active">Quản lý phụ cấp</li>
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        @if (ViewBag.Update == "yes")
+                        {
+                            <div class="card-title">
+                                <h3>SỬA PHỤ CẤP</h3>
+                                @if (ViewBag.Error != null)
+                                {
+                                    <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
+                                }
+                            </div>
+                            <form method="post" asp-controller="PhuCap" asp-action="Update">
+                                <div class="form-group">
+                                    <label for="maphucap">Mã phụ cấp</label>
+                                    <input type="text" value="@Model.phuCapDTO.PhuCapId" placeholder="Số liệu tự cấp phát..." class="form-control" name="PhuCapId" required readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tenphucap">Tên tên phụ cấp</label>
+                                    <input type="text" value="@Model.phuCapDTO.TenPhuCap" placeholder="Nhập tên phụ cấp..." class="form-control" name="TenPhuCap" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tienphucap">Tiền phụ cấp</label>
+                                    <input type="text" value="@Model.phuCapDTO.TienPhuCap" placeholder="Nhập tiền phụ cấp..." class="form-control" name="TienPhuCap" required>
+                                </div>
+                                <input type="submit" value="Sửa thông tin" name="suaduan" class="btn btn-primary">
+                                <a asp-controller="Phucap" asp-action="Index" style="float: right;"><button type="button" class="btn btn-danger">Hủy</button></a>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="card-title">
+                                <h4>THÊM PHU CẤP</h4>
+                                @if (ViewBag.Error != null)
+                                {
+                                    <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
+                                }
+                            </div>
+                            <form method="post" asp-controller="Phucap" asp-action="AddPhuCap">
+                                <div class="form-group">
+                                    <label for="mada">Mã phụ cấp <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="text" name="PhuCapId" id="mapc" class="form-control" placeholder="Số liệu tự cấp phát.." readonly="readonly">
+                                        <div class="input-group-append">
+                                            <button id="btn-pb" class="btn btn-outline-dark" type="button" onclick="CapPhatMaPC()"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tenphucap">Tên phụ cấp</label>
+                                    <input type="text" placeholder="Nhập tên dự án..." class="form-control" name="TenPhuCap" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tienphucap">Tiền phụ cấp</label>
+                                    <input type="number" placeholder="Nhập tiền phụ cấp..." class="form-control" name="TienPhuCap" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Thêm phụ cấp" name="themphucap" class="btn btn-primary">
+                                </div>
+                            </form>
+                        }
+                    </div>
+
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>THÊM NHÂN VIÊN VÀO PHỤ CẤP</h3>
+                            @if (ViewBag.ErrorNVPC != null)
+                            {
+                                <h5><p class="td-center" style="color:red;">@ViewBag.ErrorNVPC</p></h5>
+                            }
+                        </div>
+                        <form method="post" asp-controller="PhuCap" asp-action="AddNVPC">
+                            <div class="form-group">
+                                <label for="PhuCapId">Mã phụ cấp</label>
+                                <input type="text" placeholder="Nhập mã phụ cấp..." class="form-control" name="PhuCapId" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="NhanVienId">Mã nhân viên</label>
+                                <input type="text" placeholder="Nhập mã nhân viên..." class="form-control" name="NhanVienId" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Thêm nhân viên" name="themnvpc" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4>DANH SÁCH PHỤ CẤP</h4>
+                            @if (ViewBag.ErrorRemove == "yes")
+                            {
+                                <p class="td-center" style="color:red;">@ViewBag.Remove</p>
+                            }
+                            else
+                            {
+                                <p class="td-center" style="color:green;">@ViewBag.Remove</p>
+                            }
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th class="th-center-bold">Mã phụ cấp</th>
+                                        <th class="th-center-bold">Tên phụ cấp</th>
+                                        <th class="th-center-bold">Thưởng phụ cấp</th>
+                                        <th class="th-center-bold">Chi tiết</th>
+                                        <th class="th-center-bold">Sửa</th>
+                                        <th class="th-center-bold">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (PhuCapDTO phuCapDTO in Model.phuCapDTOs)
+                                    {
+                                    <tr>
+                                        <td>@phuCapDTO.PhuCapId</td>
+                                        <td>@phuCapDTO.TenPhuCap</td>
+                                        <td>@phuCapDTO.TienPhuCap</td>
+                                        <td class="td-center">
+                                            <form asp-controller="Phucap" asp-action="PhucapDetail" method="post">
+                                                <input value="@phuCapDTO.PhuCapId" type="hidden" name="PhuCapId" />
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                                            </form>
+                                        </td>
+                                        <td class="td-center">
+                                            <form asp-controller="Phucap" asp-action="UpdateId" method="post">
+                                                <input value="@phuCapDTO.PhuCapId" type="hidden" name="PhuCapId" />
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                            </form>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(phuCapDTO.PhuCapId
+                                            + "xoa")">
+                                                <i class="fa fa-close"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                        
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     @foreach (PhuCapDTO phuCapDTO in Model.phuCapDTOs)
+        {
+            <div class="modal fade" id="@(phuCapDTO.PhuCapId + "xoa")" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Bạn chắc chắn muốn xóa<br>phụ cấp @phuCapDTO.TenPhuCap?</h3>
+                        </div>
+                        <div class="modal-footer" style="margin: auto;">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
+                            <form method="post" asp-controller="Phucap" asp-action="Remove">
+                                <button name="PhuCapId" type="submit" class="btn btn-danger" value="@phuCapDTO.PhuCapId">Xóa phụ cấp</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- #/ container -->
+</div>
+<script>
+    function CapPhatMaPC() {
+        $('#mapc').val('@AutoKey.InCreasedByOne(Model.thongTinDuLieuCuois.PhuCapId)');
+        $('#btn-pb').prop('disabled', true);
+    }
+</script>

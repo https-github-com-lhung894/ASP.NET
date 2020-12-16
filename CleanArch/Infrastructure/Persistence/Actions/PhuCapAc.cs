@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -63,7 +64,19 @@ namespace Infrastructure.Persistence.Actions
 
         public string Update(PhuCap obj)
         {
-            myData.PhuCaps.Update(obj);
+            var local = myData.Set<PhuCap>()
+                .Local
+                .FirstOrDefault(entry => entry.PhuCapId.Equals(obj.PhuCapId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Modified;
+            //myData.PhuCaps.Update(obj);
             myData.SaveChanges();
 
             return null;
