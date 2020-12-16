@@ -1530,19 +1530,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Name\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Name\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\Name\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\Name\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Name\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Name\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1556,8 +1556,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Name\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Name\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
+            "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\ASP.NET\\CleanArch\\Domain\\Domain.csproj"
             }
           }
         }
@@ -1599,7 +1599,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

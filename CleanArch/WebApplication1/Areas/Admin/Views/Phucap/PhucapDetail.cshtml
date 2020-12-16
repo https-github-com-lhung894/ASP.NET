@@ -57,7 +57,7 @@
                         <form method="post" asp-controller="Phucap" asp-action="RemoveMultiNVPC">
                             <div class="table-responsive">
                                 <table id="DataTable" class="table table-bordered table-hover zero-configuration">
-                                    <thead>
+                                    <thead class="text-primary">
                                         <tr>
                                             <th style="width:20%;" class="th-center-bold">Hình ảnh</th>
                                             <th style="width:15%;" class="th-center-bold">Mã nhân viên</th>
@@ -81,7 +81,7 @@
                                                 linkImg += "form-user.png";
                                             }
                                             <tr>
-                                                <td><img src="@linkImg" alt="" style="width:40%" ;=""></td>
+                                                <td class="td-center"><img src="@linkImg" alt="" style="width:40%" ;=""></td>
                                                 <td>@nhanVienPhuCap.NhanVienId</td>
                                                 <td>@nhanVienPhuCap.HoNhanVien @nhanVienPhuCap.TenNhanVien</td>
                                                 <td>@nhanVienPhuCap.TenPhongBan</td>

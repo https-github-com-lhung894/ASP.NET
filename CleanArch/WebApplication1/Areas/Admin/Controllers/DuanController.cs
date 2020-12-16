@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace WebApplication1.Areas.Admin.Controllers
 {
     [Authorize(Roles = "0,1")]
@@ -186,6 +185,11 @@ namespace WebApplication1.Areas.Admin.Controllers
             objs = new(duAnSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), duAnSv.FindById("da00001"));
             DuAnDTO duAnDTO = duAnSv.FindById(nhanVienDuAnDTO.DuAnId);
             DateTime dt = DateTime.Now;
+            if (duAnDTO.TrangThai == 0)
+            {
+                ViewBag.ErrorNVDA = "Không thể thêm. Dự án " + nhanVienDuAnDTO.DuAnId + " không tồn tại!";
+                return View("Index", objs);
+            }
             if (duAnDTO.NgayKetThuc < dt)
             {
                 ViewBag.ErrorNVDA = "Dự án đã kết thúc. Không thể thêm nhân viên vào nữa!";

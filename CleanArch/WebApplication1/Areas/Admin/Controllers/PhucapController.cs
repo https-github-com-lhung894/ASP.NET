@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "0,1")]
     [Area("Admin")]
     [Route("Phucap")]
     public class PhucapController : Controller
@@ -43,9 +44,6 @@ namespace WebApplication1.Areas.Admin.Controllers
             return View(objs);
         }
 
-
-
-
         [Route("")]
         [Route("PhucapDetail")]
         public IActionResult PhucapDetail(string PhuCapId)
@@ -69,12 +67,15 @@ namespace WebApplication1.Areas.Admin.Controllers
         [Route("AddPhuCap")]
         public IActionResult AddPhuCap(PhuCapDTO phuCapDTO)
         {
-            (List<PhuCapDTO> phuCapDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhuCapDTO phuCapDTO) objs;
-            objs = new(phuCapSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phuCapSv.FindById("pc00001"));
-            
+            phuCapDTO.TrangThai = 1;
             string messerror = phuCapSv.AddPhuCap(phuCapDTO);
             ViewBag.error = "Add " + messerror;
-            
+            if (messerror == null)
+            {
+                ThongTinDuLieuCuoi t = thongTinDuLieuCuoiAc.FindById("1");
+                t.PhuCapId = phuCapDTO.PhuCapId;
+                thongTinDuLieuCuoiAc.Update(t);
+            }
             return RedirectToAction(actionName: "Index", controllerName: "Phucap");
         }
 
@@ -85,7 +86,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             PhuCapDTO phuCapDTO = phuCapSv.FindById(PhuCapId);
             if (phuCapDTO == null)
             {
-                ViewBag.Update = "Kiểm tra lại mã dự án";
+                ViewBag.Update = "Kiểm tra lại mã phụ cấp";
                 return RedirectToAction(actionName: "Index", controllerName: "Phucap");
             }
             ViewBag.Update = "yes";
@@ -116,7 +117,7 @@ namespace WebApplication1.Areas.Admin.Controllers
             objs = new(phuCapSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phuCapSv.FindById("pc00001"));
             if (phuCapDTO == null)
             {
-                ViewBag.Remove = "Kiểm tra lại mã dự án";
+                ViewBag.Remove = "Kiểm tra lại mã phụ cấp";
                 ViewBag.ErrorRemove = "yes";
                 return View("Index", objs);
             }
@@ -124,19 +125,20 @@ namespace WebApplication1.Areas.Admin.Controllers
             List<QuanLyNhanVienPhuCap> nhanVienPhuCaps = quanLyNhanVienPhuCapSv.GetList(NhanVienIdToken(), PhuCapId);
             if (nhanVienPhuCaps.Count != 0)
             {
-                ViewBag.Remove = "Xoá dự án thất bại! Dự án " + phuCapDTO.TenPhuCap + " vẫn còn nhân viên.";
+                ViewBag.Remove = "Xoá phụ cấp thất bại! Phụ cấp " + phuCapDTO.TenPhuCap + " vẫn còn nhân viên.";
                 ViewBag.ErrorRemove = "yes";
                 return View("Index", objs);
             }
-            string messerror = phuCapSv.RemovePhuCap(phuCapDTO);
+            phuCapDTO.TrangThai = 0;
+            string messerror = phuCapSv.UpdatePhuCap(phuCapDTO);
             if (messerror == null)
             {
                 objs = new(phuCapSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phuCapSv.FindById("pc00001"));
-                ViewBag.Remove = "Xoá dự án " + phuCapDTO.TenPhuCap + " thành công.";
+                ViewBag.Remove = "Xoá phụ cấp " + phuCapDTO.TenPhuCap + " thành công.";
                 ViewBag.ErrorRemove = "no";
                 return View("Index", objs);
             }
-            ViewBag.Remove = "Xoá dự án thất bại! Lỗi " + messerror;
+            ViewBag.Remove = "Xoá phụ cấp thất bại! Lỗi " + messerror;
             ViewBag.ErrorRemove = "yes";
             return View("Index", objs);
         }
@@ -152,16 +154,22 @@ namespace WebApplication1.Areas.Admin.Controllers
             List<NhanVienPhuCapDTO> nhanVienPhuCap = nhanVienPhuCapSv.GetList();
             (List<PhuCapDTO> phuCapDTOs, ThongTinDuLieuCuoi thongTinDuLieuCuois, PhuCapDTO phuCapDTO) objs;
             objs = new(phuCapSv.GetList(), thongTinDuLieuCuoiAc.FindById("1"), phuCapSv.FindById("pc00001"));
+            PhuCapDTO phuCapDTO = phuCapSv.FindById(nhanVienPhuCapDTO.PhuCapId);
+            if (phuCapDTO.TrangThai == 0)
+            {
+                ViewBag.ErrorNVPC = "Không thể thêm. Phụ cấp " + nhanVienPhuCapDTO.PhuCapId + " không tồn tại!";
+                return View("Index", objs);
+            }
             foreach (NhanVienPhuCapDTO nvpc in nhanVienPhuCap)
             {
                 if (nvpc.PhuCapId == nhanVienPhuCapDTO.PhuCapId && nvpc.NhanVienId == nhanVienPhuCapDTO.NhanVienId)
                 {
-                    ViewBag.ErrorNVPC = "Không thể thêm. Nhân viên " + nhanVienPhuCapDTO.NhanVienId + " đã trong dự án " + nhanVienPhuCapDTO.PhuCapId + "!";
+                    ViewBag.ErrorNVPC = "Không thể thêm. Nhân viên " + nhanVienPhuCapDTO.NhanVienId + " đã trong phụ cấp " + nhanVienPhuCapDTO.PhuCapId + "!";
                     return View("Index", objs);
                 }
             }
-            //string messerror = nhanVienDuAnSv.AddNVDA(nhanVienDuAnDTO);
-            //ViewBag.error = "Add " + messerror;
+            string messerror = nhanVienPhuCapSv.AddNVPC(nhanVienPhuCapDTO);
+            ViewBag.error = "Add " + messerror;
             return RedirectToAction(actionName: "Index", controllerName: "Phucap");
         }
 

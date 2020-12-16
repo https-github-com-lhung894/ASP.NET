@@ -16,6 +16,7 @@ namespace Application.DTOs
         public string TenPhongBan { get; set; }
         public string ChucVuId { get; set; }
         public string TenChucVu { get; set; }
+        public string NhanVienPhuCapId { get; set; }
 
     }
 }

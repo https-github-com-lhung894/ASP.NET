@@ -114,6 +114,10 @@
                     <div class="card-body">
                         <div class="card-title">
                             <h3>THÊM NHÂN VIÊN VÀO DỰ ÁN</h3>
+                            @if (ViewBag.ErrorNVDA != null)
+                            {
+                                <h5><p class="td-center" style="color:red;">@ViewBag.ErrorNVDA</p></h5>
+                            }
                         </div>
                         <form method="post" asp-controller="DuAn" asp-action="AddNVDA">
                             <div class="form-group">
