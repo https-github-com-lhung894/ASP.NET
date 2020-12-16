@@ -1,0 +1,261 @@
+﻿
+@using Application.DTOs
+@using Domain.Entities
+@using Infrastructure.Persistence.Actions
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model (List<BangChamCongDTO> bangChamCongDTOs, BangChamCongDTO bangChamCongDTO)
+<div class="content-body">
+
+    <div class="row page-titles mx-0">
+        <div class="col p-md-0">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./index.php">Dashboard</a></li>
+                <li class="breadcrumb-item active">Chấm công nhân viên</li>
+            </ol>
+        </div>
+    </div>
+    <!-- row -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <form method="post" asp-controller="ChamCong" asp-action="CapPhat">
+                            <div class="card-title">
+                                <h4>Cấp phát chấm công</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Ngày thực hiện <label style="color:red"> *</label></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="@ViewBag.DateTime" name="datetime"> <span class="input-group-append"><span class="input-group-text"><i class="mdi mdi-calendar-check"></i></span></span>
+                                </div>
+                            </div>
+                            <input type="submit" value="Thực hiện" name="add-subcategory" class="btn btn-primary">
+                        </form>
+                        
+                    </div>
+                </div>
+
+                <div class="card">
+                    @if (ViewBag.Update == "yes")
+                    {
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>Sửa chấm công</h4>
+                            </div>
+                            <form method="post" asp-controller="ChamCong" asp-action="Update">
+                                <div class="form-group">
+                                    <label for="category">Mã nhân viên <label style="color:red">*</label></label>
+                                    <input type="text" value="@Model.bangChamCongDTO.BangChamCongId" class="form-control" placeholder="Nhập id chấm công" name="BangChamCongId" hidden>
+                                    <input type="text" value="@Model.bangChamCongDTO.NhanVienId" class="form-control" placeholder="Nhập mã nhân viên" name="NhanVienId" readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subcategory">Ngày chấm công <label style="color:red">*</label></label>
+                                    <div class="input-group">
+                                        <input type="text" value="@Model.bangChamCongDTO.NgayLamViec" class="form-control" placeholder="mm/dd/yyyy" name="NgayLamViec" readonly="readonly"> <span class="input-group-append" readonly="readonly">
+                                        <span class="input-group-text" readonly="readonly"><i class="mdi mdi-calendar-check"></i></span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subcategory">Trạng thái chấm công <label style="color:red">*</label></label>
+                                    <div class="basic-form">
+
+                                        <div class="form-group row">
+
+                                            <div class="radio mb-2 col-md-6">
+                                                @if (Model.bangChamCongDTO.TrangThaiChamCongId == "tt1")
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="TrangThaiChamCongId" value="tt1" id="tt1" checked> Đi làm
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="TrangThaiChamCongId" value="tt1" id="tt1"> Đi làm
+                                                    </label>
+                                                }
+
+                                            </div>
+
+                                            <div class="radio mb-2 col-md-6">
+                                                @if (Model.bangChamCongDTO.TrangThaiChamCongId == "tt2")
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="TrangThaiChamCongId" value="tt2" id="tt2" checked> Nghỉ phép
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="TrangThaiChamCongId" value="tt2" id="tt2"> Nghỉ phép
+                                                    </label>
+                                                }
+
+                                            </div>
+
+                                            <div class="radio mb-2 col-md-6">
+                                                @if (Model.bangChamCongDTO.TrangThaiChamCongId == "tt3")
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="TrangThaiChamCongId" value="tt3" id="tt3" checked> Nghỉ không phép
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="TrangThaiChamCongId" value="tt3" id="tt3"> Nghỉ không phép
+                                                    </label>
+                                                }
+                                            </div>
+
+                                            <div class="radio mb-2 col-md-6">
+                                                @if (Model.bangChamCongDTO.TrangThaiChamCongId == "tt4")
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="TrangThaiChamCongId" value="tt4" id="tt4" checked> Nghỉ ốm
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label>
+                                                        <input type="radio" name="TrangThaiChamCongId" value="tt4" id="tt4"> Nghỉ ốm
+                                                    </label>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Thực hiện" name="edit-subcategory" class="btn btn-primary">
+                                <a asp-controller="ChamCong" asp-action="Index" style="float: right;"><button type="button" class="btn btn-primary">Hủy</button></a>
+                            </form>
+                            
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <div class="col-md-12 mb-4">
+                                <h4>DANH SÁCH CHẤM CÔNG CỦA NHÂN VIÊN</h4>
+                            </div>
+                            <div class="col-md-12">
+                                <form class="navbar-form">
+                                    <div class="input-group no-border">
+                                        <input type="search" value="" class="form-control" placeholder="Search...">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            @*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="exampleModalLabel" style="margin: auto;text-align: center;">Bạn chắc chắn muốn<br>  xoá phòng ban này?</h3>
+                                            </div>
+                                            <div class="modal-footer" style="margin: auto;">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                <a href="#"><button type="button" class="btn btn-danger">Yes, delete it !</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            <table class="table table-bordered table-hover sortable">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th class="th-center-bold">Mã nhân viên</th>
+                                        <th class="th-center-bold">Ngày thực hiện</th>
+                                        <th class="th-center-bold">Trạng thái chấm công</th>
+                                        <th class="th-center-bold">Sửa chấm công</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (BangChamCongDTO bcc in Model.bangChamCongDTOs)
+                                    {
+                                        if (bcc.BangChamCongId == Model.bangChamCongDTO.BangChamCongId && ViewBag.Update == "yes")
+                                        {
+                                    <tr style="background-color:#ECECEC">
+                                        <td style="color:#7571FA;"><b>@bcc.NhanVienId</b></td>
+                                        <td style="color:#7571FA"><b>@bcc.NgayLamViec</b></td>
+
+                                        @if (bcc.TrangThaiChamCongId == "tt1")
+                                        {
+                                            <td style="color:#7571FA"><b>Đi làm</b></td>
+                                        }
+                                        @if (bcc.TrangThaiChamCongId == "tt2")
+                                        {
+                                            <td style="color:#7571FA"><b>Nghỉ phép</b></td>
+                                        }
+                                        @if (bcc.TrangThaiChamCongId == "tt3")
+                                        {
+                                            <td style="color:#7571FA"><b>Nghỉ không phép</b></td>
+                                        }
+                                        @if (bcc.TrangThaiChamCongId == "tt4")
+                                        {
+                                            <td style="color:#7571FA"><b>Nghỉ ốm</b></td>
+                                        }
+                                        @*<td style="color:#7571FA"><b>@bcc.TrangThaiChamCongId</b></td>*@
+                                        <td class="td-center">
+                                            <form asp-controller="ChamCong" asp-action="UpdateId" method="post">
+                                                <input value="@bcc.BangChamCongId" name="id" hidden />
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                        }
+                                        else
+                                        {
+                                <tr>
+                                    <td>@bcc.NhanVienId</td>
+                                    <td>@bcc.NgayLamViec</td>
+                                    @if (bcc.TrangThaiChamCongId == "tt1")
+                                    {
+                                        <td >Đi làm</td>
+                                    }
+                                    @if (bcc.TrangThaiChamCongId == "tt2")
+                                    {
+                                        <td >Nghỉ phép</td>
+                                    }
+                                    @if (bcc.TrangThaiChamCongId == "tt3")
+                                    {
+                                        <td >Nghỉ không phép</td>
+                                    }
+                                    @if (bcc.TrangThaiChamCongId == "tt4")
+                                    {
+                                        <td >Nghỉ ốm</td>
+                                    }
+                                    <td class="td-center">
+                                        <form asp-controller="ChamCong" asp-action="UpdateId" method="post">
+                                            <input value="@bcc.BangChamCongId" name="id" hidden />
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                        }
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+</div>
