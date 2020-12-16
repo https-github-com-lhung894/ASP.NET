@@ -81,6 +81,10 @@
                                                         {
                                                             continue;
                                                         }
+                                                        if (phongBanDTO.PhongBanId == "null")
+                                                        {
+                                                            continue;
+                                                        }
                                                         <option value="@phongBanDTO.PhongBanId">@phongBanDTO.TenPhongBan</option>
                                                     }
                                                 </select>

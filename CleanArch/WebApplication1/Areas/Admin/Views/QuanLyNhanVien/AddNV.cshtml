@@ -77,6 +77,10 @@
                                                         <option value="">-- Chọn phòng ban --</option>
                                                         @foreach (PhongBanDTO phongBanDTO in Model.phongBanDTOs)
                                                         {
+                                                            if(phongBanDTO.PhongBanId == "null")
+                                                            {
+                                                                continue;
+                                                            }
                                                             <option value="@phongBanDTO.PhongBanId">@phongBanDTO.TenPhongBan</option>
                                                         }
                                                     </select>

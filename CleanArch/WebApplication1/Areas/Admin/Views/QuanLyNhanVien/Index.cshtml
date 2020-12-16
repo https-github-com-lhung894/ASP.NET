@@ -90,15 +90,35 @@
                                                 </a>
                                             </td>
                                             <td class="td-center">
-                                                <form asp-controller="QuanLyNhanVien" asp-action="UpdateId" method="post">
-                                                    <input value="@quanLyNhanVien.NhanVienId" type="hidden" name="id" />
-                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                                </form>
+                                                @if (quanLyNhanVien.NhanVienId == "nv00000")
+                                                {
+                                                    <a>
+                                                        <button type="button" class="btn btn-primary" disabled><i class="fa fa-pencil"></i></button>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <form asp-controller="QuanLyNhanVien" asp-action="UpdateId" method="post">
+                                                        <input value="@quanLyNhanVien.NhanVienId" type="hidden" name="id" />
+                                                        <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                                    </form>
+                                                }
+
                                             </td>
                                             <td class="td-center">
-                                                <a>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(quanLyNhanVien.NhanVienId + "xoa")"><i class="fa fa-close"></i></button>
-                                                </a>
+                                                @if (quanLyNhanVien.NhanVienId == "nv00000")
+                                                {
+                                                    <a>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(quanLyNhanVien.NhanVienId + "xoa")" disabled><i class="fa fa-close"></i></button>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(quanLyNhanVien.NhanVienId + "xoa")"><i class="fa fa-close"></i></button>
+                                                    </a>
+                                                }
+                                                
                                             </td>
                                         </tr>
                                     }
