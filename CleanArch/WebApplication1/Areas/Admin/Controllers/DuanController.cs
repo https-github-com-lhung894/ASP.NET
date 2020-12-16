@@ -204,8 +204,45 @@ namespace WebApplication1.Areas.Admin.Controllers
                 ViewBag.ErrorNVDA = "Phần trăm tham dự lớn hơn phần trăm còn lại của dự án!";
                 return View("Index", objs);
             }
-            string messerror = nhanVienDuAnSv.AddNVDA(nhanVienDuAnDTO);
-            ViewBag.error = "Add " + messerror;
+            //string messerror = nhanVienDuAnSv.AddNVDA(nhanVienDuAnDTO);
+            //ViewBag.error = "Add " + messerror;
+            return RedirectToAction(actionName: "Index", controllerName: "DuAn");
+        }
+
+        [HttpPost]
+        [Route("")]
+        [Route("UpdateNVDA")]
+        public IActionResult UpdateNVDA(string NhanVienDuAnId, string NhanVienId, string DuAnId, string PhanTramCV)
+        {
+            NhanVienDuAnDTO nhanVienDuAnDTO = new NhanVienDuAnDTO();
+            nhanVienDuAnDTO.NhanVienDuAnId = NhanVienDuAnId;
+            nhanVienDuAnDTO.DuAnId = DuAnId;
+            nhanVienDuAnDTO.NhanVienId = NhanVienId;
+            nhanVienDuAnDTO.PhanTramCV = Convert.ToDouble(PhanTramCV);
+            List<NhanVienDuAnDTO> nhanVienDuAns = nhanVienDuAnSv.GetList();
+            (List<QuanLyNhanVienDuAn> nhanVienDuAns, DuAnDTO duAnDTO) objs;
+            objs = new(quanLyNhanVienDuAnSv.GetList(NhanVienIdToken(), DuAnId), duAnSv.FindById(DuAnId));
+            DuAnDTO duAnDTO = duAnSv.FindById(nhanVienDuAnDTO.DuAnId);
+            DateTime dt = DateTime.Now;
+            if (duAnDTO.NgayKetThuc < dt)
+            {
+                ViewBag.ErrorNVDA = "Dự án đã kết thúc. Không thể sửa phần trăm tham dự nữa!";
+                return View("DuanDetail", objs);
+            }
+            foreach (NhanVienDuAnDTO nvda in nhanVienDuAns)
+            {
+                if (nvda.DuAnId == nhanVienDuAnDTO.DuAnId && nvda.NhanVienId == nhanVienDuAnDTO.NhanVienId)
+                {
+                    if ((nvda.PhanTramCV + duAnDTO.PhanTramDuAn) < nhanVienDuAnDTO.PhanTramCV)
+                    {
+                        //ViewBag.ErrorNVDA = "Không thể thêm. Nhân viên " + nhanVienDuAnDTO.NhanVienId + " đã trong dự án " + nhanVienDuAnDTO.DuAnId + "!";
+                        ViewBag.ErrorNVDA = "Phần trăm tham dự lớn hơn phần trăm còn lại của dự án!";
+                        return View("DuanDetail", objs);
+                    }
+                }
+            }
+            string messerror = nhanVienDuAnSv.UpdateNVDA(nhanVienDuAnDTO);
+            ViewBag.error = "Update " + messerror;
             return RedirectToAction(actionName: "Index", controllerName: "DuAn");
         }
     }

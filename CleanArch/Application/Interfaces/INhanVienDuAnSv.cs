@@ -8,5 +8,6 @@ namespace Application.Interfaces
     {
         List<NhanVienDuAnDTO> GetList();
         string AddNVDA(NhanVienDuAnDTO nhanVienDuAnDTO);
+        string UpdateNVDA(NhanVienDuAnDTO nhanVienDuAnDTO);
     }
 }

@@ -25,6 +25,10 @@
                             <div class="col-md-12 mb-4">
                                 <h3 class="td-center">DANH SÁCH NHÂN VIÊN TRONG DỰ ÁN</h3>
                                 <h3 class="td-center">@Model.duAnDTO.TenDuAn</h3>
+                                @if (ViewBag.ErrorNVDA != null)
+                                {
+                                    <h4><p class="td-center" style="color:red;">@ViewBag.ErrorNVDA</p></h4>
+                                }
                             </div>
                             <div class="col-md-6">
                                 <a asp-controller="DuAn" asp-action="Index">
@@ -121,23 +125,24 @@
             <div class="modal fade" id="@("suaNVDA"+nhanVienDuAn.NhanVienDuAnId)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <form method="post">
+                        <form method="post" asp-controller="DuAn" asp-action="UpdateNVDA">
                             <div class="modal-header">
                                 <h5 class="modal-title">Sửa phần trăm tham dự của @nhanVienDuAn.HoNhanVien @nhanVienDuAn.TenNhanVien</h5>
+                                <input type="hidden" value="@nhanVienDuAn.NhanVienDuAnId" name="NhanVienDuAnId"/>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="maduan">Mã dự án</label>
+                                    <label for="DuAnId">Mã dự án</label>
                                     <input type="text" value="@Model.duAnDTO.DuAnId" class="form-control" name="DuAnId" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="manhanvien">Mã nhân viên</label>
+                                    <label for="NhanVienId">Mã nhân viên</label>
                                     <input type="text" value="@nhanVienDuAn.NhanVienId" class="form-control" name="NhanVienId" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phantram">Phần trăm tham dự</label>
+                                    <label for="PhanTramCV">Phần trăm tham dự</label>
                                     <div class="input-group mb-3">
-                                        <input type="text" value="@nhanVienDuAn.PhanTramCV" class="form-control" />
+                                        <input type="number" value="@nhanVienDuAn.PhanTramCV" class="form-control" placeholder="Nhập phần trăm tham dự..." name="PhanTramCV" min="1" max="100">
                                         <div class="input-group-append">
                                             <span class="input-group-text">%</span>
                                         </div>
