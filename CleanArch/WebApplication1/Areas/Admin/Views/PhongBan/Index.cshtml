@@ -23,7 +23,7 @@
                         @if (ViewBag.Update == "yes")
                         {
                             <div class="card-title mb-3">
-                                <h3>SỬA PHÒNG BAN</h3>
+                                <h4>SỬA PHÒNG BAN</h4>
                             </div>
                             <form method="post" asp-controller="PhongBan" asp-action="Update">
                                 <div class="form-group">
@@ -45,7 +45,7 @@
                         else
                         {
                             <div class="card-title mb-3">
-                                <h3>THÊM PHÒNG BAN</h3>
+                                <h4>THÊM PHÒNG BAN</h4>
                             </div>
                             <form method="post" asp-controller="PhongBan" asp-action="AddPB">
                                 <div class="form-group">
@@ -76,7 +76,7 @@
                     <div class="card-body">
                         <div class="card-title">
                             <div class="col-md-12 mb-4">
-                                <h3>DANH SÁCH PHÒNG BAN</h3>
+                                <h4>DANH SÁCH PHÒNG BAN</h4>
                                 @if (ViewBag.ErrorRemove == "yes")
                                 {
                                     <p class="td-center" style="color:red;">@ViewBag.Remove</p>
@@ -86,33 +86,9 @@
                                     <p class="td-center" style="color:green;">@ViewBag.Remove</p>
                                 }
                             </div>
-                            <div class="col-md-12">
-                                @if (ViewBag.Find == "yes")
-                                {
-                                <div class="input-group no-border">
-                                    <input type="search" name="PhongBanId" class="form-control" readonly>
-                                        <a asp-controller="PhongBan" asp-action="Index">
-                                            <button class="btn btn-primary" style="height: 45px;">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </a>
-                                </div>
-                                }
-                                else
-                                {
-                                    <form class="navbar-form" asp-action="FindIdPb" asp-controller="PhongBan">
-                                        <div class="input-group no-border">
-                                            <input type="search" value="" name="PhongBanId" class="form-control" placeholder="Search...">
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                }
-                            </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="DataTable" class="table table-bordered table-hover zero-configuration">
                                 <thead class="text-primary">
                                     <tr>
                                         <th class="th-center-bold">Mã phòng ban</th>

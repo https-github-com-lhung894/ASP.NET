@@ -24,7 +24,7 @@
                         @if (ViewBag.Update == "yes")
                         {
                         <div class="card-title mb-3">
-                            <h3>SỬA DỰ ÁN</h3>
+                            <h4>SỬA DỰ ÁN</h4>
                             @if (ViewBag.Error != null)
                             {
                                 <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
@@ -73,7 +73,7 @@
                         else
                         {
                         <div class="card-title mb-3">
-                            <h3>THÊM DỰ ÁN</h3>
+                            <h4>THÊM DỰ ÁN</h4>
                             @if (ViewBag.Error != null)
                             {
                                 <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
@@ -113,7 +113,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h3>THÊM NHÂN VIÊN VÀO DỰ ÁN</h3>
+                            <h4>THÊM NHÂN VIÊN VÀO DỰ ÁN</h4>
                             @if (ViewBag.ErrorNVDA != null)
                             {
                                 <h5><p class="td-center" style="color:red;">@ViewBag.ErrorNVDA</p></h5>
@@ -148,7 +148,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h3>DANH SÁCH DỰ ÁN</h3>
+                            <h4>DANH SÁCH DỰ ÁN</h4>
                             @if (ViewBag.ErrorRemove == "yes")
                             {
                                 <p class="td-center" style="color:red;">@ViewBag.Remove</p>
@@ -159,7 +159,7 @@
                             }
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="DataTable" class="table table-bordered table-hover zero-configuration">
                                 <thead class="text-primary">
                                     <tr>
                                         <th class="th-center-bold">Mã dự án</th>

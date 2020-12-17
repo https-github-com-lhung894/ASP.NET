@@ -26,7 +26,7 @@
                         @if (ViewBag.Update == "yes")
                         {
                             <div class="card-title">
-                                <h3>SỬA PHỤ CẤP</h3>
+                                <h4>SỬA PHỤ CẤP</h4>
                                 @if (ViewBag.Error != null)
                                 {
                                     <h5><p class="td-center" style="color:red;">@ViewBag.Error</p></h5>
@@ -87,7 +87,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h3>THÊM NHÂN VIÊN VÀO PHỤ CẤP</h3>
+                            <h4>THÊM NHÂN VIÊN VÀO PHỤ CẤP</h4>
                             @if (ViewBag.ErrorNVPC != null)
                             {
                                 <h5><p class="td-center" style="color:red;">@ViewBag.ErrorNVPC</p></h5>
@@ -124,7 +124,7 @@
                             }
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="DataTable" class="table table-bordered table-hover zero-configuration">
                                 <thead class="text-primary">
                                     <tr>
                                         <th class="th-center-bold">Mã phụ cấp</th>
@@ -138,30 +138,30 @@
                                 <tbody>
                                     @foreach (PhuCapDTO phuCapDTO in Model.phuCapDTOs)
                                     {
-                                    <tr>
-                                        <td>@phuCapDTO.PhuCapId</td>
-                                        <td>@phuCapDTO.TenPhuCap</td>
-                                        <td>@phuCapDTO.TienPhuCap</td>
-                                        <td class="td-center">
-                                            <form asp-controller="Phucap" asp-action="PhucapDetail" method="post">
-                                                <input value="@phuCapDTO.PhuCapId" type="hidden" name="PhuCapId" />
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
-                                            </form>
-                                        </td>
-                                        <td class="td-center">
-                                            <form asp-controller="Phucap" asp-action="UpdateId" method="post">
-                                                <input value="@phuCapDTO.PhuCapId" type="hidden" name="PhuCapId" />
-                                                <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
-                                            </form>
-                                        </td>
-                                        <td style="text-align: center">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(phuCapDTO.PhuCapId
+                                        <tr>
+                                            <td>@phuCapDTO.PhuCapId</td>
+                                            <td>@phuCapDTO.TenPhuCap</td>
+                                            <td>@phuCapDTO.TienPhuCap</td>
+                                            <td class="td-center">
+                                                <form asp-controller="Phucap" asp-action="PhucapDetail" method="post">
+                                                    <input value="@phuCapDTO.PhuCapId" type="hidden" name="PhuCapId" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-info"></i></button>
+                                                </form>
+                                            </td>
+                                            <td class="td-center">
+                                                <form asp-controller="Phucap" asp-action="UpdateId" method="post">
+                                                    <input value="@phuCapDTO.PhuCapId" type="hidden" name="PhuCapId" />
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+                                                </form>
+                                            </td>
+                                            <td style="text-align: center">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@(phuCapDTO.PhuCapId
                                             + "xoa")">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                        
+                                                    <i class="fa fa-close"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
                                     }
 
                                 </tbody>

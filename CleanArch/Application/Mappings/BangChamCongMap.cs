@@ -36,6 +36,21 @@ namespace Application.Mappings
             }
             return bangChamCongDTOs;
         }
+        public static List<BangChamCongDTO> ToListDTO(this List<BangChamCong> bangChamCongs, List<NhanVien> nhanViens)
+        {
+            List<BangChamCongDTO> bangChamCongDTOs = new List<BangChamCongDTO>();
+            foreach (BangChamCong bangChamCong in bangChamCongs)
+            {
+                NhanVien nv1 = nhanViens.Find(x => x.NhanVienId == bangChamCong.NhanVienId);
+                if (nv1.TrangThai != 1)
+                {
+                    continue;
+                }
+
+                bangChamCongDTOs.Add(bangChamCong.ToDTO());
+            }
+            return bangChamCongDTOs;
+        }
         public static BangChamCong ToBangChamCong(this BangChamCongDTO bangChamCongDTO)
         {
             return new BangChamCong()

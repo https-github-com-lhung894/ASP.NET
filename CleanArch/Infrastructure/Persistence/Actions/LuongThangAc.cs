@@ -37,7 +37,7 @@ namespace Infrastructure.Persistence.Actions
         public void AutoAdd()
         {
             //Ngày đầu tiên của tháng mới bắt đầu tính lương
-            if(DateTime.Now.IsFirstDayOfMonth() == false)
+            if(DateTime.Now.IsFirstDayOfMonth() != false)
             {
                 return;
             }
@@ -80,7 +80,7 @@ namespace Infrastructure.Persistence.Actions
 
                     luongThang.LuongThangId = "" + (max + 1);
                     luongThang.NhanVienId = nhanVienCongViec.NhanVienId;
-                    luongThang.LuongCoBan = myData.HopDongs.ToList().Find(x => x.NhanVienId == luongThang.NhanVienId).LuongCanBan;
+                    luongThang.LuongCoBan = myData.HopDongs.ToList().Find(x => x.NhanVienId == luongThang.NhanVienId && x.TrangThai == 1).LuongCanBan;
                     string chucVuId = myData.NhanViens.ToList().Find(x => x.NhanVienId == luongThang.NhanVienId).ChucVuId;
                     luongThang.HSChucVu = myData.ChucVus.ToList().Find(x => x.ChucVuId == chucVuId).HSChucVu;
                     luongThang.HSCongViec = nhanVienCongViec.HSCongViec;

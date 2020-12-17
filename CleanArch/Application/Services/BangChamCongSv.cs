@@ -44,7 +44,8 @@ namespace Application.Services
 
         public List<BangChamCongDTO> ToList()
         {
-            return null;
+            List<NhanVien> nhanViens = nhanVienAc.ToList();
+            return bangChamCongAc.ToList().ToListDTO(nhanViens);
         }
         public List<BangChamCongDTO> ToList(string NhanVienId)
         {

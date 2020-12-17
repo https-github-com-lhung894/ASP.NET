@@ -263,7 +263,7 @@ namespace Infrastructure.Persistence
                 new ThuongLe()
                 {
                     ThuongLeId = "0",
-                    NgayLe = null,
+                    NgayLe = new DateTime(2000,1,1),
                     TienThuongLe = "0",
                 },
             });
