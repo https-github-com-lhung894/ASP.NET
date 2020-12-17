@@ -57,6 +57,44 @@ namespace Infrastructure.Persistence.Actions
             return bangChamCongs.Count;
         }
 
+        public string TuCapPhat()
+        {
+            //Khởi tạo mới
+            int max = 0;
+            foreach (BangChamCong bcc in myData.BangChamCongs.ToList())
+            {
+                if (int.Parse(bcc.BangChamCongId) > max)
+                {
+                    max = int.Parse(bcc.BangChamCongId);
+                }
+            }
+            List<BangChamCong> bangChamCongs = new List<BangChamCong>();
+            BangChamCong bangChamCong = null;
+            NhanVienCongViec nhanVienCongViec;
+            foreach (NhanVien nhanVien in myData.NhanViens.ToList())
+            {
+                bangChamCong = new BangChamCong();
+                nhanVienCongViec = myData.NhanVienCongViecs.ToList().Find(x => x.NhanVienId == nhanVien.NhanVienId &&
+                    (x.NgayKetThuc == null || ((DateTime)x.NgayKetThuc).After((DateTime)x.NgayBatDau)) &&
+                    ((((DateTime)x.NgayBatDau).Before(DateTime.Now)) || ((DateTime)x.NgayBatDau).EqualTo(DateTime.Now)) &&
+                    (x.NgayKetThuc == null || (((DateTime)x.NgayKetThuc).After(DateTime.Now)) || ((DateTime)x.NgayKetThuc).EqualTo(DateTime.Now)));
+                if (nhanVienCongViec != null && myData.BangChamCongs.ToList().Find(x => x.NhanVienId == nhanVien.NhanVienId &&
+                    x.NgayLamViec.EqualTo(DateTime.Now)) == null)
+                {
+                    max++;
+                    bangChamCong.BangChamCongId = max + "";
+                    bangChamCong.NgayLamViec = DateTime.Now;
+                    bangChamCong.NhanVienId = nhanVien.NhanVienId;
+                    bangChamCong.TrangThaiChamCongId = "tt1";
+
+                    bangChamCongs.Add(bangChamCong);
+                }
+            }
+            myData.BangChamCongs.AddRange(bangChamCongs);
+            myData.SaveChanges();
+            return null;
+        }
+
         public string Remove(BangChamCong obj)
         {
             myData.BangChamCongs.Remove(obj);

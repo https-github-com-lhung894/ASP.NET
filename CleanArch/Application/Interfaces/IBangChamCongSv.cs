@@ -8,5 +8,6 @@ namespace Application.Interfaces
     public interface IBangChamCongSv : IGeneralAction<BangChamCongDTO>
     {
         List<BangChamCongDTO> ToList(string NhanVienId);
+        string UpdateChamCong(BangChamCongDTO bangChamCongDTO);
     }
 }

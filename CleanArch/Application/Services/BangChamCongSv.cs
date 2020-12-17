@@ -19,6 +19,14 @@ namespace Application.Services
             this.nhanVienAc = nhanVienAc;
             this.accountAc = accountAc;
         }
+
+        public string UpdateChamCong(BangChamCongDTO bangChamCongDTO)
+        {
+            string errorMessage;
+            errorMessage = bangChamCongAc.Update(bangChamCongDTO.ToBangChamCong());
+            return errorMessage;
+        }
+
         public string Add(BangChamCongDTO obj)
         {
             return bangChamCongAc.Add(obj.ToBangChamCong());

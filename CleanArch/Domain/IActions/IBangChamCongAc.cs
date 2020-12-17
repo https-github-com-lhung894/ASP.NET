@@ -6,5 +6,6 @@ namespace Domain.IActions
     {
         int NOEGTWY();
         int NOEOY();
+        string TuCapPhat();
     }
 }
