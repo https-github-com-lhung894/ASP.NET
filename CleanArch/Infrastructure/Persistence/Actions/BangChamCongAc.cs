@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.IActions;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,7 +122,19 @@ namespace Infrastructure.Persistence.Actions
             }
 
             //Sửa nếu không có lỗi
-            myData.BangChamCongs.Update(obj);
+            var local = myData.Set<BangChamCong>()
+                .Local
+                .FirstOrDefault(entry => entry.BangChamCongId.Equals(obj.BangChamCongId));
+
+            // check if local is not null 
+            if (local != null)
+            {
+                // detach
+                myData.Entry(local).State = EntityState.Detached;
+            }
+            // set Modified flag in your entry
+            myData.Entry(obj).State = EntityState.Modified;
+            //myData.BangChamCongs.Update(obj);
             myData.SaveChanges();
 
             return null;

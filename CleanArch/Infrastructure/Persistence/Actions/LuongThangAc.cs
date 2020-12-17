@@ -80,7 +80,8 @@ namespace Infrastructure.Persistence.Actions
 
                     luongThang.LuongThangId = "" + (max + 1);
                     luongThang.NhanVienId = nhanVienCongViec.NhanVienId;
-                    luongThang.LuongCoBan = myData.HopDongs.ToList().Find(x => x.NhanVienId == luongThang.NhanVienId && x.TrangThai == 1).LuongCanBan;
+                    luongThang.LuongCoBan = myData.HopDongs.ToList().Find(x => x.NhanVienId == luongThang.NhanVienId && x.TrangThai == 1) != null ?
+                        myData.HopDongs.ToList().Find(x => x.NhanVienId == luongThang.NhanVienId && x.TrangThai == 1).LuongCanBan : "0";
                     string chucVuId = myData.NhanViens.ToList().Find(x => x.NhanVienId == luongThang.NhanVienId).ChucVuId;
                     luongThang.HSChucVu = myData.ChucVus.ToList().Find(x => x.ChucVuId == chucVuId).HSChucVu;
                     luongThang.HSCongViec = nhanVienCongViec.HSCongViec;
@@ -162,10 +163,14 @@ namespace Infrastructure.Persistence.Actions
                     DateTime ngayDauTienDiLam = DateTime.Now;
                     foreach(NhanVienCongViec nvcv in myData.NhanVienCongViecs.ToList())
                     {
-                        if (ngayDauTienDiLam.After((DateTime)nvcv.NgayBatDau))
+                        if(luongThang.NhanVienId == nvcv.NhanVienId)
                         {
-                            ngayDauTienDiLam = (DateTime)nvcv.NgayBatDau;
+                            if (ngayDauTienDiLam.After((DateTime)nvcv.NgayBatDau))
+                            {
+                                ngayDauTienDiLam = (DateTime)nvcv.NgayBatDau;
+                            }
                         }
+                        
                     }
                     luongThang.PhuCapThamNien = ((int)(DateTime.Now - ngayDauTienDiLam).Days / 365) * 0.1;
                     luongThang.TienDuAn = "" + 0;
